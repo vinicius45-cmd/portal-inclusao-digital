@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de Inclusão Digital - Guia Prático de Serviços Essenciais Online para a Comunidade do Riacho Fundo 2">
+    <meta name="keywords" content="inclusão digital, tutoriais, gov.br, tecnologia, Brasília, Riacho Fundo 2">
+    <meta name="author" content="Vinícius de Oliveira Vieira">
+    <title>Portal de Inclusão Digital - Riacho Fundo 2</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Customizado -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem !important;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .hero-section .btn {
+            padding: 12px 40px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        
+        /* Cards de Tutoriais */
+        .tutorial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 320px;
+        }
+        
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
+            border-color: var(--primary-color);
+        }
+        
+        .tutorial-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+        
+        .tutorial-card h3 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .tutorial-card p {
+            color: #64748b;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            font-size: 0.95rem;
+        }
+        
+        .btn-tutorial {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            flex-shrink: 0;
+            align-self: flex-start;
+        }
+        
+        .btn-tutorial:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+            color: white;
+        }
+        
+        /* Sobre o Projeto */
+        .about-section {
+            background: var(--light-bg);
+            padding: 80px 0;
+        }
+        
+        .about-section h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 80px;
+        }
+        
+        footer h5 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+        }
+        
+        /* Seção de Estatísticas */
+        .stats-section {
+            background: white;
+            padding: 60px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-section p {
+                font-size: 1rem;
+            }
+            
+            .tutorial-card {
+                padding: 20px;
+                min-height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                📚 Inclusão Digital
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tutoriais">Tutoriais</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Portal de Inclusão Digital</h1>
+            <p class="lead">Guia Prático de Serviços Essenciais Online<br>para a Comunidade do Riacho Fundo 2</p>
+            <a href="#tutoriais" class="btn btn-light btn-lg">Explorar Tutoriais</a>
+        </div>
+    </section>
+
+    <!-- Estatísticas -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Tutoriais Práticos</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Gratuito</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">20-40</div>
+                        <div class="stat-label">Minutos por Tutorial</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutoriais -->
+    <section id="tutoriais" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" style="color: var(--primary-color); font-weight: 700;">
+                Nossos Tutoriais
+            </h2>
+            
+            <div class="row g-4">
+                <!-- Tutorial 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="tutorial-card">
+                        <div class="tutorial-icon">🏛️</div>
+                        <h3>1. Gov.br - Serviços Públicos</h3>
+                        <p>Aprenda a criar conta e acessar CPF Digital, Carteira de Trabalho e consultar INSS.</p>
+                        <a href="tutoriais/tutorial1.html" class="btn-tutorial">Acessar Tutorial</a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="tutorial-card">
+                        <div class="tutorial-icon">💼</div>
+                        <h3>2. WhatsApp Business</h3>
+                        <p>Configure seu WhatsApp Business em 30 minutos e profissionalize seu negócio.</p>
+                        <a href="tutoriais/tutorial2.html" class="btn-tutorial">Acessar Tutorial</a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="tutorial-card">
+                        <div class="tutorial-icon">💰</div>
+                        <h3>3. Planilha Financeira</h3>
+                        <p>Crie sua planilha de controle financeiro pessoal com Google Sheets.</p>
+                        <a href="tutoriais/tutorial3.html" class="btn-tutorial">Acessar Tutorial</a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="tutorial-card">
+                        <div class="tutorial-icon">🛡️</div>
+                        <h3>4. Proteção Digital</h3>
+                        <p>Identifique e evite os 5 golpes digitais mais comuns no Brasil.</p>
+                        <a href="tutoriais/tutorial4.html" class="btn-tutorial">Acessar Tutorial</a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="tutorial-card">
+                        <div class="tutorial-icon">📄</div>
+                        <h3>5. Consultas Públicas</h3>
+                        <p>Acesse CPF, certidões, multas e 2ª via de contas online.</p>
+                        <a href="tutoriais/tutorial5.html" class="btn-tutorial">Acessar Tutorial</a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="tutorial-card">
+                        <div class="tutorial-icon">🏥</div>
+                        <h3>6. Saúde Digital - SUS</h3>
+                        <p>Use o Meu SUS Digital para ver exames, vacinas e agendar consultas.</p>
+                        <a href="tutoriais/tutorial6.html" class="btn-tutorial">Acessar Tutorial</a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 7 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="tutorial-card">
+                        <div class="tutorial-icon">🔨</div>
+                        <h3>7. Busca de Emprego</h3>
+                        <p>Estratégias efetivas para procurar emprego online e criar currículo.</p>
+                        <a href="tutoriais/tutorial7.html" class="btn-tutorial">Acessar Tutorial</a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 8 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="tutorial-card">
+                        <div class="tutorial-icon">⚖️</div>
+                        <h3>8. Reclamação Online</h3>
+                        <p>Faça reclamação efetiva no Consumidor.gov.br e Procon Digital.</p>
+                        <a href="tutoriais/tutorial8.html" class="btn-tutorial">Acessar Tutorial</a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 9 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="tutorial-card">
+                        <div class="tutorial-icon">☁️</div>
+                        <h3>9. Backup de Documentos</h3>
+                        <p>Organize e proteja seus documentos importantes no Google Drive.</p>
+                        <a href="tutoriais/tutorial9.html" class="btn-tutorial">Acessar Tutorial</a>
+                    </div>
+                </div>
+
+                <!-- Tutorial 10 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="tutorial-card">
+                        <div class="tutorial-icon">🤝</div>
+                        <h3>10. Programas Sociais</h3>
+                        <p>Verifique se você tem direito a Bolsa Família, Tarifa Social e mais.</p>
+                        <a href="tutoriais/tutorial10.html" class="btn-tutorial">Acessar Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre o Projeto -->
+    <section id="sobre" class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2>Sobre o Projeto</h2>
+                    <p class="lead">Este portal foi criado como parte de um projeto de extensão universitária com o objetivo de promover a inclusão digital na comunidade do Riacho Fundo 2, Brasília - DF.</p>
+                    <p>Todos os tutoriais são gratuitos, em linguagem simples e acessível, pensados para pessoas que estão começando a usar tecnologia ou querem aprender a acessar serviços digitais essenciais.</p>
+                    <p><strong>Nosso compromisso:</strong> Empoderar cidadãos através do conhecimento digital, facilitando o acesso a direitos, oportunidades e serviços públicos.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-body p-4">
+                            <h4 class="mb-4" style="color: var(--primary-color);">O que você vai encontrar:</h4>
+                            <ul class="list-unstyled">
+                                <li class="mb-3">✅ Tutoriais passo a passo com imagens</li>
+                                <li class="mb-3">✅ Linguagem simples e acessível</li>
+                                <li class="mb-3">✅ 100% gratuito e online</li>
+                                <li class="mb-3">✅ Conteúdo sempre disponível</li>
+                                <li class="mb-3">✅ Foco em serviços essenciais</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato / Feedback -->
+    <section id="contato" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-4" style="color: var(--primary-color); font-weight: 700;">Dê seu Feedback</h2>
+                    <p class="lead mb-4">Sua opinião é muito importante! Ajude-nos a melhorar este portal.</p>
+                    <a href="https://forms.google.com/seu-formulario-aqui" target="_blank" class="btn btn-primary btn-lg">
+                        Responder Pesquisa
+                    </a>
+                    <p class="mt-3 text-muted">Leva apenas 2 minutos!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Portal de Inclusão Digital</h5>
+                    <p>Projeto de extensão universitária desenvolvido para a comunidade do Riacho Fundo 2, Brasília - DF.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Links Úteis</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#tutoriais">Tutoriais</a></li>
+                        <li><a href="#sobre">Sobre o Projeto</a></li>
+                        <li><a href="#contato">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Tecnologias</h5>
+                    <p>Desenvolvido com HTML5, CSS3, Bootstrap 5 e JavaScript.</p>
+                    <p>Hospedado gratuitamente no GitHub Pages.</p>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.1);">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2026 Portal de Inclusão Digital - Riacho Fundo 2 | Desenvolvido por Vinícius de Oliveira Vieira</p>
+                    <p class="mb-0 mt-2">Projeto de Atividade Extensionista II - UNINTER</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scroll Suave -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

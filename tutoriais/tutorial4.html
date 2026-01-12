@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 4 - Proteção Digital | Portal de Inclusão Digital</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Customizado -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: white;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .tutorial-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+        }
+        
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+        
+        .tutorial-content {
+            background: white;
+            padding: 60px 0;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .tutorial-content h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tutorial-content h3 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border: 3px solid #0284c7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box strong {
+            color: #0c4a6e;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box strong {
+            color: #92400e;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border: 3px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box strong {
+            color: #065f46;
+        }
+        
+        .danger-box {
+            background: #fee2e2;
+            border: 3px solid #ef4444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .danger-box strong {
+            color: #991b1b;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step h4 {
+            margin-top: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            background: #f1f5f9;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .tutorial-content li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .nav-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tutorial-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        table tr:hover {
+            background: var(--light-bg);
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #dc2626;
+            font-family: 'Courier New', monospace;
+        }
+        
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 20px;
+            }
+            
+            .tutorial-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            📚 Inclusão Digital
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#tutoriais">Tutoriais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Header do Tutorial -->
+    <div class="tutorial-header">
+        <div class="container">
+            <h1>Tutorial 4: Proteção Digital - 5 Golpes Principais e Como Evitar</h1>
+            <p class="lead">Aprenda a identificar e se proteger dos 5 golpes digitais mais comuns no Brasil. Sua segurança online começa aqui!</p>
+            <div class="tutorial-meta">
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>25-35 minutos</span>
+                </div>
+                <div class="meta-item">
+                    <span>📱</span>
+                    <span>Celular ou Computador</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Tutorial -->
+    <div class="tutorial-content">
+        <div class="content-wrapper">
+            
+            <!-- Introdução -->
+            <h2>O Que Você Vai Aprender</h2>
+            <ul>
+                <li>Identificar os 5 golpes digitais mais comuns que afetam brasileiros todos os dias</li>
+                <li>Reconhecer sinais de alerta antes de cair em armadilhas online</li>
+                <li>Aplicar as 3 Regras de Ouro para se proteger de 90% dos golpes</li>
+                <li>Ativar verificação em 2 etapas no WhatsApp, e-mail e aplicativos bancários</li>
+                <li>Denunciar golpes corretamente para ajudar a polícia e outras vítimas</li>
+                <li>Proteger sua família e amigos compartilhando este conhecimento</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>Antes de Começar - Importante Saber:</strong>
+                <ul style="margin: 10px 0 0 0;">
+                    <li><strong>Qualquer pessoa pode ser vítima</strong> - golpistas são profissionais e usam técnicas de manipulação psicológica</li>
+                    <li><strong>Não tenha vergonha</strong> se já caiu em algum golpe. O importante é aprender e se proteger daqui para frente</li>
+                    <li><strong>Compartilhe este tutorial</strong> com familiares e amigos, especialmente idosos e jovens</li>
+                    <li><strong>Na dúvida, sempre pergunte</strong> para alguém de confiança antes de passar dados ou dinheiro</li>
+                </ul>
+            </div>
+
+            <!-- GOLPE 1 -->
+            <h2>Os 5 Golpes Mais Comuns</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Golpe 1: Falsa Central do Banco</h4>
+                
+                <p><strong>Como funciona:</strong></p>
+                <p>Você recebe uma ligação de alguém dizendo ser do banco. A pessoa fala com firmeza, parece profissional e diz que:</p>
+                <ul>
+                    <li>"Detectamos uma compra suspeita no seu cartão"</li>
+                    <li>"Sua conta foi bloqueada por segurança"</li>
+                    <li>"Precisamos confirmar seus dados para desbloquear"</li>
+                    <li>"Digite sua senha no telefone ou aplicativo que vamos enviar"</li>
+                </ul>
+
+                <div class="danger-box">
+                    <strong>Por Que É Golpe - NENHUM BANCO VERDADEIRO:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>Pede senha por telefone</li>
+                        <li>Pede código de SMS</li>
+                        <li>Pede para instalar aplicativo "de segurança"</li>
+                        <li>Pede para fazer transferências "para se proteger"</li>
+                        <li>Pressiona você a agir com urgência</li>
+                    </ul>
+                </div>
+
+                <p><strong>Como se proteger:</strong></p>
+                <ol>
+                    <li><strong>Desligue na hora</strong> - não continue a conversa</li>
+                    <li><strong>Ligue você mesmo</strong> para o número do seu banco (o que está no verso do cartão ou app oficial)</li>
+                    <li><strong>Confirme se houve</strong> realmente algum problema</li>
+                    <li><strong>Nunca forneça</strong> senha, código SMS ou dados completos do cartão</li>
+                    <li><strong>Desconfie de urgência</strong> - bancos não pressionam clientes</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Dica de Segurança:</strong> Salve o número oficial do seu banco na agenda com o nome "BANCO [NOME] - OFICIAL". Assim você reconhece quando for ligação verdadeira!
+                </div>
+            </div>
+
+            <!-- GOLPE 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Golpe 2: Clonagem de WhatsApp</h4>
+                
+                <p><strong>Como funciona:</strong></p>
+                <p>O golpista consegue seu número de telefone (redes sociais, listas vazadas, etc.) e tenta clonar seu WhatsApp:</p>
+                <ol>
+                    <li>Ele instala o WhatsApp em outro celular usando seu número</li>
+                    <li>O WhatsApp envia um código SMS de 6 dígitos para você</li>
+                    <li>O golpista liga ou manda mensagem pedindo "aquele código que acabou de chegar"</li>
+                    <li>Ele inventa desculpas: "Enviei por engano", "É para um cadastro", "Preciso urgente"</li>
+                    <li>Se você passar o código, ele clona seu WhatsApp</li>
+                </ol>
+
+                <div class="danger-box">
+                    <strong>O Que Acontece Depois - Com seu WhatsApp clonado, o golpista:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>Pede dinheiro emprestado para seus contatos se passando por você</li>
+                        <li>Acessa suas conversas e fotos pessoais</li>
+                        <li>Usa seu nome para aplicar golpes</li>
+                        <li>Pede Pix "urgente" para família e amigos</li>
+                    </ul>
+                </div>
+
+                <p><strong>Como se proteger:</strong></p>
+                <ol>
+                    <li><strong>NUNCA passe</strong> o código de 6 dígitos para NINGUÉM, nem conhecido</li>
+                    <li><strong>Ative a verificação em 2 etapas</strong> (veja mais adiante neste tutorial)</li>
+                    <li><strong>Se receber o código sem pedir</strong>, significa que alguém está tentando clonar</li>
+                    <li><strong>Não acredite</strong> em desculpas de "enviei por engano"</li>
+                    <li><strong>Avise seus contatos</strong> imediatamente se for clonado</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>Você Sabia?</strong> O WhatsApp NUNCA liga ou manda mensagem pedindo o código. Ele só envia por SMS. Se alguém pediu, é golpe!
+                </div>
+            </div>
+
+            <!-- GOLPE 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Golpe 3: Boleto ou QR Code Falso</h4>
+                
+                <p><strong>Como funciona:</strong></p>
+                <p>Você recebe um boleto ou QR Code de Pix aparentemente legítimo, mas os números foram trocados:</p>
+                <ul>
+                    <li><strong>Por e-mail:</strong> "Sua conta de luz", "Seu aluguel", "Mensalidade da escola"</li>
+                    <li><strong>Por WhatsApp:</strong> Contato se passando por loja, empresa ou até conhecido</li>
+                    <li><strong>Por SMS:</strong> "Seu boleto está vencendo, baixe aqui"</li>
+                </ul>
+
+                <p><strong>Sinais de alerta:</strong></p>
+                <ol>
+                    <li><strong>Erros de português</strong> no texto do e-mail ou mensagem</li>
+                    <li><strong>Remetente estranho</strong> - e-mail diferente do habitual da empresa</li>
+                    <li><strong>Links encurtados</strong> (bit.ly, tinyurl, etc.) em vez do site oficial</li>
+                    <li><strong>Urgência exagerada</strong> - "Pague hoje ou será cortado"</li>
+                    <li><strong>Valores diferentes</strong> do que você costuma pagar</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>Cuidado Especial com Pix - Antes de pagar qualquer QR Code de Pix:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>Confira o NOME completo do recebedor na tela de confirmação</li>
+                        <li>Veja se é CPF ou CNPJ - empresa legítima geralmente usa CNPJ</li>
+                        <li>Se o nome não bate, NÃO pague!</li>
+                    </ul>
+                </div>
+
+                <p><strong>Como se proteger:</strong></p>
+                <ol>
+                    <li><strong>Nunca use boleto</strong> recebido por e-mail ou WhatsApp sem confirmar</li>
+                    <li><strong>Acesse o site oficial</strong> da empresa e emita o boleto lá (segunda via)</li>
+                    <li><strong>Ligue para a empresa</strong> e confirme se enviaram boleto</li>
+                    <li><strong>Compare os dados</strong> - nome do beneficiário, valor, data de vencimento</li>
+                    <li><strong>Use o app oficial</strong> da empresa quando possível (Cemig, Caesb, Neoenergia, etc.)</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Regra de Ouro:</strong> Sempre confirme pelo canal oficial da empresa, nunca por links ou contatos que você recebeu!
+                </div>
+            </div>
+
+            <!-- GOLPE 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Golpe 4: Link Falso (Phishing)</h4>
+                
+                <p><strong>Como funciona:</strong></p>
+                <p>Você recebe uma mensagem com link que parece ser de site oficial (banco, Gov.br, loja, Receita Federal), mas é falso:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Site Verdadeiro</th>
+                            <th>Site Falso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>gov.br</td>
+                            <td>gov-br.com / govbr.net</td>
+                        </tr>
+                        <tr>
+                            <td>bb.com.br</td>
+                            <td>bancodobrasil.com / bb-brasil.com</td>
+                        </tr>
+                        <tr>
+                            <td>caixa.gov.br</td>
+                            <td>caixa.com.br / caixaeconomica.net</td>
+                        </tr>
+                        <tr>
+                            <td>receita.fazenda.gov.br</td>
+                            <td>receitafederal.com / receita.com.br</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="danger-box">
+                    <strong>Mensagens Comuns de Phishing:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>"Seu CPF está suspenso, regularize agora"</li>
+                        <li>"Você tem valores a receber do governo"</li>
+                        <li>"Sua conta será bloqueada, atualize seus dados"</li>
+                        <li>"Confirme seu pedido de compra" (que você não fez)</li>
+                        <li>"Clique aqui para não perder seu benefício"</li>
+                        <li>"Prêmio da loteria - você foi sorteado"</li>
+                    </ul>
+                </div>
+
+                <p><strong>Como identificar um link falso:</strong></p>
+                <ol>
+                    <li><strong>Olhe o endereço completo</strong> antes de clicar (segure o dedo no link no celular)</li>
+                    <li><strong>Veja o domínio principal</strong> - deve ser .gov.br, .com.br do banco oficial</li>
+                    <li><strong>Desconfie de domínios estranhos</strong> - .net, .info, .club, números misturados</li>
+                    <li><strong>Cuidado com erros sutis</strong> - caixa.com em vez de caixa.gov.br</li>
+                    <li><strong>Links encurtados</strong> (bit.ly) escondem o destino real</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>Como Verificar com Segurança:</strong><br>
+                    <strong>No celular:</strong> Segure o dedo sobre o link por 2 segundos para ver o endereço completo antes de abrir.<br>
+                    <strong>No computador:</strong> Passe o mouse sobre o link (sem clicar) e olhe o endereço na parte de baixo do navegador.
+                </div>
+
+                <p><strong>Como se proteger:</strong></p>
+                <ol>
+                    <li><strong>Nunca clique</strong> em links recebidos por SMS, e-mail ou WhatsApp</li>
+                    <li><strong>Digite você mesmo</strong> o endereço no navegador (ex: www.gov.br)</li>
+                    <li><strong>Use aplicativos oficiais</strong> baixados da Play Store ou App Store</li>
+                    <li><strong>Verifique o cadeado</strong> (🔒) ao lado do endereço no navegador</li>
+                    <li><strong>Se desconfiar</strong>, feche tudo e acesse pelo site oficial</li>
+                </ol>
+            </div>
+
+            <!-- GOLPE 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Golpe 5: Falso Familiar em Apuros</h4>
+                
+                <p><strong>Como funciona:</strong></p>
+                <p>Você recebe mensagem ou ligação de alguém se passando por filho, sobrinho, neto ou amigo próximo:</p>
+
+                <p><strong>Frases que os golpistas usam:</strong></p>
+                <ul>
+                    <li>"Oi mãe/pai, esse é meu novo número"</li>
+                    <li>"Sofri um acidente e estou no hospital"</li>
+                    <li>"Fui assaltado e levaram meu celular"</li>
+                    <li>"Meu celular quebrou, estou usando outro"</li>
+                    <li>"Preciso pagar uma coisa urgente, me ajuda?"</li>
+                    <li>"Não posso falar agora, só consegue transferir?"</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>Táticas de Manipulação - Os golpistas usam truques psicológicos:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li><strong>Urgência:</strong> "É urgente, não posso esperar"</li>
+                        <li><strong>Medo:</strong> "Estou em perigo/com problema grave"</li>
+                        <li><strong>Sigilo:</strong> "Não conta para ninguém"</li>
+                        <li><strong>Pressão emocional:</strong> "Só você pode me ajudar"</li>
+                    </ul>
+                </div>
+
+                <p><strong>Como se proteger:</strong></p>
+                <ol>
+                    <li><strong>SEMPRE ligue</strong> para o número antigo do familiar para confirmar</li>
+                    <li><strong>Faça uma pergunta</strong> que só o familiar verdadeiro saberia responder</li>
+                    <li><strong>Ligue por vídeo</strong> - golpista nunca aceita videochamada</li>
+                    <li><strong>Peça para falar</strong> - "Mande um áudio então"</li>
+                    <li><strong>Não transfira</strong> sem confirmar pessoalmente</li>
+                    <li><strong>Envolva outro familiar</strong> - "Vou ligar para seu irmão/sua mãe"</li>
+                </ol>
+
+                <div class="danger-box">
+                    <strong>Sinais de Alerta:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>Não quer falar por telefone ou vídeo</li>
+                        <li>Pressiona para agir rápido</li>
+                        <li>Pede para não contar para ninguém</li>
+                        <li>Escreve diferente do jeito habitual</li>
+                        <li>Pede valores em Pix para desconhecidos</li>
+                    </ul>
+                </div>
+
+                <div class="success-box">
+                    <strong>Regra Simples:</strong> Combine uma palavra-chave secreta com sua família! Se alguém pedir dinheiro, deve falar a palavra-chave primeiro. Sem a palavra = golpe!
+                </div>
+            </div>
+
+            <!-- 3 REGRAS DE OURO -->
+            <h2>As 3 Regras de Ouro da Proteção Digital</h2>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Regra 1: Banco NUNCA Pede Senha</h4>
+                
+                <p><strong>Grave isso:</strong></p>
+                <div class="danger-box">
+                    <strong>Nenhum Banco ou Empresa Séria Pede:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>Senha completa do cartão, app ou internet banking</li>
+                        <li>Código de SMS ou token</li>
+                        <li>Número completo do cartão + CVV (3 dígitos)</li>
+                        <li>Para instalar aplicativo remoto ou "de segurança"</li>
+                        <li>Para fazer transferência "provisória" ou "reverter fraude"</li>
+                    </ul>
+                </div>
+                <p>Se pedirem qualquer uma dessas coisas, <strong>DESLIGUE NA HORA</strong>. É golpe 100% garantido!</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Regra 2: Sempre Verifique a URL</h4>
+                
+                <p><strong>Antes de colocar qualquer dado pessoal ou senha:</strong></p>
+                <ol>
+                    <li><strong>Olhe a barra de endereço</strong> no topo do navegador</li>
+                    <li><strong>Confira o domínio</strong> - deve ser oficial (.gov.br, .com.br correto)</li>
+                    <li><strong>Veja o cadeado</strong> (🔒) - deve estar fechado</li>
+                    <li><strong>Clique no cadeado</strong> para ver o certificado de segurança</li>
+                </ol>
+                
+                <div class="info-box">
+                    <strong>URLs Oficiais Principais:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>Governo Federal: <strong>www.gov.br</strong></li>
+                        <li>Banco do Brasil: <strong>www.bb.com.br</strong></li>
+                        <li>Caixa Econômica: <strong>www.caixa.gov.br</strong></li>
+                        <li>Receita Federal: <strong>www.gov.br/receitafederal</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Regra 3: Na Dúvida, Confirme por Outro Canal</h4>
+                
+                <p><strong>Sempre que algo parecer suspeito:</strong></p>
+                <ol>
+                    <li><strong>Pare tudo</strong> - não continue a ação</li>
+                    <li><strong>Feche a conversa/site</strong></li>
+                    <li><strong>Ligue você mesmo</strong> para o número oficial</li>
+                    <li><strong>Acesse o site oficial</strong> digitando o endereço</li>
+                    <li><strong>Pergunte para alguém</strong> de confiança</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Lembre-se:</strong> É melhor perder 5 minutos confirmando do que perder todo o seu dinheiro! <strong>Empresas sérias entendem e respeitam sua cautela.</strong>
+                </div>
+            </div>
+
+            <!-- VERIFICAÇÃO EM 2 ETAPAS -->
+            <h2>Como Ativar Verificação em 2 Etapas</h2>
+
+            <div class="step">
+                <div class="step-number">📱</div>
+                <h4>No WhatsApp (Essencial!)</h4>
+                
+                <p><strong>A verificação em 2 etapas cria uma senha extra de 6 dígitos que só você sabe. Assim, mesmo se alguém conseguir o código SMS, não consegue clonar seu WhatsApp!</strong></p>
+                
+                <p><strong>Como ativar:</strong></p>
+                <ol>
+                    <li>Abra o <strong>WhatsApp</strong></li>
+                    <li>Toque nos <strong>três pontinhos</strong> (⋮) no canto superior direito</li>
+                    <li>Vá em <strong>Configurações</strong></li>
+                    <li>Toque em <strong>Conta</strong></li>
+                    <li>Toque em <strong>Confirmação em duas etapas</strong></li>
+                    <li>Toque em <strong>Ativar</strong></li>
+                    <li>Crie uma senha de <strong>6 dígitos</strong> (escolha algo que lembre, mas não óbvio como 123456)</li>
+                    <li>Confirme a senha digitando novamente</li>
+                    <li>Adicione um <strong>e-mail de recuperação</strong> (importante!)</li>
+                </ol>
+
+                <div class="tutorial-image">
+                    <img src="../img/tutorial4-passo1.png" alt="Passo 1" width="800">
+                </div>
+                <p class="image-caption">Configuração da verificação em 2 etapas no WhatsApp</p>
+
+                <div class="warning-box">
+                    <strong>Importante:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li><strong>Anote essa senha</strong> em local seguro (caderno físico)</li>
+                        <li><strong>Não use senhas óbvias</strong> como data de nascimento</li>
+                        <li><strong>O WhatsApp vai pedir</strong> essa senha periodicamente para você não esquecer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">📧</div>
+                <h4>No E-mail (Gmail, Outlook, etc.)</h4>
+                
+                <p><strong>Para Gmail:</strong></p>
+                <ol>
+                    <li>Acesse <strong>myaccount.google.com</strong></li>
+                    <li>Clique em <strong>Segurança</strong> no menu lateral</li>
+                    <li>Em "Como fazer login no Google", clique em <strong>Verificação em duas etapas</strong></li>
+                    <li>Clique em <strong>Começar</strong></li>
+                    <li>Confirme sua senha do Gmail</li>
+                    <li>Adicione seu número de celular</li>
+                    <li>Escolha receber código por <strong>SMS</strong></li>
+                    <li>Digite o código que chegou</li>
+                    <li>Clique em <strong>Ativar</strong></li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Vantagem:</strong> Com verificação em 2 etapas, mesmo se alguém descobrir sua senha, não consegue entrar sem o código do celular!
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">🏦</div>
+                <h4>Nos Aplicativos de Banco</h4>
+                
+                <p><strong>A maioria dos bancos já tem verificação automática, mas você pode reforçar:</strong></p>
+                <ol>
+                    <li>Ative <strong>reconhecimento facial</strong> ou <strong>digital</strong></li>
+                    <li>Cadastre <strong>apenas seu celular</strong> (não empreste para fazer cadastro)</li>
+                    <li>Ative <strong>notificações</strong> para todas as transações</li>
+                    <li>Configure <strong>limites de transferência</strong> mais baixos</li>
+                    <li>Ative o <strong>token</strong> no celular (não use SMS quando possível)</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>Dica Extra:</strong> Configure para receber notificação de TODAS as movimentações. Assim você sabe na hora se acontecer algo suspeito!
+                </div>
+            </div>
+
+            <!-- COMO DENUNCIAR -->
+            <h2>Como Denunciar Golpes</h2>
+
+            <h3>Delegacia Virtual - DF (PCDF)</h3>
+            <p><strong>Para moradores do Distrito Federal:</strong></p>
+            <ol>
+                <li>Acesse <strong>www.pcdf.df.gov.br</strong></li>
+                <li>Clique em <strong>Delegacia Eletrônica</strong></li>
+                <li>Escolha <strong>Registrar Ocorrência</strong></li>
+                <li>Selecione o tipo: <strong>Estelionato</strong> ou <strong>Fraude Eletrônica</strong></li>
+                <li>Preencha todos os dados da ocorrência</li>
+                <li>Anexe prints de conversas, comprovantes, etc.</li>
+                <li>Guarde o <strong>número do boletim de ocorrência</strong></li>
+            </ol>
+
+            <div class="info-box">
+                <strong>Informações Úteis para a Denúncia:</strong>
+                <ul style="margin: 10px 0 0 0;">
+                    <li>Número de telefone do golpista</li>
+                    <li>Prints de conversas (WhatsApp, SMS, e-mail)</li>
+                    <li>Dados bancários para onde enviou dinheiro</li>
+                    <li>Data e hora do golpe</li>
+                    <li>Links ou sites falsos</li>
+                </ul>
+            </div>
+
+            <h3>Denúncia ao Banco</h3>
+            <p><strong>Se foi vítima de golpe bancário:</strong></p>
+            <ol>
+                <li><strong>Ligue imediatamente</strong> para o banco (número oficial do cartão)</li>
+                <li><strong>Bloqueie</strong> cartões e contas</li>
+                <li><strong>Solicite estorno</strong> da transação (nem sempre é possível)</li>
+                <li><strong>Abra reclamação formal</strong> no banco</li>
+                <li><strong>Registre boletim</strong> na polícia</li>
+                <li><strong>Se o banco negar</strong>, reclame no Banco Central: <strong>www.bcb.gov.br</strong></li>
+            </ol>
+
+            <div class="warning-box">
+                <strong>Importante:</strong> Quanto mais rápido você avisar o banco, maior a chance de bloquear a transação ou recuperar o dinheiro!
+            </div>
+
+            <h3>Outras Denúncias</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de Golpe</th>
+                        <th>Onde Denunciar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>WhatsApp clonado</td>
+                        <td>WhatsApp: Settings → Help → Contact Us<br>E-mail: support@whatsapp.com</td>
+                    </tr>
+                    <tr>
+                        <td>Site falso de loja</td>
+                        <td>Procon: www.procon.df.gov.br<br>Consumidor.gov.br</td>
+                    </tr>
+                    <tr>
+                        <td>E-mail falso (phishing)</td>
+                        <td>Encaminhe para: cert@cert.br<br>(Centro de Estudos de Segurança)</td>
+                    </tr>
+                    <tr>
+                        <td>Golpe telefônico</td>
+                        <td>Anatel: www.anatel.gov.br<br>Registre reclamação</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SINAIS DE ALERTA -->
+            <h2>Reconheça os Sinais de Alerta</h2>
+
+            <div class="danger-box">
+                <strong>Bandeiras Vermelhas - Quando Desconfiar</strong><br>
+                Se a situação tem estes sinais, provavelmente é golpe:
+            </div>
+
+            <h3>Sinal 1: Urgência Exagerada</h3>
+            <ul>
+                <li>"Precisa ser agora ou você perde"</li>
+                <li>"Sua conta será bloqueada em 24 horas"</li>
+                <li>"Última chance de resgatar o prêmio"</li>
+                <li>"Resolva hoje ou terá prejuízo"</li>
+            </ul>
+            <p><strong>Motivo:</strong> Golpistas usam urgência para você não pensar direito e agir por impulso.</p>
+
+            <h3>Sinal 2: Medo e Ameaça</h3>
+            <ul>
+                <li>"Seu CPF será cancelado"</li>
+                <li>"Você está sendo processado"</li>
+                <li>"A polícia vai te procurar"</li>
+                <li>"Sua conta está sob investigação"</li>
+            </ul>
+            <p><strong>Motivo:</strong> Pessoas com medo tomam decisões ruins e não pensam com clareza.</p>
+
+            <h3>Sinal 3: Pedido de Sigilo</h3>
+            <ul>
+                <li>"Não conte para ninguém"</li>
+                <li>"É procedimento confidencial"</li>
+                <li>"Não pode comentar nem com a família"</li>
+                <li>"Mantenha segredo para sua segurança"</li>
+            </ul>
+            <p><strong>Motivo:</strong> Golpistas não querem que você consulte outras pessoas que possam alertá-lo.</p>
+
+            <h3>Sinal 4: Oferta Boa Demais</h3>
+            <ul>
+                <li>"Você ganhou um prêmio de R$ 50.000"</li>
+                <li>"Investimento com retorno garantido de 30% ao mês"</li>
+                <li>"Promoção exclusiva só para você"</li>
+                <li>"Dinheiro esquecido em seu nome"</li>
+            </ul>
+            <p><strong>Motivo:</strong> Se parece bom demais para ser verdade, provavelmente é golpe.</p>
+
+            <h3>Sinal 5: Pedido de Dados Sensíveis</h3>
+            <ul>
+                <li>Senha completa</li>
+                <li>Código de SMS</li>
+                <li>Número completo do cartão + CVV</li>
+                <li>Dados de conta bancária completos</li>
+            </ul>
+            <p><strong>Motivo:</strong> Empresas legítimas NUNCA pedem esses dados por telefone, WhatsApp ou e-mail.</p>
+
+            <div class="success-box">
+                <strong>Regra Simples:</strong> Se tem 2 ou mais sinais de alerta, PARE TUDO e não continue! Desligue, feche o site, não responda. Depois confirme por canal oficial.
+            </div>
+
+            <!-- DÚVIDAS COMUNS -->
+            <h2>Dúvidas Comuns</h2>
+
+            <h3>1. Já caí em um golpe. Devo ter vergonha?</h3>
+            <p><strong>NUNCA!</strong> Golpistas são profissionais e usam técnicas de psicologia para enganar qualquer pessoa. Pessoas inteligentes, educadas e atentas caem em golpes todos os dias. O importante é denunciar, aprender e se proteger daqui para frente. Compartilhe sua experiência para ajudar outros!</p>
+
+            <h3>2. Meu WhatsApp foi clonado. O que faço AGORA?</h3>
+            <p><strong>Ações imediatas:</strong></p>
+            <ol>
+                <li>Envie mensagem para TODOS os contatos avisando da clonagem pelo Status do WhatsApp ou por SMS</li>
+                <li>Reinstale o WhatsApp no seu celular - isso expulsa o golpista</li>
+                <li>Ative verificação em 2 etapas</li>
+                <li>Registre boletim de ocorrência</li>
+                <li>Avise o WhatsApp pelo e-mail support@whatsapp.com</li>
+            </ol>
+
+            <h3>3. Cliquei em um link suspeito. Estou em perigo?</h3>
+            <p>Apenas clicar geralmente não causa problema. O perigo é se você <strong>colocou dados</strong> (senha, CPF, cartão) no site falso. Se só clicou: feche tudo, limpe o histórico e não se preocupe. Se colocou dados: mude TODAS as senhas imediatamente, monitore sua conta bancária e registre ocorrência.</p>
+
+            <h3>4. Como saber se meu celular tem vírus?</h3>
+            <p><strong>Sinais comuns:</strong> celular lento demais, bateria acabando rápido, apps abrindo sozinhos, anúncios aparecendo fora de apps, conta de internet muito alta.</p>
+            <p><strong>Solução:</strong> Instale um antivírus confiável (Avast, AVG, Kaspersky) da Play Store oficial e faça uma varredura completa.</p>
+
+            <h3>5. Posso recuperar dinheiro perdido em golpe?</h3>
+            <p>Depende. Se agiu <strong>muito rápido</strong> (minutos), há chance de o banco bloquear a transação. Se passou horas/dias, é mais difícil.</p>
+            <p><strong>Sempre tente:</strong></p>
+            <ol>
+                <li>Avisar o banco imediatamente</li>
+                <li>Registrar B.O.</li>
+                <li>Entrar com reclamação no Banco Central</li>
+                <li>Se necessário, procurar advogado ou Juizado Especial</li>
+            </ol>
+            <p>Não desista!</p>
+
+            <!-- DICAS EXTRAS -->
+            <h2>Dicas Extras de Proteção</h2>
+
+            <div class="info-box">
+                <strong>Use senhas diferentes</strong> para cada serviço importante (e-mail, banco, Gov.br). Assim, se uma vazar, as outras ficam protegidas.
+            </div>
+
+            <div class="info-box">
+                <strong>Não empreste seu celular</strong> desbloqueado para desconhecidos, mesmo "só para uma ligação". Eles podem instalar apps maliciosos em segundos.
+            </div>
+
+            <div class="info-box">
+                <strong>Cuidado com e-mails</strong> de remetentes desconhecidos, especialmente com anexos. Vírus podem vir escondidos em PDFs e documentos.
+            </div>
+
+            <div class="info-box">
+                <strong>Atualize seus apps</strong> regularmente. Atualizações corrigem falhas de segurança que golpistas exploram.
+            </div>
+
+            <div class="info-box">
+                <strong>Desconfie de promoções</strong> em redes sociais que pedem dados pessoais. Empresas sérias não pedem CPF por DM.
+            </div>
+
+            <!-- RESOLVENDO PROBLEMAS -->
+            <h2>Resolvendo Problemas Comuns</h2>
+
+            <h3>Problema 1: Esqueci a senha da verificação em 2 etapas do WhatsApp</h3>
+            <p><strong>Solução:</strong></p>
+            <ol>
+                <li>Se cadastrou e-mail de recuperação: use a opção "Esqueci minha senha" e siga as instruções por e-mail</li>
+                <li>Se não cadastrou e-mail: terá que aguardar 7 dias sem usar o WhatsApp. Depois desse período, poderá registrar novamente sem a senha</li>
+                <li>Para evitar isso no futuro: sempre cadastre um e-mail de recuperação válido</li>
+            </ol>
+
+            <h3>Problema 2: Meu banco não quer devolver o dinheiro do golpe</h3>
+            <p><strong>Solução:</strong></p>
+            <ol>
+                <li>Registre reclamação formal no próprio banco e guarde o número do protocolo</li>
+                <li>Se negarem, abra reclamação no Banco Central: <strong>www.bcb.gov.br</strong> → Registrar Reclamação</li>
+                <li>Registre também no Procon: <strong>www.procon.df.gov.br</strong></li>
+                <li>Considere procurar o Juizado Especial (para valores até 60 salários mínimos não precisa de advogado)</li>
+                <li>Reúna todas as provas: prints, comprovantes, boletim de ocorrência</li>
+            </ol>
+
+            <div class="info-box">
+                <strong>Importante:</strong> Bancos têm responsabilidade por segurança. Se você não agiu com negligência (não passou senhas conscientemente), pode ter direito ao ressarcimento.
+            </div>
+
+            <h3>Problema 3: Continuo recebendo mensagens de golpistas</h3>
+            <p><strong>Solução:</strong></p>
+            <ol>
+                <li><strong>Bloqueie os números</strong> no WhatsApp: abra a conversa → toque no nome → Bloquear</li>
+                <li><strong>Reporte como spam</strong> antes de bloquear</li>
+                <li><strong>Não responda NUNCA</strong> - nem para xingar. Isso confirma que seu número está ativo</li>
+                <li><strong>Configure privacidade</strong> no WhatsApp: Settings → Conta → Privacidade → "Meus Contatos" para foto, status e info</li>
+                <li><strong>Denuncie na operadora</strong> se forem ligações: envie SMS com "SPAM" + número para 7726 (SPAM)</li>
+            </ol>
+
+            <!-- CONCLUSÃO -->
+            <div class="success-box" style="margin-top: 50px;">
+                <h3 style="color: #065f46; margin-top: 0;">Parabéns! Você Está Muito Mais Protegido Agora!</h3>
+                <p>Você aprendeu a identificar os 5 golpes mais comuns, conhece as 3 Regras de Ouro e sabe como ativar proteções extras. Agora é hora de colocar em prática!</p>
+                <p><strong>Lembre-se:</strong> Compartilhe este conhecimento com família e amigos. Quanto mais pessoas protegidas, menos vítimas os golpistas terão!</p>
+                <p style="margin-bottom: 0;"><strong>Você tem o poder de se proteger e proteger quem você ama!</strong></p>
+            </div>
+
+            <div class="warning-box">
+                <strong>Revisão Rápida - Sempre que receber algo suspeito, pergunte:</strong>
+                <ol style="margin: 10px 0 0 0;">
+                    <li>Estão pedindo senha, código ou dados sensíveis? → GOLPE</li>
+                    <li>Estão criando urgência ou medo? → DESCONFIE</li>
+                    <li>O link/número é oficial mesmo? → VERIFIQUE</li>
+                    <li>Na dúvida? → CONFIRME POR OUTRO CANAL</li>
+                </ol>
+            </div>
+
+            <!-- Navegação entre Tutoriais -->
+            <div class="tutorial-nav">
+                <a href="tutorial3.html" class="nav-tutorial-btn">
+                    Tutorial Anterior
+                </a>
+                <a href="tutorial5.html" class="nav-tutorial-btn">
+                    Próximo: Consultas Públicas
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Portal de Inclusão Digital - Riacho Fundo 2</p>
+            <p class="mb-0 mt-2">Desenvolvido por Vinícius de Oliveira Vieira - UNINTER</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

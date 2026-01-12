@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 3 - Planilha Financeira | Portal de Inclusão Digital</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Customizado -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: white;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .tutorial-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+        }
+        
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+        
+        .tutorial-content {
+            background: white;
+            padding: 60px 0;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .tutorial-content h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tutorial-content h3 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border: 3px solid #0284c7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box strong {
+            color: #0c4a6e;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box strong {
+            color: #92400e;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border: 3px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box strong {
+            color: #065f46;
+        }
+        
+        .danger-box {
+            background: #fee2e2;
+            border: 3px solid #ef4444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .danger-box strong {
+            color: #991b1b;
+        }
+        
+        .formula-box {
+            background: #f1f5f9;
+            border: 3px solid #64748b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step h4 {
+            margin-top: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            background: #f1f5f9;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .tutorial-content li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .nav-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tutorial-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        table tr:hover {
+            background: var(--light-bg);
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #dc2626;
+            font-family: 'Courier New', monospace;
+        }
+        
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 20px;
+            }
+            
+            .tutorial-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            📚 Inclusão Digital
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#tutoriais">Tutoriais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Header do Tutorial -->
+    <div class="tutorial-header">
+        <div class="container">
+            <h1>Tutorial 3: Planilha de Controle Financeiro Pessoal</h1>
+            <p class="lead">Aprenda a criar e usar uma planilha simples no Google Sheets para organizar suas finanças</p>
+            <div class="tutorial-meta">
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>25 minutos</span>
+                </div>
+                <div class="meta-item">
+                    <span>📱</span>
+                    <span>Celular ou Computador</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Tutorial -->
+    <div class="tutorial-content">
+        <div class="content-wrapper">
+            
+            <!-- Introdução -->
+            <h2>O Que Você Vai Aprender</h2>
+            <ul>
+                <li>Acessar o Google Sheets (planilhas gratuitas do Google)</li>
+                <li>Criar estrutura básica de controle financeiro</li>
+                <li>Usar 3 fórmulas essenciais: SOMA, SOMA.SE e cálculo de saldo</li>
+                <li>Criar gráfico automático para ver onde gasta mais</li>
+                <li>Usar a planilha pelo celular</li>
+                <li>Compartilhar com família (se quiser)</li>
+                <li>Analisar seus gastos mensais</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Antes de Começar:</strong> Você precisa ter uma conta Google (Gmail). Se não tem, pode criar gratuitamente em gmail.com. É a mesma conta que você usa para YouTube e outros serviços do Google!
+            </div>
+
+            <!-- Por que fazer -->
+            <h2>Por Que Controlar as Finanças?</h2>
+            <p>Muita gente não sabe exatamente para onde vai o dinheiro no final do mês. Com uma planilha simples, você vai:</p>
+            <ul>
+                <li><strong>Saber para onde vai cada centavo</strong> - Identificar gastos desnecessários</li>
+                <li><strong>Economizar dinheiro</strong> - Cortar despesas que você nem sabia que tinha</li>
+                <li><strong>Evitar dívidas</strong> - Não gastar mais do que ganha</li>
+                <li><strong>Planejar o futuro</strong> - Guardar dinheiro para objetivos</li>
+                <li><strong>Ter paz de espírito</strong> - Saber que está no controle</li>
+                <li><strong>Tomar decisões melhores</strong> - Baseadas em dados reais</li>
+            </ul>
+
+            <div class="success-box">
+                <strong>Dados Interessantes:</strong> Estudos mostram que pessoas que controlam seus gastos economizam em média 20% do que ganham, enquanto quem não controla frequentemente fica endividado!
+            </div>
+
+            <!-- Passo 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Acessar o Google Sheets</h4>
+                <p>O Google Sheets é como um Excel, mas gratuito e funciona na internet. Você pode acessar de qualquer lugar!</p>
+                
+                <p><strong>Pelo Computador:</strong></p>
+                <ol>
+                    <li>Abra seu navegador</li>
+                    <li>Digite: <code>sheets.google.com</code></li>
+                    <li>Faça login com sua conta Google (Gmail)</li>
+                </ol>
+                
+                <p><strong>Pelo Celular:</strong></p>
+                <ol>
+                    <li>Baixe o app "Google Planilhas" na loja (Play Store ou App Store)</li>
+                    <li>Abra o app</li>
+                    <li>Faça login com sua conta Google</li>
+                </ol>
+                
+                <div class="info-box">
+                    <strong>Vantagens do Google Sheets:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>Totalmente gratuito</li>
+                        <li>Salva automaticamente (nunca perde dados)</li>
+                        <li>Acessa de qualquer dispositivo</li>
+                        <li>Pode compartilhar com outras pessoas</li>
+                        <li>Funciona offline no celular</li>
+                    </ul>
+                </div>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial3-passo1.png" alt="Passo 1" width="1000">
+                </div>
+                <p class="image-caption">Tela inicial do Google Sheets</p>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Criar Nova Planilha</h4>
+                <p>Agora vamos criar sua planilha de controle financeiro!</p>
+                
+                <ol>
+                    <li>Na tela inicial do Google Sheets, clique no botão <strong>"+"</strong> (mais) ou em <strong>"Em branco"</strong></li>
+                    <li>Uma planilha vazia vai abrir</li>
+                    <li>Clique em "Planilha sem título" no canto superior esquerdo</li>
+                    <li>Digite um nome: <code>Controle Financeiro 2024</code></li>
+                    <li>Pronto! Sua planilha está criada</li>
+                </ol>
+                
+                <div class="success-box">
+                    <strong>A planilha salva automaticamente!</strong> Você não precisa clicar em "Salvar". Tudo que você digitar é salvo na hora na sua conta do Google.
+                </div>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial3-passo2.png" alt="Passo 2" width="1000">
+                </div>
+                <p class="image-caption">Clique no nome para renomear a planilha</p>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Criar a Estrutura Básica (Cabeçalhos)</h4>
+                <p>Agora vamos criar as colunas da nossa planilha. Vamos usar uma estrutura simples e eficiente!</p>
+                
+                <p><strong>Na primeira linha (linha 1), digite:</strong></p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Célula</th>
+                            <th>O Que Digitar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>A1</strong></td>
+                            <td>Data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>B1</strong></td>
+                            <td>Descrição</td>
+                        </tr>
+                        <tr>
+                            <td><strong>C1</strong></td>
+                            <td>Categoria</td>
+                        </tr>
+                        <tr>
+                            <td><strong>D1</strong></td>
+                            <td>Valor</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p><strong>Dica para deixar bonito:</strong></p>
+                <ol>
+                    <li>Selecione toda a linha 1 (clique no número "1" no lado esquerdo)</li>
+                    <li>Clique no botão de <strong>Negrito</strong> (B) ou pressione Ctrl+B</li>
+                    <li>Clique no ícone de cor de fundo e escolha uma cor (azul claro fica bom)</li>
+                    <li>Centralize o texto (botão de alinhar ao centro)</li>
+                </ol>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial3-passo3.png" alt="Passo 3" width="1000">
+                </div>
+                <p class="image-caption">Cabeçalhos da planilha criados e formatados</p>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Preencher com Seus Gastos</h4>
+                <p>Agora vamos adicionar seus gastos! Vou dar exemplos para você entender:</p>
+                
+                <p><strong>Exemplo de preenchimento (linha 2 em diante):</strong></p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                            <th>Categoria</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01/12/2024</td>
+                            <td>Compras no supermercado</td>
+                            <td>Alimentação</td>
+                            <td>250,00</td>
+                        </tr>
+                        <tr>
+                            <td>03/12/2024</td>
+                            <td>Conta de luz</td>
+                            <td>Contas</td>
+                            <td>180,50</td>
+                        </tr>
+                        <tr>
+                            <td>05/12/2024</td>
+                            <td>Passagem de ônibus</td>
+                            <td>Transporte</td>
+                            <td>8,50</td>
+                        </tr>
+                        <tr>
+                            <td>07/12/2024</td>
+                            <td>Cinema</td>
+                            <td>Lazer</td>
+                            <td>40,00</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3 style="color: var(--primary-color); margin-top: 25px;">Categorias Sugeridas:</h3>
+                <ul>
+                    <li><strong>Alimentação:</strong> Supermercado, padaria, feira, delivery</li>
+                    <li><strong>Transporte:</strong> Ônibus, Uber, combustível, manutenção carro</li>
+                    <li><strong>Contas:</strong> Luz, água, internet, telefone, aluguel</li>
+                    <li><strong>Lazer:</strong> Cinema, restaurante, viagens, hobbies</li>
+                    <li><strong>Saúde:</strong> Remédios, consultas, plano de saúde</li>
+                    <li><strong>Educação:</strong> Cursos, livros, materiais</li>
+                    <li><strong>Vestuário:</strong> Roupas, sapatos, acessórios</li>
+                    <li><strong>Outros:</strong> Gastos que não se encaixam acima</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <strong>Dica Importante:</strong> No início, anote TODOS os gastos por 1 mês completo, mesmo os pequenos (cafezinho, bala, etc). Você vai se surpreender com quanto gasta em "coisinhas"!
+                </div>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial3-passo4.png" alt="Passo 4" width="1000">
+                </div>
+                <p class="image-caption">Exemplo de planilha preenchida com gastos</p>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Fórmula 1: Calcular Total de Gastos (SOMA)</h4>
+                <p>Agora vem a parte MÁGICA! Vamos fazer a planilha calcular automaticamente quanto você gastou!</p>
+                
+                <p><strong>Vamos supor que você preencheu da linha 2 até a linha 20 (19 gastos).</strong></p>
+                
+                <p><strong>Como fazer:</strong></p>
+                <ol>
+                    <li>Clique em uma célula vazia abaixo dos seus gastos (ex: célula <strong>C22</strong>)</li>
+                    <li>Digite: <strong>Total Gastos:</strong></li>
+                    <li>Clique na célula ao lado (célula <strong>D22</strong>)</li>
+                    <li>Digite a fórmula: <code>=SOMA(D2:D20)</code></li>
+                    <li>Pressione ENTER</li>
+                    <li>Pronto! A soma aparece automaticamente!</li>
+                </ol>
+                
+                <div class="formula-box">
+                    <strong>Entendendo a Fórmula:</strong><br><br>
+                    <code>=SOMA(D2:D20)</code><br><br>
+                    <strong>=</strong> Inicia uma fórmula<br>
+                    <strong>SOMA</strong> = Função que soma valores<br>
+                    <strong>D2:D20</strong> = Células da D2 até a D20 (todos os valores)<br>
+                </div>
+                
+                <div class="info-box">
+                    <strong>Dica Profissional:</strong> Se você adicionar mais gastos depois, a fórmula não atualiza automaticamente. Use <code>=SOMA(D2:D100)</code> para ter "espaço" para adicionar até 99 gastos!
+                </div>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial3-passo5.png" alt="Passo 5" width="1000">
+                </div>
+                <p class="image-caption">Fórmula SOMA calculando total de gastos</p>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="step">
+                <div class="step-number">6</div>
+                <h4>Fórmula 2: Calcular Gastos por Categoria (SOMA.SE)</h4>
+                <p>Agora vamos ver quanto você gastou em CADA categoria! Assim você descobre onde está gastando mais.</p>
+                
+                <p><strong>Vamos criar uma tabela resumo ao lado:</strong></p>
+                <ol>
+                    <li>Na célula <strong>F2</strong>, digite: <strong>Categoria</strong></li>
+                    <li>Na célula <strong>G2</strong>, digite: <strong>Total</strong></li>
+                    <li>Abaixo (F3 em diante), liste suas categorias:
+                        <ul>
+                            <li>F3: Alimentação</li>
+                            <li>F4: Transporte</li>
+                            <li>F5: Contas</li>
+                            <li>F6: Lazer</li>
+                            <li>... (e assim por diante)</li>
+                        </ul>
+                    </li>
+                    <li>Na célula <strong>G3</strong> (ao lado de "Alimentação"), digite:</li>
+                </ol>
+                
+                <div class="formula-box">
+                    <code>=SOMA.SE(C2:C100;"Alimentação";D2:D100)</code>
+                </div>
+                
+                <p><strong>Esta fórmula significa:</strong></p>
+                <ul>
+                    <li>Procure na coluna C (categoria) de C2 até C100</li>
+                    <li>Quando encontrar "Alimentação"</li>
+                    <li>Some o valor correspondente na coluna D</li>
+                </ul>
+                
+                <p><strong>Repita para cada categoria:</strong></p>
+                <ul>
+                    <li>G4: <code>=SOMA.SE(C2:C100;"Transporte";D2:D100)</code></li>
+                    <li>G5: <code>=SOMA.SE(C2:C100;"Contas";D2:D100)</code></li>
+                    <li>E assim por diante...</li>
+                </ul>
+                
+                <div class="success-box">
+                    <strong>Resultado:</strong> Agora você vê EXATAMENTE quanto gastou em cada categoria! Isso ajuda a identificar onde pode economizar.
+                </div>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial3-passo6.png" alt="Passo 6" width="1000">
+                </div>
+                <p class="image-caption">Tabela resumo com gastos por categoria</p>
+            </div>
+
+            <!-- Passo 7 -->
+            <div class="step">
+                <div class="step-number">7</div>
+                <h4>Criar Gráfico Automático</h4>
+                <p>Um gráfico visual ajuda MUITO a entender para onde vai seu dinheiro! Vamos criar um gráfico de pizza.</p>
+                
+                <p><strong>Como fazer:</strong></p>
+                <ol>
+                    <li>Selecione sua tabela resumo (células F2:G10, por exemplo)</li>
+                    <li>Clique no menu <strong>"Inserir"</strong> no topo</li>
+                    <li>Clique em <strong>"Gráfico"</strong></li>
+                    <li>O Google Sheets vai sugerir um gráfico automaticamente</li>
+                    <li>Se não for gráfico de pizza, clique em <strong>"Tipo de gráfico"</strong> e escolha <strong>"Gráfico de pizza"</strong></li>
+                    <li>Pronto! Seu gráfico está criado!</li>
+                </ol>
+                
+                <p><strong>Personalize seu gráfico:</strong></p>
+                <ul>
+                    <li>Clique nos 3 pontinhos no gráfico</li>
+                    <li>Clique em "Editar gráfico"</li>
+                    <li>Na aba "Personalizar", você pode:
+                        <ul>
+                            <li>Mudar título do gráfico (ex: "Meus Gastos em Dezembro")</li>
+                            <li>Mudar cores das fatias</li>
+                            <li>Mostrar porcentagens</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div class="info-box">
+                    <strong>Interpretando o Gráfico:</strong> A fatia maior é onde você mais gasta! Se "Lazer" está ocupando metade do gráfico, talvez seja hora de economizar nessa área.
+                </div>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial3-passo7.png" alt="Passo 7" width="1000">
+                </div>
+                <p class="image-caption">Gráfico de pizza com gastos por categoria</p>
+            </div>
+
+            <!-- Passo 8 -->
+            <div class="step">
+                <div class="step-number">8</div>
+                <h4>Fórmula 3: Calcular Saldo (Quanto Sobra)</h4>
+                <p>Agora a parte mais importante: saber se você está gastando MAIS ou MENOS do que ganha!</p>
+                
+                <p><strong>Vamos criar uma seção de resumo:</strong></p>
+                <ol>
+                    <li>Em uma área vazia (ex: células <strong>F12 a G15</strong>), crie:</li>
+                </ol>
+                
+                <table style="margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th>O Que É</th>
+                            <th>Onde/Fórmula</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Renda Mensal:</strong></td>
+                            <td>Digite seu salário (ex: 2500)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Gastos:</strong></td>
+                            <td>=SOMA(D2:D100)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Saldo Final:</strong></td>
+                            <td>=G12-G13</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p><strong>Exemplo prático:</strong></p>
+                <ul>
+                    <li>Célula F12: digite <strong>"Renda Mensal:"</strong></li>
+                    <li>Célula G12: digite seu salário, ex: <code>2500</code></li>
+                    <li>Célula F13: digite <strong>"Total Gastos:"</strong></li>
+                    <li>Célula G13: digite <code>=SOMA(D2:D100)</code></li>
+                    <li>Célula F14: digite <strong>"Saldo Final:"</strong></li>
+                    <li>Célula G14: digite <code>=G12-G13</code></li>
+                </ul>
+                
+                <div class="success-box">
+                    <strong>Interpretando o Saldo:</strong><br><br>
+                    <strong>Saldo POSITIVO</strong> (ex: R$ 300) = Você economizou!<br>
+                    <strong>Saldo NEGATIVO</strong> (ex: -R$ 200) = Você gastou mais do que ganha!
+                </div>
+                
+                <div class="danger-box">
+                    <strong>Atenção:</strong> Se seu saldo está negativo, você está entrando em dívidas! É hora de cortar gastos desnecessários. Analise o gráfico e veja onde pode economizar.
+                </div>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial3-passo8.png" alt="Passo 8" width="1000">
+                </div>
+                <p class="image-caption">Resumo financeiro com saldo calculado</p>
+            </div>
+
+            <!-- Usando no Celular -->
+            <h2>Como Usar a Planilha no Celular</h2>
+            <p>A grande vantagem é que você pode atualizar sua planilha de qualquer lugar!</p>
+            
+            <p><strong>Passo a passo:</strong></p>
+            <ol>
+                <li>Baixe o app <strong>"Google Planilhas"</strong> (Play Store ou App Store)</li>
+                <li>Abra o app e faça login com sua conta Google</li>
+                <li>Sua planilha aparecerá automaticamente</li>
+                <li>Toque na planilha para abrir</li>
+                <li>Toque em uma célula vazia para adicionar um gasto novo</li>
+                <li>Preencha data, descrição, categoria e valor</li>
+                <li>Os totais e gráficos atualizam automaticamente!</li>
+            </ol>
+            
+            <div class="info-box">
+                <strong>Dica de Ouro:</strong> Toda vez que fizer uma compra, adicione NA HORA na planilha pelo celular! Assim você não esquece e mantém tudo organizado. Leva só 30 segundos!
+            </div>
+
+            <!-- Compartilhar -->
+            <h2>Compartilhar com a Família</h2>
+            <p>Se você divide despesas com cônjuge ou família, pode compartilhar a planilha!</p>
+            
+            <p><strong>Como compartilhar:</strong></p>
+            <ol>
+                <li>No canto superior direito, clique no botão <strong>"Compartilhar"</strong></li>
+                <li>Digite o e-mail (Gmail) da pessoa</li>
+                <li>Escolha a permissão:
+                    <ul>
+                        <li><strong>"Editor"</strong> - Pode adicionar e modificar gastos</li>
+                        <li><strong>"Visualizador"</strong> - Só pode ver, não pode alterar</li>
+                    </ul>
+                </li>
+                <li>Clique em <strong>"Enviar"</strong></li>
+                <li>A pessoa receberá um e-mail com o link</li>
+            </ol>
+            
+            <div class="success-box">
+                <strong>Vantagem:</strong> Todos veem a planilha atualizada em tempo real! Se seu cônjuge adicionar um gasto, você vê na hora.
+            </div>
+
+            <!-- Dicas Profissionais -->
+            <h2>Dicas Profissionais para Economizar</h2>
+            
+            <div class="info-box">
+                <strong>1. Regra dos 50-30-20:</strong><br>
+                50% da renda para necessidades (contas, alimentação)<br>
+                30% para desejos (lazer, roupas)<br>
+                20% para poupar/investir
+            </div>
+            
+            <div class="info-box">
+                <strong>2. Revise Semanalmente:</strong> Todo domingo, olhe sua planilha e veja como foi a semana. Está gastando muito? Onde pode cortar?
+            </div>
+            
+            <div class="info-box">
+                <strong>3. Estabeleça Metas:</strong> Ex: "Quero economizar R$ 500 este mês para comprar [objetivo]". Coloque a meta na planilha!
+            </div>
+            
+            <div class="info-box">
+                <strong>4. Identifique "Gastos Vampiros":</strong> Aqueles pequenos gastos diários que somam muito no final do mês (cafezinho, lanche, etc).
+            </div>
+            
+            <div class="info-box">
+                <strong>5. Crie uma Categoria "Emergência":</strong> Todo mês, tente poupar um pouco para imprevistos (médico, consertos, etc).
+            </div>
+
+            <!-- Dúvidas Comuns -->
+            <h2>Dúvidas Comuns</h2>
+            
+            <h3>1. Preciso anotar TODOS os gastos, mesmo os pequenos?</h3>
+            <p><strong>Sim!</strong> Principalmente no primeiro mês. Você vai se surpreender como os "pequenos gastos" somam muito! Depois de 1-2 meses, você já conhece seu padrão e pode ser menos rigoroso.</p>
+
+            <h3>2. E se eu esquecer de anotar algum gasto?</h3>
+            <p><strong>Tudo bem!</strong> Quando lembrar, adicione. Use o extrato do banco ou cartão para conferir gastos que esqueceu.</p>
+
+            <h3>3. Posso usar para controlar gastos do cartão de crédito?</h3>
+            <p><strong>Sim!</strong> Crie uma categoria "Cartão de Crédito" ou anote cada compra do cartão normalmente. No final do mês, some e veja se bate com a fatura.</p>
+
+            <h3>4. Como faço para separar gastos pessoais de gastos do trabalho?</h3>
+            <p><strong>Duas opções:</strong></p>
+            <ul>
+                <li>Criar categorias diferentes: "Alimentação Pessoal" e "Alimentação Trabalho"</li>
+                <li>Criar duas abas na mesma planilha (uma para pessoal, outra para trabalho)</li>
+            </ul>
+
+            <h3>5. Posso usar para controlar gastos de mais de uma pessoa?</h3>
+            <p><strong>Sim!</strong> Adicione uma coluna extra chamada "Quem Gastou" e coloque o nome da pessoa. Depois use SOMA.SE para somar por pessoa.</p>
+
+            <h3>6. A planilha vai ficar muito grande ao longo do tempo?</h3>
+            <p><strong>Solução:</strong> A cada ano, crie uma nova aba na mesma planilha (ex: "2024", "2025"). Ou crie uma planilha nova a cada ano.</p>
+
+            <!-- Problemas Comuns -->
+            <h2>Resolvendo Problemas Comuns</h2>
+            
+            <h3>Problema: Fórmula mostra #ERRO ou #REF</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Verifique se escreveu a fórmula corretamente</li>
+                <li>Use ponto-e-vírgula (;) não vírgula na fórmula</li>
+                <li>Certifique-se de que as células referenciadas existem</li>
+            </ul>
+
+            <h3>Problema: Total não atualiza quando adiciono gastos novos</h3>
+            <p><strong>Solução:</strong> Sua fórmula SOMA provavelmente tem um range fixo. Mude de <code>=SOMA(D2:D20)</code> para <code>=SOMA(D2:D1000)</code></p>
+
+            <h3>Problema: Gráfico não aparece ou está estranho</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Certifique-se de selecionar APENAS a tabela resumo (categorias + valores)</li>
+                <li>Não selecione células vazias</li>
+                <li>Tente outro tipo de gráfico</li>
+            </ul>
+
+            <h3>Problema: Não consigo abrir no celular</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Baixe o app "Google Planilhas" (não "Google Drive")</li>
+                <li>Faça login com a MESMA conta Google do computador</li>
+                <li>Aguarde sincronizar (precisa de internet)</li>
+            </ul>
+
+            <!-- Conclusão -->
+            <div class="success-box" style="margin-top: 50px;">
+                <h3 style="color: #065f46; margin-top: 0;">Parabéns! Você Concluiu Este Tutorial!</h3>
+                <p>Agora você sabe:</p>
+                <ul style="margin: 10px 0;">
+                    <li>Acessar e usar Google Sheets gratuitamente</li>
+                    <li>Criar planilha de controle financeiro</li>
+                    <li>Usar fórmulas SOMA, SOMA.SE e cálculos</li>
+                    <li>Criar gráficos automáticos</li>
+                    <li>Usar pelo celular</li>
+                    <li>Analisar seus gastos e economizar</li>
+                </ul>
+                <p style="margin-bottom: 0;"><strong>Próximo passo:</strong> Comece HOJE! Abra sua planilha e adicione os gastos da última semana. Em 30 dias, você terá uma visão completa das suas finanças!</p>
+            </div>
+
+            <!-- Navegação entre Tutoriais -->
+            <div class="tutorial-nav">
+                <a href="tutorial2.html" class="nav-tutorial-btn">
+                    Tutorial Anterior
+                </a>
+                <a href="tutorial4.html" class="nav-tutorial-btn">
+                    Próximo: Proteção Digital
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Portal de Inclusão Digital - Riacho Fundo 2</p>
+            <p class="mb-0 mt-2">Desenvolvido por Vinícius de Oliveira Vieira - UNINTER</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

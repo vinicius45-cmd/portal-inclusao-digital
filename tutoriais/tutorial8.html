@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 8 - Reclamação Online Efetiva | Portal de Inclusão Digital</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Customizado -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: white;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .tutorial-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+        }
+        
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+        
+        .tutorial-content {
+            background: white;
+            padding: 60px 0;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .tutorial-content h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tutorial-content h3 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border: 3px solid #0284c7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box strong {
+            color: #0c4a6e;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box strong {
+            color: #92400e;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border: 3px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box strong {
+            color: #065f46;
+        }
+        
+        .danger-box {
+            background: #fee2e2;
+            border: 3px solid #ef4444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .danger-box strong {
+            color: #991b1b;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step h4 {
+            margin-top: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            background: #f1f5f9;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .tutorial-content li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .nav-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tutorial-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        table tr:hover {
+            background: var(--light-bg);
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #dc2626;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .complaint-model {
+            background: #f9fafb;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 20px;
+            }
+            
+            .tutorial-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .complaint-model {
+                font-size: 0.85rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            📚 Inclusão Digital
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#tutoriais">Tutoriais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Header do Tutorial -->
+    <div class="tutorial-header">
+        <div class="container">
+            <h1>Tutorial 8: Reclamação Online Efetiva</h1>
+            <p class="lead">Aprenda a fazer reclamações que REALMENTE FUNCIONAM no Consumidor.gov.br e Procon Digital - defenda seus direitos como consumidor!</p>
+            <div class="tutorial-meta">
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>25-35 minutos</span>
+                </div>
+                <div class="meta-item">
+                    <span>📱</span>
+                    <span>Celular ou Computador</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Tutorial -->
+    <div class="tutorial-content">
+        <div class="content-wrapper">
+            
+            <!-- Introdução -->
+            <h2>O Que Você Vai Aprender</h2>
+            <ul>
+                <li>Como criar conta e fazer reclamação no Consumidor.gov.br (plataforma federal mais efetiva)</li>
+                <li>Como usar o Procon Digital DF para problemas locais</li>
+                <li>Diferenças entre Consumidor.gov.br e Procon - quando usar cada um</li>
+                <li>O que você precisa ter em mãos: protocolo, prints, nota fiscal e comprovantes</li>
+                <li>Como escrever uma reclamação efetiva: clara, objetiva e educada</li>
+                <li>Quando a empresa é OBRIGADA a resolver seu problema</li>
+                <li>Como acompanhar sua reclamação e o que fazer se não resolver</li>
+                <li>Modelo prático de reclamação para copiar e adaptar</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Antes de Começar:</strong> Você vai precisar de computador ou celular com internet, CPF e e-mail válido, conta Gov.br (veja Tutorial 1), todos os documentos do problema (nota fiscal, protocolo, prints), número do pedido ou contrato e descrição clara do que aconteceu. Quanto mais provas você tiver, maior a chance da empresa resolver!
+            </div>
+
+            <!-- Passo 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Entender: Consumidor.gov.br vs Procon</h4>
+                <p><strong>Qual usar?</strong> Cada plataforma tem suas vantagens. Veja a diferença:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Consumidor.gov.br</th>
+                            <th>Procon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Gestão</strong></td>
+                            <td>Federal (Governo Federal)</td>
+                            <td>Estadual (cada estado tem o seu)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cadastro</strong></td>
+                            <td>Precisa de conta Gov.br</td>
+                            <td>Cadastro próprio no site do Procon</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Prazo resposta</strong></td>
+                            <td>10 dias corridos</td>
+                            <td>10 dias úteis (ou mais)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Empresas</strong></td>
+                            <td>Apenas empresas cadastradas</td>
+                            <td>Qualquer empresa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Taxa de solução</strong></td>
+                            <td>Cerca de 80% (muito efetivo!)</td>
+                            <td>Varia (geralmente 60-70%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Poder</strong></td>
+                            <td>Exposição pública da empresa</td>
+                            <td>Pode aplicar multas e sanções</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Melhor para</strong></td>
+                            <td>Empresas grandes (bancos, telecom, e-commerce)</td>
+                            <td>Empresas locais, lojas físicas</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="success-box">
+                    <strong>Recomendação:</strong> Comece sempre pelo <strong>Consumidor.gov.br</strong>! A taxa de resolução é altíssima (80%) porque as empresas se preocupam com a reputação pública. Se a empresa não estiver cadastrada lá, aí você vai no Procon.
+                </div>
+
+                <div class="info-box">
+                    <strong>Como saber se a empresa está no Consumidor.gov.br:</strong> Antes de criar conta, você pode pesquisar no site se a empresa participa da plataforma. Basta entrar em consumidor.gov.br e usar a busca.
+                </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Criar Conta no Consumidor.gov.br</h4>
+                <p><strong>Primeira etapa:</strong> Criar sua conta na plataforma federal. É rápido e usa o Gov.br que você já tem!</p>
+                
+                <p><strong>Como criar conta:</strong></p>
+                <ol>
+                    <li>Acesse: <code>www.consumidor.gov.br</code></li>
+                    <li>Clique em <strong>"Registrar Reclamação"</strong> ou <strong>"Entrar"</strong></li>
+                    <li>Clique em <strong>"Entrar com gov.br"</strong></li>
+                    <li>Digite seu CPF e senha do Gov.br</li>
+                    <li>Autorize o Consumidor.gov.br a acessar seus dados básicos</li>
+                    <li>Confirme seu e-mail (você receberá um código)</li>
+                    <li>Leia e aceite os termos de uso</li>
+                    <li>Pronto! Sua conta está criada</li>
+                </ol>
+
+                <div class="tutorial-image">
+                    <img src="../img/tutorial8-passo1.png" alt="Passo 1" width="1000">
+                </div>
+                <p class="image-caption">Página inicial do Consumidor.gov.br para criar conta</p>
+
+                <div class="warning-box">
+                    <strong>Não tem conta Gov.br?</strong> Você PRECISA ter para usar o Consumidor.gov.br. Volte ao Tutorial 1 deste portal e crie sua conta Gov.br primeiro. É rápido, gratuito e você usa em vários serviços do governo!
+                </div>
+
+                <div class="info-box">
+                    <strong>Segurança:</strong> O Consumidor.gov.br é um serviço oficial do governo federal. Seus dados estão protegidos e a plataforma é 100% segura e gratuita. Nunca pague para fazer reclamação!
+                </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Separar Documentos Necessários</h4>
+                <p><strong>Organize suas provas:</strong> Quanto mais documentos você tiver, mais forte é sua reclamação!</p>
+                
+                <p><strong>Documentos essenciais:</strong></p>
+                <ul>
+                    <li><strong>Nota fiscal ou comprovante de compra</strong> (foto clara mostrando data, valor, produto)</li>
+                    <li><strong>Número do pedido ou protocolo</strong> (se você já entrou em contato com a empresa)</li>
+                    <li><strong>Prints de conversas</strong> (WhatsApp, chat, e-mail com atendimento)</li>
+                    <li><strong>Fotos do problema</strong> (produto defeituoso, serviço mal feito)</li>
+                    <li><strong>Contrato ou termo de compra</strong> (se houver)</li>
+                    <li><strong>Comprovante de pagamento</strong> (boleto pago, comprovante de transferência, fatura cartão)</li>
+                </ul>
+
+                <p><strong>Como organizar os arquivos:</strong></p>
+                <ol>
+                    <li>Salve todos os documentos em uma pasta no celular ou computador</li>
+                    <li>Renomeie com nomes claros: "NotaFiscal.jpg", "ChatAtendimento.pdf"</li>
+                    <li>Se tiver muitas imagens, faça um PDF único com tudo junto</li>
+                    <li>Limite: arquivos de até 5 MB cada no Consumidor.gov.br</li>
+                    <li>Formatos aceitos: JPG, PNG, PDF</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Dica para fotos:</strong> Tire fotos claras, com boa iluminação. Se é produto defeituoso, fotografe de vários ângulos mostrando o problema. Se é embalagem danificada, mostre tudo: caixa, produto, etiqueta de entrega.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Prazo importante:</strong> Você tem até <strong>30 dias</strong> após a compra ou descoberta do problema para reclamar formalmente. Depois disso fica mais difícil (mas ainda é possível com boa argumentação).
+                </div>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Fazer Reclamação no Consumidor.gov.br</h4>
+                <p><strong>Agora vamos ao ponto:</strong> Registrar sua reclamação passo a passo na plataforma!</p>
+                
+                <p><strong>Como registrar:</strong></p>
+                <ol>
+                    <li>Faça login no <code>consumidor.gov.br</code></li>
+                    <li>Clique em <strong>"Registrar Reclamação"</strong></li>
+                    <li><strong>Passo 1 - Buscar empresa:</strong> Digite o nome da empresa e selecione na lista</li>
+                    <li><strong>Passo 2 - Categoria do problema:</strong> Escolha o tipo (produto defeituoso, cobrança indevida, cancelamento, etc)</li>
+                    <li><strong>Passo 3 - Descrever o problema:</strong>
+                        <ul>
+                            <li>Título: seja direto (ex: "Produto defeituoso - Notebook com tela quebrada")</li>
+                            <li>Descrição: conte o que aconteceu de forma clara e cronológica</li>
+                            <li>O que você quer: reembolso, troca, reparo, cancelamento</li>
+                            <li>Limite: 4000 caracteres</li>
+                        </ul>
+                    </li>
+                    <li><strong>Passo 4 - Anexar documentos:</strong> Carregue todos os arquivos que você separou</li>
+                    <li><strong>Passo 5 - Revisar:</strong> Leia tudo com atenção antes de enviar</li>
+                    <li><strong>Passo 6 - Enviar:</strong> Clique em <strong>"Registrar Reclamação"</strong></li>
+                    <li>Você receberá um <strong>número de protocolo</strong> - guarde!</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Empresa tem 10 dias:</strong> A partir do registro, a empresa tem <strong>10 dias corridos</strong> para responder sua reclamação. Você recebe notificação por e-mail quando houver resposta!
+                </div>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Como Escrever Reclamação Efetiva</h4>
+                <p><strong>A forma como você escreve IMPORTA:</strong> Uma reclamação bem escrita tem muito mais chance de ser resolvida!</p>
+                
+                <p><strong>Regras de ouro:</strong></p>
+                <ul>
+                    <li><strong>Seja objetivo:</strong> Vá direto ao ponto. O que aconteceu? Quando? Qual o problema?</li>
+                    <li><strong>Seja educado:</strong> Xingamentos e ameaças NÃO ajudam. Seja firme mas respeitoso</li>
+                    <li><strong>Seja cronológico:</strong> Conte a história na ordem: comprei → recebi → problema → entrei em contato</li>
+                    <li><strong>Cite datas e protocolos:</strong> "Em 10/12/2024 comprei...", "Protocolo 123456 em 15/12/2024"</li>
+                    <li><strong>Diga o que você quer:</strong> Deixe claro: quer reembolso? Troca? Reparo? Cancelamento?</li>
+                    <li><strong>Cite o Código de Defesa do Consumidor:</strong> "Conforme CDC, artigo 18..."</li>
+                </ul>
+
+                <p><strong>Evite:</strong></p>
+                <ul>
+                    <li><strong>Texto desorganizado:</strong> Parágrafos enormes sem separação</li>
+                    <li><strong>Xingamentos:</strong> "Essa empresa é um lixo" → Não ajuda!</li>
+                    <li><strong>Ameaças vazias:</strong> "Vou processar!" → Se for processar, processe, não ameace</li>
+                    <li><strong>LETRAS MAIÚSCULAS:</strong> Parece que você está gritando</li>
+                    <li><strong>Muitos detalhes irrelevantes:</strong> Seja objetivo</li>
+                </ul>
+
+                <h3>Modelo de Reclamação (copie e adapte)</h3>
+                
+                <div class="complaint-model">
+Assunto: Produto defeituoso - Notebook com tela quebrada
+
+Prezados,
+
+Em [DATA], realizei a compra do produto [NOME DO PRODUTO], modelo [MODELO], no valor de R$ [VALOR], conforme nota fiscal nº [NÚMERO] anexada.
+
+O produto foi entregue em [DATA DE ENTREGA], porém ao abrir a embalagem constatei que [DESCREVA O PROBLEMA]. Entrei em contato com o SAC em [DATA], protocolo nº [NÚMERO], mas não obtive solução satisfatória.
+
+De acordo com o Código de Defesa do Consumidor (Lei 8.078/90), artigo 18, o fornecedor tem responsabilidade pelos vícios aparentes ou ocultos dos produtos. Considerando que o produto foi entregue com defeito de fabricação, solicito:
+
+[X] Reembolso integral do valor pago
+[  ] Troca por produto novo e sem defeitos
+[  ] Reparo sem custos
+
+Anexo: nota fiscal, fotos do produto, prints do atendimento.
+
+Aguardo solução no prazo legal.
+
+Atenciosamente,
+[SEU NOME COMPLETO]
+CPF: [SEU CPF]
+                </div>
+
+                <div class="success-box">
+                    <strong>Use o modelo!</strong> Copie essa estrutura e adapte para o seu caso. Ela tem tudo que precisa: datas, fatos, base legal e pedido claro. Funciona muito bem!
+                </div>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="step">
+                <div class="step-number">6</div>
+                <h4>Quando a Empresa É OBRIGADA a Resolver</h4>
+                <p><strong>Conheça seus direitos:</strong> O Código de Defesa do Consumidor protege você! Veja situações em que a empresa TEM que resolver.</p>
+                
+                <h3>Situações com direito GARANTIDO</h3>
+                
+                <p><strong>1. Produto com defeito (vício):</strong></p>
+                <ul>
+                    <li>Empresa tem <strong>30 dias</strong> para consertar</li>
+                    <li>Se não consertar: você pode escolher entre troca, reembolso ou desconto</li>
+                    <li>Vale para produtos novos E usados</li>
+                </ul>
+
+                <p><strong>2. Arrependimento de compra online:</strong></p>
+                <ul>
+                    <li>Você tem <strong>7 dias</strong> para desistir sem dar explicação</li>
+                    <li>Vale para compras pela internet, telefone ou fora da loja</li>
+                    <li>Empresa deve devolver TODO o dinheiro, inclusive frete</li>
+                </ul>
+
+                <p><strong>3. Propaganda enganosa:</strong></p>
+                <ul>
+                    <li>Se a empresa prometeu algo e não entregou</li>
+                    <li>Você pode exigir cumprimento ou reembolso</li>
+                    <li>Guarde prints da propaganda!</li>
+                </ul>
+
+                <p><strong>4. Cobrança indevida:</strong></p>
+                <ul>
+                    <li>Empresa deve devolver em <strong>DOBRO</strong> o que cobrou errado</li>
+                    <li>Vale para qualquer cobrança sem motivo</li>
+                </ul>
+
+                <p><strong>5. Cancelamento de serviço:</strong></p>
+                <ul>
+                    <li>Você pode cancelar qualquer serviço quando quiser</li>
+                    <li>Empresa não pode cobrar multa abusiva</li>
+                    <li>Deve ser processado em até 30 dias</li>
+                </ul>
+
+                <div class="danger-box">
+                    <strong>Empresa se recusa a resolver?</strong> Se mesmo após reclamação no Consumidor.gov.br a empresa não resolver, você pode: 1) Fazer reclamação também no Procon, 2) Processar no Juizado Especial Cível (pequenas causas - até 20 salários mínimos não precisa advogado), 3) Denunciar práticas abusivas.
+                </div>
+
+                <div class="info-box">
+                    <strong>Base legal:</strong> Tudo isso está no <strong>Código de Defesa do Consumidor (CDC - Lei 8.078/90)</strong>. Quando citar artigos na reclamação, isso mostra que você conhece seus direitos e aumenta as chances de solução rápida!
+                </div>
+            </div>
+
+            <!-- Passo 7 -->
+            <div class="step">
+                <div class="step-number">7</div>
+                <h4>Usar Procon Digital DF (Alternativa)</h4>
+                <p><strong>Se a empresa não está no Consumidor.gov.br:</strong> Use o Procon Digital do Distrito Federal!</p>
+                
+                <p><strong>Como usar o Procon DF:</strong></p>
+                <ol>
+                    <li>Acesse: <code>www.procon.df.gov.br</code></li>
+                    <li>Clique em <strong>"Atendimento Digital"</strong> ou <strong>"Registrar Reclamação"</strong></li>
+                    <li>Faça seu cadastro com CPF, nome, e-mail e telefone</li>
+                    <li>Confirme o cadastro pelo e-mail enviado</li>
+                    <li>Faça login no sistema</li>
+                    <li>Clique em <strong>"Nova Reclamação"</strong></li>
+                    <li>Preencha os dados da empresa (nome, CNPJ se souber, endereço)</li>
+                    <li>Descreva o problema detalhadamente</li>
+                    <li>Anexe documentos (nota, prints, fotos)</li>
+                    <li>Informe o que você quer como solução</li>
+                    <li>Envie a reclamação</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>Atendimento presencial:</strong> O Procon DF também tem atendimento presencial em vários pontos do DF (Taguatinga, Ceilândia, Plano Piloto). Você pode agendar pelo site ou telefone 151 se preferir ir pessoalmente.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Documentação:</strong> No Procon, você também pode fazer reclamação por formulário físico levado presencialmente. Mas o digital é mais rápido e você acompanha online!
+                </div>
+            </div>
+
+            <!-- Passo 8 -->
+            <div class="step">
+                <div class="step-number">8</div>
+                <h4>Acompanhar e Finalizar a Reclamação</h4>
+                <p><strong>Após registrar:</strong> Acompanhe sua reclamação e saiba como agir em cada situação.</p>
+                
+                <p><strong>Status possíveis no Consumidor.gov.br:</strong></p>
+                <ul>
+                    <li><strong>Aguardando resposta da empresa:</strong> Empresa tem 10 dias. Aguarde.</li>
+                    <li><strong>Respondida:</strong> Empresa enviou resposta. Leia com atenção!</li>
+                    <li><strong>Finalizada:</strong> Você ou a empresa finalizaram o caso</li>
+                    <li><strong>Empresa não respondeu:</strong> Passou 10 dias e não houve resposta (isso pega mal para a empresa!)</li>
+                </ul>
+
+                <p><strong>Quando a empresa responde, você deve:</strong></p>
+                <ol>
+                    <li>Ler a resposta completa com atenção</li>
+                    <li>Verificar se a solução proposta te atende</li>
+                    <li>Se SIM: aceitar e finalizar como <strong>"Resolvido"</strong></li>
+                    <li>Se NÃO: você pode comentar explicando por que não aceitou</li>
+                    <li>Avaliar o atendimento da empresa (nota de 1 a 5)</li>
+                </ol>
+
+                <p><strong>O que fazer se não resolver:</strong></p>
+                <ol>
+                    <li><strong>Opção 1:</strong> Fazer reclamação também no Procon (são vias independentes)</li>
+                    <li><strong>Opção 2:</strong> Procurar Juizado Especial Cível (pequenas causas)</li>
+                    <li><strong>Opção 3:</strong> Contratar advogado para ação judicial</li>
+                    <li><strong>Opção 4:</strong> Denunciar no Ministério Público (casos graves)</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Avalie sempre:</strong> Sua avaliação ajuda outros consumidores! Se a empresa resolveu bem, dê nota boa. Se não resolveu ou foi mal atendido, dê nota baixa. Isso fica público e as empresas se importam MUITO com a reputação!
+                </div>
+
+                <div class="info-box">
+                    <strong>Índice de solução:</strong> No Consumidor.gov.br você pode ver o índice de solução de cada empresa (% de reclamações resolvidas). Empresas com índice baixo ficam mal vistas e perdem clientes!
+                </div>
+            </div>
+
+            <!-- Artigos do CDC Importantes -->
+            <h2>Artigos do CDC que Você Deve Conhecer</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Artigo CDC</th>
+                        <th style="width: 75%;">O Que Diz</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Artigo 18</strong></td>
+                        <td>Produto com defeito: empresa tem 30 dias para consertar ou deve trocar/reembolsar</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Artigo 49</strong></td>
+                        <td>Direito de arrependimento: 7 dias para desistir de compra online sem dar motivo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Artigo 35</strong></td>
+                        <td>Propaganda enganosa: empresa deve cumprir o que prometeu ou devolver dinheiro</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Artigo 42</strong></td>
+                        <td>Cobrança indevida: consumidor tem direito a receber em DOBRO o que pagou errado</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Artigo 6º, III</strong></td>
+                        <td>Direito à informação: empresa deve informar claramente sobre produto/serviço</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <strong>Use nas reclamações:</strong> Quando você cita os artigos do CDC na sua reclamação, mostra que conhece a lei e isso aumenta muito as chances da empresa resolver rápido!
+            </div>
+
+            <!-- Dúvidas Comuns -->
+            <h2>Dúvidas Comuns</h2>
+            
+            <h3>1. Posso fazer reclamação no Consumidor.gov.br E no Procon ao mesmo tempo?</h3>
+            <p><strong>Resposta:</strong> Sim! São vias independentes. Você pode (e às vezes deve) registrar nos dois lugares. Isso aumenta a pressão sobre a empresa. Mas recomendamos começar pelo Consumidor.gov.br porque a taxa de resolução é mais alta.</p>
+
+            <h3>2. A empresa não respondeu no Consumidor.gov.br. E agora?</h3>
+            <p><strong>Resposta:</strong> Se a empresa não responder em 10 dias, isso fica registrado publicamente e prejudica a reputação dela. Você deve: 1) Fazer reclamação no Procon também, 2) Avaliar negativamente a empresa, 3) Considerar ir ao Juizado Especial Cível se o valor compensar.</p>
+
+            <h3>3. Preciso ter nota fiscal para reclamar?</h3>
+            <p><strong>Resposta:</strong> A nota fiscal ajuda MUITO, mas não é obrigatória em todos os casos. Se você não tem, pode usar: comprovante de pagamento, extrato do cartão, prints da compra online, mensagens de WhatsApp, fotos do produto. Qualquer prova que você tenha é válida!</p>
+
+            <h3>4. Posso fazer reclamação de serviço público (água, luz, internet)?</h3>
+            <p><strong>Resposta:</strong> SIM! Empresas públicas e privadas que prestam serviços públicos (Caesb, Neoenergia, operadoras de telefonia) também estão sujeitas ao CDC. Você pode reclamar normalmente no Consumidor.gov.br ou Procon.</p>
+
+            <h3>5. Quanto tempo tenho para fazer reclamação?</h3>
+            <p><strong>Resposta:</strong> Depende do tipo de problema. Para produtos com defeito aparente: <strong>30 dias</strong> (produtos não duráveis) ou <strong>90 dias</strong> (produtos duráveis). Para defeitos ocultos que aparecem depois: começa a contar do dia que você descobriu o problema.</p>
+
+            <!-- Dicas Extras -->
+            <h2>Dicas Extras de Ouro</h2>
+            
+            <div class="info-box">
+                <strong>1. Tente resolver direto com a empresa primeiro:</strong> Antes de fazer reclamação formal, tente resolver pelo SAC, chat ou WhatsApp da empresa. Muitas vezes eles resolvem na hora. Se não resolver, aí sim você faz reclamação oficial e já tem o protocolo para anexar!
+            </div>
+            
+            <div class="info-box">
+                <strong>2. Fotografe TUDO:</strong> Produto chegou com defeito? Fotografe a embalagem fechada, depois aberta, o produto de todos os ângulos mostrando o problema. Quanto mais provas visuais, melhor. Fotos valem mais que mil palavras!
+            </div>
+            
+            <div class="info-box">
+                <strong>3. Guarde todos os e-mails e mensagens:</strong> Não apague nenhuma conversa com a empresa! Se você tentou resolver por WhatsApp, chat ou e-mail, faça print de TUDO e anexe na reclamação. Isso prova que você tentou resolver de boa fé primeiro.
+            </div>
+            
+            <div class="info-box">
+                <strong>4. Seja persistente mas educado:</strong> Se a empresa ofereceu solução mas você não aceitou, explique com educação por que não atende. Seja firme nos seus direitos mas sempre respeitoso. Agressividade só atrapalha!
+            </div>
+            
+            <div class="info-box">
+                <strong>5. Acompanhe pelo menos 1x por dia:</strong> Entre no site diariamente para ver se tem resposta. Quanto mais rápido você responder à empresa, mais rápido o problema se resolve. Ative notificações por e-mail para não perder nenhuma atualização!
+            </div>
+
+            <!-- Resolvendo Problemas -->
+            <h2>Resolvendo Problemas Comuns</h2>
+            
+            <h3>Problema: A empresa não está cadastrada no Consumidor.gov.br</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Vá direto para o Procon (digital ou presencial)</li>
+                <li>Você também pode fazer reclamação no Reclame Aqui (não é oficial mas as empresas acompanham)</li>
+                <li>Para empresas grandes, pode tentar as redes sociais (muitas respondem rápido no Instagram/Twitter por exposição)</li>
+                <li>Se for empresa local pequena, tente resolver presencialmente primeiro</li>
+            </ul>
+
+            <h3>Problema: Não consigo anexar documentos (arquivo grande demais)</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Limite é 5 MB por arquivo no Consumidor.gov.br</li>
+                <li>Comprima imagens usando sites gratuitos como TinyPNG ou iLoveIMG</li>
+                <li>Junte várias imagens em um único PDF (use sites como iLovePDF)</li>
+                <li>Se for nota fiscal grande, tire foto mais de longe abrangendo tudo mas com qualidade razoável</li>
+                <li>Priorize os documentos mais importantes se não couber tudo</li>
+            </ul>
+
+            <h3>Problema: A empresa respondeu mas não concordo com a solução</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Responda educadamente explicando por que não aceita</li>
+                <li>Cite novamente seus direitos e base legal (artigos do CDC)</li>
+                <li>Seja específico: "A empresa ofereceu desconto mas eu quero reembolso integral pois o produto veio quebrado"</li>
+                <li>Se persistir sem solução, escale: Procon → Juizado Especial → Ação Judicial</li>
+                <li>Avalie negativamente a empresa no final do processo</li>
+            </ul>
+
+            <!-- Conclusão -->
+            <div class="success-box" style="margin-top: 50px;">
+                <h3 style="color: #065f46; margin-top: 0;">Parabéns! Você Concluiu Este Tutorial!</h3>
+                <p>Agora você sabe:</p>
+                <ul style="margin: 10px 0;">
+                    <li>Diferença entre Consumidor.gov.br e Procon</li>
+                    <li>Criar conta e fazer reclamação no Consumidor.gov.br</li>
+                    <li>Organizar documentos e provas</li>
+                    <li>Escrever reclamações efetivas</li>
+                    <li>Conhecer seus direitos do CDC</li>
+                    <li>Usar o Procon Digital DF</li>
+                    <li>Acompanhar e finalizar reclamações</li>
+                    <li>O que fazer se não resolver</li>
+                </ul>
+                <p style="margin-bottom: 0;"><strong>Lembre-se:</strong> Use o Consumidor.gov.br sempre que possível - a taxa de resolução é de 80%! Não tenha medo de reclamar quando seus direitos forem desrespeitados. Consumidor informado é consumidor respeitado!</p>
+            </div>
+
+            <!-- Navegação entre Tutoriais -->
+            <div class="tutorial-nav">
+                <a href="tutorial7.html" class="nav-tutorial-btn">
+                    Tutorial Anterior
+                </a>
+                <a href="tutorial9.html" class="nav-tutorial-btn">
+                    Próximo: Backup de Documentos
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Portal de Inclusão Digital - Riacho Fundo 2</p>
+            <p class="mb-0 mt-2">Desenvolvido por Vinícius de Oliveira Vieira - UNINTER</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

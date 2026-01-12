@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 7 - Procurar Emprego Online | Portal de Inclusão Digital</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Customizado -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: white;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .tutorial-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+        }
+        
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+        
+        .tutorial-content {
+            background: white;
+            padding: 60px 0;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .tutorial-content h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tutorial-content h3 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border: 3px solid #0284c7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box strong {
+            color: #0c4a6e;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box strong {
+            color: #92400e;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border: 3px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box strong {
+            color: #065f46;
+        }
+        
+        .danger-box {
+            background: #fee2e2;
+            border: 3px solid #ef4444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .danger-box strong {
+            color: #991b1b;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step h4 {
+            margin-top: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            background: #f1f5f9;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .tutorial-content li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .nav-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tutorial-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        table tr:hover {
+            background: var(--light-bg);
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #dc2626;
+            font-family: 'Courier New', monospace;
+        }
+        
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 20px;
+            }
+            
+            .tutorial-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            📚 Inclusão Digital
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#tutoriais">Tutoriais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Header do Tutorial -->
+    <div class="tutorial-header">
+        <div class="container">
+            <h1>Tutorial 7: Procurar Emprego Online</h1>
+            <p class="lead">Aprenda estratégias efetivas para aumentar suas chances de conseguir emprego pela internet - muito além de apenas enviar currículos!</p>
+            <div class="tutorial-meta">
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>30-40 minutos</span>
+                </div>
+                <div class="meta-item">
+                    <span>📱</span>
+                    <span>Celular ou Computador</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Tutorial -->
+    <div class="tutorial-content">
+        <div class="content-wrapper">
+            
+            <!-- Introdução -->
+            <h2>O Que Você Vai Aprender</h2>
+            <ul>
+                <li>Como criar um currículo simples e profissional no Google Docs usando templates prontos</li>
+                <li>Como se cadastrar nos 3 principais sites de emprego: Indeed, LinkedIn e SINE Digital</li>
+                <li>Como configurar alertas automáticos de vagas para receber oportunidades por e-mail</li>
+                <li>Como preencher seu perfil básico do LinkedIn com foto, resumo e experiências</li>
+                <li>Quais palavras-chave usar no currículo para chamar atenção dos recrutadores</li>
+                <li>Como escrever uma carta de apresentação simples e efetiva</li>
+                <li>Como fazer um curso gratuito rápido com certificado no Google Ateliê Digital</li>
+                <li>Dicas práticas: personalizar currículo, responder rápido e fazer follow-up</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Antes de Começar:</strong> Você vai precisar de computador ou celular com internet, conta de e-mail ativa, conta Google (Gmail), uma foto sua em ambiente neutro, informações sobre suas experiências anteriores e cerca de 2 horas livres para fazer tudo com calma. Este tutorial vai te ensinar o que realmente funciona!
+            </div>
+
+            <!-- Passo 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Criar Currículo no Google Docs (Template Pronto)</h4>
+                <p><strong>Por que no Google Docs:</strong> É gratuito, tem templates prontos e profissionais, você pode acessar de qualquer lugar e compartilhar facilmente!</p>
+                
+                <p><strong>Como criar seu currículo:</strong></p>
+                <ol>
+                    <li>Acesse: <code>docs.google.com</code> (faça login com sua conta Gmail)</li>
+                    <li>Clique em <strong>"Galeria de modelos"</strong> no topo da página</li>
+                    <li>Role até a seção <strong>"Currículos"</strong></li>
+                    <li>Escolha um modelo simples e profissional (recomendo: "Serif" ou "Spearmint")</li>
+                    <li>Clique no modelo escolhido - ele abre automaticamente para edição</li>
+                    <li>Substitua as informações do exemplo pelas suas próprias informações</li>
+                </ol>
+
+                <p><strong>O que incluir no currículo (estrutura básica):</strong></p>
+                <ul>
+                    <li><strong>Cabeçalho:</strong> Seu nome completo, telefone, e-mail profissional, cidade</li>
+                    <li><strong>Objetivo:</strong> 2-3 linhas sobre a vaga que você busca</li>
+                    <li><strong>Experiência Profissional:</strong> Empregos anteriores (cargo, empresa, período, principais atividades)</li>
+                    <li><strong>Formação:</strong> Escola, cursos técnicos, faculdade (se tiver)</li>
+                    <li><strong>Cursos e Certificações:</strong> Cursos extras que você fez</li>
+                    <li><strong>Habilidades:</strong> Computador, idiomas, softwares que domina</li>
+                </ul>
+
+                <div class="tutorial-image">
+                    <img src="../img/tutorial7-passo1.png" alt="Passo 1" width="1000">
+                </div>
+                <p class="image-caption">Templates profissionais de currículo disponíveis no Google Docs</p>
+
+                <div class="success-box">
+                    <strong>Salvando o currículo:</strong> Depois de preencher, vá em <strong>Arquivo > Fazer download > PDF</strong>. Salve com o nome: "Curriculo_SeuNome.pdf". PDFs são aceitos em todos os lugares!
+                </div>
+
+                <div class="warning-box">
+                    <strong>Evite erros comuns:</strong> Não use e-mails não profissionais (tipo "gatinha123@"), não coloque foto no currículo (a menos que seja pedido), não minta sobre experiências, e sempre revise ortografia!
+                </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Cadastrar-se nos 3 Principais Sites de Emprego</h4>
+                <p><strong>Estratégia inteligente:</strong> Não fique só em um site! Cadastre-se nos 3 principais para ter mais chances de ser visto por recrutadores.</p>
+                
+                <h3>Site 1: Indeed (indeed.com.br)</h3>
+                <ol>
+                    <li>Acesse: <code>www.indeed.com.br</code></li>
+                    <li>Clique em <strong>"Cadastre-se"</strong> no canto superior direito</li>
+                    <li>Escolha cadastro com <strong>Google</strong> (mais rápido) ou e-mail</li>
+                    <li>Preencha seu perfil básico: nome, cidade, telefone, área de interesse</li>
+                    <li>Faça upload do seu currículo em PDF</li>
+                    <li>Defina seu <strong>"alerta de vagas"</strong> (explicado no próximo passo)</li>
+                </ol>
+
+                <h3>Site 2: LinkedIn (linkedin.com)</h3>
+                <ol>
+                    <li>Acesse: <code>www.linkedin.com</code></li>
+                    <li>Clique em <strong>"Cadastre-se"</strong></li>
+                    <li>Crie sua conta com e-mail profissional</li>
+                    <li>Adicione uma <strong>foto profissional</strong> (fundo neutro, sorrindo, sem filtros)</li>
+                    <li>Preencha seu <strong>título profissional</strong> (ex: "Assistente Administrativo" ou "Vendedor")</li>
+                    <li>Complete seu perfil aos poucos (vamos detalhar no passo 4)</li>
+                </ol>
+
+                <h3>Site 3: SINE Digital (sine.com.br)</h3>
+                <ol>
+                    <li>Acesse: <code>www.sine.com.br</code></li>
+                    <li>Clique em <strong>"Candidato"</strong> e depois <strong>"Cadastrar"</strong></li>
+                    <li>Preencha: CPF, nome completo, e-mail, telefone</li>
+                    <li>Crie uma senha</li>
+                    <li>Confirme cadastro pelo e-mail enviado</li>
+                    <li>Faça login e complete seu perfil com experiências e formação</li>
+                    <li>Anexe seu currículo</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>Por que cadastrar nos 3?</strong> Cada site tem vagas diferentes! Indeed tem muitas empresas privadas, LinkedIn é ótimo para networking e o SINE tem vagas de empresas que contratam via governo. Você multiplica suas chances!
+                </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Configurar Alertas Automáticos de Vagas</h4>
+                <p><strong>Trabalhe menos, receba mais:</strong> Em vez de ficar procurando vagas todos os dias, deixe que elas cheguem até você por e-mail!</p>
+                
+                <h3>Como configurar no Indeed:</h3>
+                <ol>
+                    <li>Faça uma busca por uma vaga que te interessa (ex: "vendedor Brasília")</li>
+                    <li>Logo acima dos resultados, clique no botão <strong>"Criar alerta"</strong></li>
+                    <li>Escolha a frequência: <strong>"Diariamente"</strong> (recomendado)</li>
+                    <li>Confirme seu e-mail</li>
+                    <li>Pronto! Você receberá e-mails diários com novas vagas que combinam com sua busca</li>
+                </ol>
+
+                <h3>Como configurar no LinkedIn:</h3>
+                <ol>
+                    <li>Na barra de busca do LinkedIn, procure por <strong>"Vagas"</strong></li>
+                    <li>Filtre por: localização (Brasília/DF), tipo de vaga, área</li>
+                    <li>Clique no ícone de <strong>"sino"</strong> ou <strong>"criar alerta"</strong></li>
+                    <li>Dê um nome para o alerta (ex: "Vagas Vendas DF")</li>
+                    <li>Escolha frequência: <strong>Diariamente</strong></li>
+                    <li>Salve o alerta</li>
+                </ol>
+
+                <h3>Como configurar no SINE:</h3>
+                <ol>
+                    <li>Faça login no SINE Digital</li>
+                    <li>Vá em <strong>"Vagas disponíveis"</strong></li>
+                    <li>Use os filtros: cidade, área de atuação, salário</li>
+                    <li>Clique em <strong>"Receber alertas por e-mail"</strong></li>
+                    <li>Escolha os filtros que deseja monitorar</li>
+                    <li>Ative as notificações</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Dica de ouro:</strong> Quando receber um alerta de vaga nova, <strong>candidate-se nas primeiras 24 horas</strong>! Recrutadores olham primeiro quem se candidata mais rápido. Você terá mais chances de ser chamado!
+                </div>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Preencher Perfil Básico do LinkedIn</h4>
+                <p><strong>LinkedIn é sua vitrine profissional:</strong> Um perfil bem preenchido pode fazer recrutadores te encontrarem sem você precisar procurar vagas!</p>
+                
+                <h3>1. Foto de Perfil</h3>
+                <ul>
+                    <li>Use uma foto <strong>profissional</strong>: fundo neutro, sozinho, sorrindo levemente</li>
+                    <li>Vista-se como vestiria para uma entrevista</li>
+                    <li>Não use: selfies com amigos, fotos de festa, filtros, foto de corpo inteiro</li>
+                    <li>Dica: tire a foto na luz natural, de frente para uma parede clara</li>
+                </ul>
+
+                <h3>2. Título Profissional</h3>
+                <ul>
+                    <li>Vai logo abaixo do seu nome</li>
+                    <li>Seja específico e direto (ex: "Assistente Administrativo | Atendimento ao Cliente")</li>
+                    <li>Inclua palavras-chave da sua área</li>
+                    <li>Se está procurando emprego, pode colocar: "Profissional de [área] | Em busca de novas oportunidades"</li>
+                </ul>
+
+                <h3>3. Resumo (Sobre)</h3>
+                <p>Escreva 3-5 linhas sobre você. Mencione sua experiência, suas principais habilidades e o que você busca.</p>
+                <p><strong>Exemplo:</strong> "Profissional com 5 anos de experiência em atendimento ao cliente e vendas. Especializado em resolver problemas e garantir satisfação do cliente. Busco oportunidades em empresas que valorizam dedicação e crescimento profissional."</p>
+
+                <h3>4. Experiência</h3>
+                <ul>
+                    <li>Adicione seus empregos anteriores</li>
+                    <li>Para cada um, coloque: cargo, empresa, período (mês/ano), descrição das atividades</li>
+                    <li>Use verbos de ação: "Realizei", "Gerenciei", "Atendi", "Desenvolvi"</li>
+                    <li>Mencione resultados quando possível (ex: "Aumentei vendas em 20%")</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>Meta de completude:</strong> LinkedIn mostra uma barra de "Nível de perfil". Tente chegar a <strong>"Intermediário"</strong> ou <strong>"Completo"</strong>. Perfis completos aparecem mais nas buscas de recrutadores!
+                </div>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Palavras-Chave: O Segredo para Ser Encontrado</h4>
+                <p><strong>Como recrutadores buscam:</strong> Eles digitam palavras-chave nos sites de emprego. Se seu currículo não tem essas palavras, você não aparece nos resultados!</p>
+                
+                <p><strong>Como encontrar as palavras-chave certas:</strong></p>
+                <ol>
+                    <li>Leia atentamente as descrições de vagas que te interessam</li>
+                    <li>Anote as palavras que aparecem com frequência (habilidades, ferramentas, responsabilidades)</li>
+                    <li>Inclua essas palavras no seu currículo e perfil do LinkedIn</li>
+                </ol>
+
+                <h3>Exemplos de Palavras-Chave por Área</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Área</th>
+                            <th>Palavras-Chave Importantes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Administrativo</strong></td>
+                            <td>Excel, Word, atendimento, organização, arquivo, gestão de documentos, agendamento, office</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vendas</strong></td>
+                            <td>Metas, prospecção, negociação, pós-venda, CRM, relacionamento, fechamento, produtos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Atendimento</strong></td>
+                            <td>Relacionamento, SAC, call center, resolução de problemas, comunicação, empatia, suporte</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Logística</strong></td>
+                            <td>Estoque, separação, expedição, inventário, armazenagem, carga/descarga, controle</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tecnologia</strong></td>
+                            <td>Programação, desenvolvimento, sistemas, suporte técnico, redes, manutenção, software</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <strong>Por que palavras-chave importam?</strong> Muitas empresas grandes usam sistemas automatizados (ATS) que filtram currículos por palavras-chave ANTES de um humano ver. Se você não tem as palavras certas, seu currículo é descartado automaticamente!
+                </div>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="step">
+                <div class="step-number">6</div>
+                <h4>Escrever Carta de Apresentação Simples</h4>
+                <p><strong>O que é:</strong> Um texto curto (5-7 linhas) que acompanha seu currículo explicando por que você é ideal para a vaga.</p>
+                
+                <p><strong>Estrutura da carta de apresentação:</strong></p>
+                <ol>
+                    <li><strong>Linha 1:</strong> Cumprimente e diga para qual vaga está se candidatando</li>
+                    <li><strong>Linhas 2-4:</strong> Destaque 2-3 experiências/habilidades relevantes para a vaga</li>
+                    <li><strong>Linhas 5-6:</strong> Explique por que quer trabalhar naquela empresa</li>
+                    <li><strong>Linha 7:</strong> Agradeça e se coloque à disposição</li>
+                </ol>
+
+                <h3>Modelo Prático (copie e adapte)</h3>
+                <div class="info-box">
+                    <p><em>Prezado(a) Recrutador(a),</em></p>
+                    <p><em>Venho por meio desta me candidatar à vaga de [NOME DA VAGA] disponibilizada pela [NOME DA EMPRESA]. Possuo [X anos] de experiência em [SUA ÁREA], onde desenvolvi habilidades em [HABILIDADE 1], [HABILIDADE 2] e [HABILIDADE 3].</em></p>
+                    <p><em>Tenho grande interesse em fazer parte da equipe da [NOME DA EMPRESA] pela sua reconhecida atuação em [MENCIONE ALGO SOBRE A EMPRESA]. Acredito que posso contribuir significativamente com minha experiência e dedicação.</em></p>
+                    <p><em>Agradeço a atenção e estou à disposição para uma entrevista.</em></p>
+                    <p><em>Atenciosamente,<br>[SEU NOME COMPLETO]<br>[SEU TELEFONE]<br>[SEU E-MAIL]</em></p>
+                </div>
+
+                <div class="warning-box">
+                    <strong>SEMPRE personalize!</strong> Nunca envie a mesma carta genérica para todas as vagas. Troque o nome da empresa, da vaga e adapte as habilidades de acordo com o que é pedido. Recrutadores percebem cartas "copia e cola" e descartam!
+                </div>
+            </div>
+
+            <!-- Passo 7 -->
+            <div class="step">
+                <div class="step-number">7</div>
+                <h4>Fazer Curso Gratuito com Certificado</h4>
+                <p><strong>Turbine seu currículo:</strong> Fazer cursos online gratuitos com certificado mostra que você busca se qualificar e se destaca de outros candidatos!</p>
+                
+                <h3>Google Ateliê Digital (RECOMENDADO)</h3>
+                <ol>
+                    <li>Acesse: <code>ateliedigital.withgoogle.com</code></li>
+                    <li>Clique em <strong>"Cadastre-se gratuitamente"</strong></li>
+                    <li>Faça login com sua conta Google</li>
+                    <li>Escolha um dos cursos básicos (recomendamos "Fundamentos do Marketing Digital")</li>
+                    <li>Assista às video-aulas (pode ser no celular, no ônibus, quando tiver tempo)</li>
+                    <li>Faça os exercícios ao final de cada módulo</li>
+                    <li>Ao concluir, você recebe o <strong>certificado digital</strong></li>
+                    <li>Baixe o certificado em PDF e adicione no LinkedIn e no currículo</li>
+                </ol>
+
+                <h3>Outros cursos gratuitos com certificado</h3>
+                <ul>
+                    <li><strong>Fundação Bradesco:</strong> Cursos de informática, Excel, atendimento</li>
+                    <li><strong>SENAI:</strong> Cursos técnicos curtos online</li>
+                    <li><strong>Coursera:</strong> Cursos de universidades (alguns gratuitos)</li>
+                    <li><strong>SEBRAE:</strong> Cursos de empreendedorismo e gestão</li>
+                    <li><strong>FGV Online:</strong> Cursos de administração e finanças</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>Por que fazer?</strong> Certificados provam que você busca conhecimento. Em vagas com muitos candidatos, quem tem cursos extras se destaca! Além disso, você realmente aprende coisas úteis para o trabalho.
+                </div>
+
+                <div class="info-box">
+                    <strong>Quanto tempo leva?</strong> Os cursos básicos do Google Ateliê levam de 3 a 8 horas totais. Você pode fazer no seu ritmo, pausar e voltar quando quiser. Faça um pouco todo dia e em 1 semana você termina!
+                </div>
+            </div>
+
+            <!-- Passo 8 -->
+            <div class="step">
+                <div class="step-number">8</div>
+                <h4>Dicas Finais: Personalizar, Responder Rápido e Follow-up</h4>
+                <p><strong>O que realmente funciona:</strong> Pequenos detalhes fazem toda a diferença. Veja as estratégias que aumentam suas chances!</p>
+                
+                <h3>Personalize cada candidatura</h3>
+                <ul>
+                    <li>Leia a descrição completa da vaga antes de se candidatar</li>
+                    <li>Adapte seu currículo destacando experiências relacionadas àquela vaga</li>
+                    <li>Mencione o nome da empresa na carta de apresentação</li>
+                    <li>Não envie o mesmo currículo genérico para todas as vagas</li>
+                </ul>
+
+                <h3>Responda RÁPIDO aos alertas</h3>
+                <ul>
+                    <li>Candidate-se nas primeiras 24 horas após a vaga ser publicada</li>
+                    <li>Vagas populares recebem centenas de candidaturas - quem chega primeiro tem mais chance</li>
+                    <li>Configure notificações no celular para não perder oportunidades</li>
+                    <li>Tenha seu currículo sempre atualizado para enviar rapidamente</li>
+                </ul>
+
+                <h3>Faça follow-up após se candidatar</h3>
+                <ul>
+                    <li>Se a vaga tem contato da empresa, envie um e-mail educado 3-5 dias depois</li>
+                    <li>Reforce seu interesse pela vaga e pergunte sobre o andamento do processo</li>
+                    <li>Seja breve e profissional - 4-5 linhas no máximo</li>
+                    <li>Exemplo: "Bom dia! Me candidatei à vaga de [cargo] dia [data] e gostaria de saber sobre o andamento. Continuo muito interessado(a). Obrigado(a)!"</li>
+                </ul>
+
+                <h3>Mantenha-se ativo no LinkedIn</h3>
+                <ul>
+                    <li>Compartilhe conteúdos relacionados à sua área 1-2 vezes por semana</li>
+                    <li>Comente em posts de empresas que você admira</li>
+                    <li>Conecte-se com profissionais da sua área</li>
+                    <li>Atualize seu perfil sempre que fizer novos cursos ou conquistas</li>
+                </ul>
+
+                <div class="danger-box">
+                    <strong>Cuidado com golpes:</strong> Empresas sérias NUNCA pedem dinheiro antecipado para processos seletivos! Desconfie de vagas com salários muito altos sem requisitos, pedidos de depósito para "material" ou "treinamento". Se parece bom demais para ser verdade, provavelmente é golpe!
+                </div>
+            </div>
+
+            <!-- Checklist Resumo -->
+            <h2>Checklist: Sua Estratégia Completa</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 60%;">Ação</th>
+                        <th style="width: 20%;">Prioridade</th>
+                        <th style="width: 20%;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Criar currículo profissional no Google Docs</td>
+                        <td><strong>ALTA</strong></td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Cadastrar no Indeed</td>
+                        <td><strong>ALTA</strong></td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Criar perfil no LinkedIn</td>
+                        <td><strong>ALTA</strong></td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Cadastrar no SINE Digital</td>
+                        <td><strong>ALTA</strong></td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Configurar alertas de vagas nos 3 sites</td>
+                        <td><strong>ALTA</strong></td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Adicionar palavras-chave no currículo</td>
+                        <td><strong>MÉDIA</strong></td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Preparar carta de apresentação modelo</td>
+                        <td><strong>MÉDIA</strong></td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Fazer curso gratuito com certificado</td>
+                        <td><strong>MÉDIA</strong></td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Adicionar certificado no LinkedIn e currículo</td>
+                        <td><strong>MÉDIA</strong></td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Candidatar-se a pelo menos 5 vagas por semana</td>
+                        <td><strong>ALTA</strong></td>
+                        <td>☐</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Dúvidas Comuns -->
+            <h2>Dúvidas Comuns</h2>
+            
+            <h3>1. Preciso ter LinkedIn? Não basta o Indeed e SINE?</h3>
+            <p><strong>Resposta:</strong> LinkedIn é MUITO importante! Muitas empresas procuram candidatos direto no LinkedIn sem nem publicar vagas. Além disso, ter um perfil profissional lá mostra que você está atualizado. É gratuito e vale muito a pena investir tempo para preencher bem.</p>
+
+            <h3>2. Quantas vagas devo me candidatar por dia?</h3>
+            <p><strong>Resposta:</strong> Qualidade é melhor que quantidade! É melhor se candidatar a 2-3 vagas por dia COM currículo personalizado do que mandar 20 currículos genéricos. Mas mantenha uma meta mínima: pelo menos 5 candidaturas por semana. Seja consistente!</p>
+
+            <h3>3. Devo colocar pretensão salarial no currículo?</h3>
+            <p><strong>Resposta:</strong> NÃO, a menos que seja pedido expressamente na vaga. Colocar salário no currículo pode te eliminar antes mesmo da entrevista - ou por pedir muito ou por pedir pouco. Deixe para negociar salário depois que a empresa demonstrar interesse em você!</p>
+
+            <h3>4. Posso mentir ou "aumentar" minhas experiências no currículo?</h3>
+            <p><strong>Resposta:</strong> NUNCA! Empresas verificam referências e podem pedir comprovantes. Mentir no currículo é motivo de demissão por justa causa se for descoberto depois. Seja honesto, mas saiba VALORIZAR o que você realmente fez. Por exemplo, em vez de "fazia atendimento", escreva "realizava atendimento ao cliente garantindo satisfação e fidelização".</p>
+
+            <h3>5. Não tenho experiência formal. Posso me candidatar mesmo assim?</h3>
+            <p><strong>Resposta:</strong> SIM! Procure vagas que dizem "Vaga para primeiro emprego" ou "Não exige experiência". Destaque seus cursos, trabalhos voluntários, projetos pessoais ou até experiências informais que tenham relação com a vaga. Todos começaram do zero um dia!</p>
+
+            <!-- Dicas Extras -->
+            <h2>Dicas Extras de Ouro</h2>
+            
+            <div class="info-box">
+                <strong>1. Crie uma rotina de busca:</strong> Reserve 1 hora por dia (ou 30 min de manhã + 30 min à noite) para procurar vagas e se candidatar. Faça disso um hábito. Quanto mais consistente, mais rápido encontra emprego!
+            </div>
+            
+            <div class="info-box">
+                <strong>2. Tenha um e-mail profissional:</strong> Se seu e-mail atual é tipo "gatinha123@" ou "meninodelas@", crie um novo e-mail profissional com seu nome: "joao.silva.rj@gmail.com". Recrutadores levam isso a sério!
+            </div>
+            
+            <div class="info-box">
+                <strong>3. Peça indicações:</strong> Conte para amigos, familiares e conhecidos que você está procurando emprego. Muitas vagas são preenchidas por indicação antes mesmo de serem divulgadas! Networking é poderoso.
+            </div>
+            
+            <div class="info-box">
+                <strong>4. Prepare-se para entrevistas:</strong> Pesquise perguntas comuns de entrevista no Google e treine suas respostas. Principais: "Fale sobre você", "Por que quer trabalhar aqui?", "Quais seus pontos fortes e fracos?". Pratique em voz alta!
+            </div>
+            
+            <div class="info-box">
+                <strong>5. Acompanhe suas candidaturas:</strong> Crie uma planilha simples: data, empresa, cargo, site, status. Assim você sabe para onde já enviou currículo e pode fazer follow-up organizado. Use o Google Planilhas (gratuito)!
+            </div>
+
+            <!-- Resolvendo Problemas -->
+            <h2>Resolvendo Problemas Comuns</h2>
+            
+            <h3>Problema: Me candidato mas nunca recebo resposta</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Revise seu currículo: pode estar com informações confusas ou erros de português</li>
+                <li>Certifique-se de que está se candidatando a vagas compatíveis com seu perfil</li>
+                <li>Personalize cada candidatura em vez de enviar currículo genérico</li>
+                <li>Verifique se seu e-mail de contato está correto e funcionando</li>
+                <li>Melhore seu perfil do LinkedIn - muitos recrutadores buscam lá antes</li>
+                <li>Lembre-se: é normal não receber resposta de todas. Continue se candidatando!</li>
+            </ul>
+
+            <h3>Problema: Não sei como destacar experiências básicas</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Use verbos de ação: em vez de "responsável por", use "executei", "realizei", "gerenciei"</li>
+                <li>Adicione resultados: "Atendi clientes" vira "Atendi em média 30 clientes por dia mantendo 95% de satisfação"</li>
+                <li>Inclua soft skills: "Trabalhei em equipe", "Resolvi conflitos", "Cumpri prazos"</li>
+                <li>Valorize trabalhos informais: "Vendi doces" vira "Desenvolvi habilidades de vendas e relacionamento com clientes"</li>
+            </ul>
+
+            <h3>Problema: Não consigo fazer cursos longos por falta de tempo</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Comece por cursos CURTOS: Google Ateliê tem cursos de 3-5 horas totais</li>
+                <li>Faça 20-30 minutos por dia: no ônibus, na fila, antes de dormir</li>
+                <li>Priorize cursos da sua área de interesse para ter mais motivação</li>
+                <li>Lembre-se: terminar UM curso é melhor que começar cinco e não terminar nenhum</li>
+                <li>Use finais de semana para avançar mais nos módulos</li>
+            </ul>
+
+            <!-- Conclusão -->
+            <div class="success-box" style="margin-top: 50px;">
+                <h3 style="color: #065f46; margin-top: 0;">Parabéns! Você Concluiu Este Tutorial!</h3>
+                <p>Agora você sabe:</p>
+                <ul style="margin: 10px 0;">
+                    <li>Criar currículo profissional no Google Docs</li>
+                    <li>Cadastrar-se nos principais sites de emprego</li>
+                    <li>Configurar alertas automáticos de vagas</li>
+                    <li>Preencher perfil do LinkedIn corretamente</li>
+                    <li>Usar palavras-chave para ser encontrado</li>
+                    <li>Escrever cartas de apresentação</li>
+                    <li>Fazer cursos gratuitos com certificado</li>
+                    <li>Estratégias que realmente funcionam</li>
+                </ul>
+                <p style="margin-bottom: 0;"><strong>Próximo passo:</strong> Use o checklist deste tutorial, comece pelas tarefas de prioridade ALTA e seja consistente. Procurar emprego é um trabalho temporário até você conseguir O trabalho!</p>
+            </div>
+
+            <!-- Navegação entre Tutoriais -->
+            <div class="tutorial-nav">
+                <a href="tutorial6.html" class="nav-tutorial-btn">
+                    Tutorial Anterior
+                </a>
+                <a href="tutorial8.html" class="nav-tutorial-btn">
+                    Próximo: Reclamação Online
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Portal de Inclusão Digital - Riacho Fundo 2</p>
+            <p class="mb-0 mt-2">Desenvolvido por Vinícius de Oliveira Vieira - UNINTER</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

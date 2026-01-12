@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 2 - WhatsApp Business | Portal de Inclusão Digital</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Customizado -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: white;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .tutorial-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+        }
+        
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+        
+        .tutorial-content {
+            background: white;
+            padding: 60px 0;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .tutorial-content h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tutorial-content h3 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border: 3px solid #0284c7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box strong {
+            color: #0c4a6e;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box strong {
+            color: #92400e;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border: 3px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box strong {
+            color: #065f46;
+        }
+        
+        .danger-box {
+            background: #fee2e2;
+            border: 3px solid #ef4444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .danger-box strong {
+            color: #991b1b;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step h4 {
+            margin-top: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            background: #f1f5f9;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .tutorial-content li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .nav-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tutorial-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        table tr:hover {
+            background: var(--light-bg);
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #dc2626;
+            font-family: 'Courier New', monospace;
+        }
+        
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 20px;
+            }
+            
+            .tutorial-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            📚 Inclusão Digital
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#tutoriais">Tutoriais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Header do Tutorial -->
+    <div class="tutorial-header">
+        <div class="container">
+            <h1>Tutorial 2: WhatsApp Business - Configure em 30 Minutos</h1>
+            <p class="lead">Transforme seu WhatsApp em uma ferramenta profissional para seu negócio</p>
+            <div class="tutorial-meta">
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>30 minutos</span>
+                </div>
+                <div class="meta-item">
+                    <span>📱</span>
+                    <span>Celular ou Computador</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Tutorial -->
+    <div class="tutorial-content">
+        <div class="content-wrapper">
+            
+            <!-- Introdução -->
+            <h2>O Que Você Vai Aprender</h2>
+            <ul>
+                <li>Diferença entre WhatsApp normal e WhatsApp Business</li>
+                <li>Como baixar e instalar o WhatsApp Business</li>
+                <li>Configurar perfil comercial completo</li>
+                <li>Criar catálogo de produtos com fotos e preços</li>
+                <li>Configurar mensagens automáticas de boas-vindas e ausência</li>
+                <li>Criar link direto para seu WhatsApp</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Antes de Começar:</strong> Você precisa ter um número de celular (pode ser o mesmo do WhatsApp normal). O WhatsApp Business é gratuito e não tem propagandas!
+            </div>
+
+            <!-- Diferenças -->
+            <h2>WhatsApp Normal vs WhatsApp Business</h2>
+            <p>Muita gente não sabe, mas existem DUAS versões do WhatsApp. Veja as diferenças:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Recurso</th>
+                        <th>WhatsApp Normal</th>
+                        <th>WhatsApp Business</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Perfil</strong></td>
+                        <td>Nome e foto</td>
+                        <td>Nome, foto, horário, endereço, site, categoria</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Catálogo</strong></td>
+                        <td>Não tem</td>
+                        <td>Pode criar catálogo de produtos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mensagens Automáticas</strong></td>
+                        <td>Não tem</td>
+                        <td>Boas-vindas e ausência</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Etiquetas</strong></td>
+                        <td>Não tem</td>
+                        <td>Organizar conversas (cliente, pedido, etc)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Respostas Rápidas</strong></td>
+                        <td>Não tem</td>
+                        <td>Mensagens prontas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estatísticas</strong></td>
+                        <td>Não tem</td>
+                        <td>Ver quantas mensagens enviou/recebeu</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Preço</strong></td>
+                        <td>Gratuito</td>
+                        <td>Gratuito</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="success-box">
+                <strong>Boa Notícia:</strong> Você pode ter os DOIS WhatsApps instalados no mesmo celular! Um para uso pessoal e outro para negócio.
+            </div>
+
+            <!-- Por que usar -->
+            <h2>Por Que Usar WhatsApp Business?</h2>
+            <p>Se você tem qualquer tipo de negócio (mesmo pequeno!), o WhatsApp Business é essencial porque:</p>
+            <ul>
+                <li><strong>Passa mais profissionalismo</strong> - Clientes veem que é um negócio sério</li>
+                <li><strong>Economiza tempo</strong> - Mensagens automáticas respondem por você</li>
+                <li><strong>Organiza melhor</strong> - Etiquetas para separar clientes, pedidos, dúvidas</li>
+                <li><strong>Mostra produtos</strong> - Catálogo com fotos e preços sempre acessível</li>
+                <li><strong>Facilita vendas</strong> - Cliente vê tudo e compra mais fácil</li>
+                <li><strong>É gratuito</strong> - Não precisa pagar nada!</li>
+            </ul>
+
+            <!-- Passo 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Baixar o WhatsApp Business</h4>
+                <p>Abra a loja de aplicativos do seu celular:</p>
+                <ul>
+                    <li><strong>Android:</strong> Google Play Store (ícone colorido)</li>
+                    <li><strong>iPhone:</strong> App Store (ícone azul)</li>
+                </ul>
+                
+                <p>Na barra de pesquisa, digite: <code>WhatsApp Business</code></p>
+                
+                <div class="warning-box">
+                    <strong>Atenção:</strong> Procure pelo app com o nome <strong>"WhatsApp Business"</strong> e o ícone VERDE com um "B" dentro. É o oficial do WhatsApp!
+                </div>
+                
+                <p>Toque em <strong>"Instalar"</strong>.</p>
+                <p>Aguarde o download terminar (usa cerca de 50MB de internet).</p>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial2-passo1.png" alt="Passo 1" width="250">
+                </div>
+                <p class="image-caption">WhatsApp Business na loja de aplicativos</p>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Abrir e Concordar com os Termos</h4>
+                <p>Após a instalação, toque em <strong>"Abrir"</strong>.</p>
+                <p>Você verá uma tela de boas-vindas explicando o que é o WhatsApp Business.</p>
+                <p>Toque em <strong>"Concordar e Continuar"</strong>.</p>
+                
+                <div class="info-box">
+                    <strong>Dica:</strong> Leia os termos se quiser, mas basicamente você está concordando em usar o app conforme as regras do WhatsApp.
+                </div>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial2-passo2.png" alt="Passo 2" width="250">
+                </div>
+                <p class="image-caption">Tela de boas-vindas do WhatsApp Business</p>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Cadastrar Seu Número</h4>
+                <p>Agora você precisa escolher um número de telefone para o WhatsApp Business.</p>
+                
+                <p><strong>Você tem 3 opções:</strong></p>
+                <ol>
+                    <li><strong>Usar um número diferente</strong> - Se você tem 2 chips no celular</li>
+                    <li><strong>Usar um número fixo</strong> - Telefone fixo da sua loja/casa</li>
+                    <li><strong>Usar o mesmo número</strong> - Migrar seu WhatsApp normal (seus chats serão transferidos)</li>
+                </ol>
+                
+                <div class="warning-box">
+                    <strong>Importante:</strong> Se você usar o mesmo número do WhatsApp normal, suas conversas pessoais serão transferidas para o Business. Por isso, é melhor usar um número diferente se possível!
+                </div>
+                
+                <p><strong>Como fazer:</strong></p>
+                <ol>
+                    <li>Selecione seu país (Brasil +55)</li>
+                    <li>Digite o número de telefone (com DDD, sem espaços)</li>
+                    <li>Exemplo: <code>61912345678</code></li>
+                    <li>Toque em <strong>"Avançar"</strong></li>
+                </ol>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial2-passo3.png" alt="Passo 3" width="250">
+                </div>
+                <p class="image-caption">Digite seu número com DDD</p>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Verificar o Número (Código SMS)</h4>
+                <p>O WhatsApp vai enviar um código de 6 dígitos por SMS para o número que você digitou.</p>
+                
+                <p><strong>O que fazer:</strong></p>
+                <ol>
+                    <li>Aguarde o SMS chegar (geralmente é automático em segundos)</li>
+                    <li>O código será detectado automaticamente</li>
+                    <li>Se não detectar, digite manualmente</li>
+                    <li>Toque em <strong>"Avançar"</strong></li>
+                </ol>
+                
+                <div class="info-box">
+                    <strong>Dica:</strong> Se não receber o SMS em 2 minutos, você pode pedir para receber por ligação. O WhatsApp te liga e fala o código.
+                </div>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial2-passo4.png" alt="Passo 4" width="250">
+                </div>
+                <p class="image-caption">Digite o código recebido por SMS</p>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Configurar Perfil do Negócio</h4>
+                <p>Agora é hora de configurar as informações do seu negócio! Essa parte é MUITO importante porque é o que seus clientes vão ver.</p>
+                
+                <h3 style="color: var(--primary-color); margin-top: 25px;">Foto do Perfil</h3>
+                <p>Toque no círculo da foto para adicionar:</p>
+                <ul>
+                    <li><strong>Opção 1:</strong> Tirar foto agora (da fachada, logo, você)</li>
+                    <li><strong>Opção 2:</strong> Escolher da galeria</li>
+                </ul>
+                <p><strong>Dica:</strong> Use uma foto clara, que mostre bem seu negócio ou produto principal.</p>
+                
+                <h3 style="color: var(--primary-color); margin-top: 25px;">Nome do Negócio</h3>
+                <p>Digite o nome da sua empresa, loja ou negócio.</p>
+                <p><strong>Exemplos:</strong></p>
+                <ul>
+                    <li>Padaria Pão Quente</li>
+                    <li>Maria - Doces Caseiros</li>
+                    <li>Auto Peças JB</li>
+                    <li>Salão de Beleza Glamour</li>
+                </ul>
+                
+                <h3 style="color: var(--primary-color); margin-top: 25px;">Categoria</h3>
+                <p>Escolha a categoria que melhor define seu negócio:</p>
+                <ul>
+                    <li>Alimentação</li>
+                    <li>Vestuário</li>
+                    <li>Serviços</li>
+                    <li>Beleza e Estética</li>
+                    <li>Etc... (tem muitas opções!)</li>
+                </ul>
+                
+                <p>Depois de preencher tudo, toque em <strong>"Avançar"</strong>.</p>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="step">
+                <div class="step-number">6</div>
+                <h4>Adicionar Informações Detalhadas do Negócio</h4>
+                <p>Agora vamos completar seu perfil com TODAS as informações importantes!</p>
+                
+                <p><strong>Como acessar:</strong></p>
+                <ol>
+                    <li>Toque nos 3 pontinhos no canto superior direito</li>
+                    <li>Toque em <strong>"Configurações"</strong></li>
+                    <li>Toque em <strong>"Ferramentas Comerciais"</strong></li>
+                    <li>Toque em <strong>"Perfil Comercial"</strong></li>
+                </ol>
+                
+                <h3 style="color: var(--primary-color); margin-top: 25px;">Preencha TODOS os campos:</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campo</th>
+                            <th>O Que Colocar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Descrição</strong></td>
+                            <td>Explique o que você vende/faz (até 256 caracteres)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Horário de Atendimento</strong></td>
+                            <td>Ex: Segunda a Sexta 9h-18h, Sábado 9h-13h</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Endereço</strong></td>
+                            <td>Rua, número, bairro, cidade (se tiver loja física)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Site</strong></td>
+                            <td>Seu site, Instagram, Facebook (se tiver)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>E-mail</strong></td>
+                            <td>E-mail de contato do negócio</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="success-box">
+                    <strong>Por que preencher tudo?</strong> Quanto mais completo seu perfil, mais confiança passa para os clientes! Eles veem que é um negócio profissional e sério.
+                </div>
+            </div>
+
+            <!-- Passo 7 -->
+            <div class="step">
+                <div class="step-number">7</div>
+                <h4>Criar Catálogo de Produtos</h4>
+                <p>Esta é uma das funcionalidades MAIS ÚTEIS do WhatsApp Business! Você pode mostrar seus produtos com fotos, descrição e preço.</p>
+                
+                <p><strong>Como criar:</strong></p>
+                <ol>
+                    <li>Toque nos 3 pontinhos no canto superior direito</li>
+                    <li>Toque em <strong>"Ferramentas Comerciais"</strong></li>
+                    <li>Toque em <strong>"Catálogo"</strong></li>
+                    <li>Toque em <strong>"Adicionar produto ou serviço"</strong></li>
+                </ol>
+                
+                <h3 style="color: var(--primary-color); margin-top: 25px;">Para cada produto, adicione:</h3>
+                
+                <p><strong>1. Foto do Produto</strong></p>
+                <ul>
+                    <li>Tire uma foto clara e bem iluminada</li>
+                    <li>Ou escolha uma da galeria</li>
+                    <li>Dica: foto em fundo branco fica mais profissional</li>
+                </ul>
+                
+                <p><strong>2. Nome do Produto</strong></p>
+                <ul>
+                    <li>Ex: Bolo de Chocolate 1kg</li>
+                    <li>Ex: Calça Jeans Masculina Tam 42</li>
+                </ul>
+                
+                <p><strong>3. Preço</strong></p>
+                <ul>
+                    <li>Digite o valor (ex: R$ 45,00)</li>
+                    <li>Será mostrado para todos os clientes</li>
+                </ul>
+                
+                <p><strong>4. Descrição</strong></p>
+                <ul>
+                    <li>Descreva detalhes importantes</li>
+                    <li>Tamanhos, cores, ingredientes, etc</li>
+                    <li>Ex: "Bolo de chocolate com recheio de brigadeiro e cobertura de ganache. Serve 8 pessoas."</li>
+                </ul>
+                
+                <p><strong>5. Link do Produto (Opcional)</strong></p>
+                <ul>
+                    <li>Se você vende em outra plataforma, pode colocar o link</li>
+                </ul>
+                
+                <p>Toque em <strong>"Salvar"</strong>.</p>
+                
+                <div class="info-box">
+                    <strong>Dica:</strong> Comece adicionando 5 produtos principais. Depois você pode adicionar mais com calma!
+                </div>
+                
+                <h3 style="color: var(--primary-color); margin-top: 25px;">Como os clientes veem:</h3>
+                <p>Quando alguém abrir seu WhatsApp Business, vai ver um botão <strong>"Ver catálogo"</strong>. Ao clicar, todos os seus produtos aparecerão organizados com fotos e preços!</p>
+            </div>
+
+            <!-- Passo 8 -->
+            <div class="step">
+                <div class="step-number">8</div>
+                <h4>Configurar Mensagem de Boas-Vindas</h4>
+                <p>A mensagem de boas-vindas é enviada AUTOMATICAMENTE quando alguém manda a primeira mensagem para você. É como um atendente virtual!</p>
+                
+                <p><strong>Como configurar:</strong></p>
+                <ol>
+                    <li>Toque nos 3 pontinhos no canto superior direito</li>
+                    <li>Toque em <strong>"Ferramentas Comerciais"</strong></li>
+                    <li>Toque em <strong>"Mensagem de boas-vindas"</strong></li>
+                    <li>Ative a opção</li>
+                    <li>Toque em <strong>"Editar mensagem"</strong></li>
+                </ol>
+                
+                <p><strong>Exemplo de mensagem de boas-vindas:</strong></p>
+                <div class="success-box">
+                    Olá! Bem-vindo(a) à <strong>[Nome do seu negócio]</strong>!<br><br>
+                    
+                    Obrigado pelo contato!<br><br>
+                    
+                    Confira nosso catálogo de produtos<br>
+                    ⏰ Horário de atendimento: Segunda a Sexta 9h-18h<br>
+                    Endereço: [Seu endereço]<br><br>
+                    
+                    Como posso te ajudar hoje?
+                </div>
+                
+                <div class="info-box">
+                    <strong>Dicas:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>Use emojis para deixar mais amigável</li>
+                        <li>Inclua horário de atendimento</li>
+                        <li>Mencione o catálogo</li>
+                        <li>Seja simpático e profissional</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Passo 9 -->
+            <div class="step">
+                <div class="step-number">9</div>
+                <h4>Configurar Mensagem de Ausência</h4>
+                <p>A mensagem de ausência é enviada quando você está fora do horário de atendimento. Assim, o cliente sabe quando você vai responder!</p>
+                
+                <p><strong>Como configurar:</strong></p>
+                <ol>
+                    <li>Toque nos 3 pontinhos no canto superior direito</li>
+                    <li>Toque em <strong>"Ferramentas Comerciais"</strong></li>
+                    <li>Toque em <strong>"Mensagem de ausência"</strong></li>
+                    <li>Ative a opção</li>
+                    <li>Escolha quando enviar:
+                        <ul>
+                            <li><strong>Sempre:</strong> toda vez que alguém mandar mensagem e você não responder em X minutos</li>
+                            <li><strong>Fora do horário comercial:</strong> apenas quando estiver fechado</li>
+                            <li><strong>Personalizado:</strong> escolher dias e horários específicos</li>
+                        </ul>
+                    </li>
+                    <li>Toque em <strong>"Editar mensagem"</strong></li>
+                </ol>
+                
+                <p><strong>Exemplo de mensagem de ausência:</strong></p>
+                <div class="warning-box">
+                    Olá!<br><br>
+                    
+                    Obrigado pela mensagem! No momento estou fora do horário de atendimento.<br><br>
+                    
+                    ⏰ <strong>Horário de funcionamento:</strong><br>
+                    Segunda a Sexta: 9h às 18h<br>
+                    Sábado: 9h às 13h<br><br>
+                    
+                    Responderei assim que possível! Fique à vontade para deixar sua mensagem que retorno em breve.
+                </div>
+            </div>
+
+            <!-- Passo 10 -->
+            <div class="step">
+                <div class="step-number">10</div>
+                <h4>Criar Link Direto para Seu WhatsApp</h4>
+                <p>Este é um SUPER TRUQUE que pouca gente sabe! Você pode criar um link que, quando clicado, abre uma conversa direto com você no WhatsApp.</p>
+                
+                <p><strong>Como funciona:</strong></p>
+                <p>Quando alguém clica no link, o WhatsApp abre automaticamente com uma mensagem pronta para você!</p>
+                
+                <p><strong>Como criar o link:</strong></p>
+                <p>O formato do link é: <code>https://wa.me/5561912345678</code></p>
+                
+                <p><strong>Onde:</strong></p>
+                <ul>
+                    <li><code>55</code> = código do Brasil</li>
+                    <li><code>61</code> = DDD</li>
+                    <li><code>912345678</code> = seu número</li>
+                </ul>
+                
+                <p><strong>Exemplo completo:</strong></p>
+                <p>Se seu número é (61) 99123-4567, o link fica:</p>
+                <div class="success-box">
+                    <code>https://wa.me/5561991234567</code>
+                </div>
+                
+                <p><strong>Você pode usar esse link em:</strong></p>
+                <ul>
+                    <li>Instagram (na bio ou stories)</li>
+                    <li>Facebook (postagens e página)</li>
+                    <li>Site do seu negócio</li>
+                    <li>E-mail marketing</li>
+                    <li>Panfletos digitais</li>
+                    <li>QR Code</li>
+                </ul>
+                
+                <div class="info-box">
+                    <strong>Dica Bônus:</strong> Você pode adicionar uma mensagem automática no link!<br><br>
+                    Exemplo: <code>https://wa.me/5561991234567?text=Olá!%20Vim%20pelo%20Instagram</code><br><br>
+                    Quando a pessoa clicar, o texto "Olá! Vim pelo Instagram" já virá escrito!
+                </div>
+            </div>
+
+            <!-- Recursos Extras -->
+            <h2>Recursos Extras do WhatsApp Business</h2>
+            
+            <h3>Etiquetas (Labels)</h3>
+            <p>Organize suas conversas com etiquetas coloridas!</p>
+            <p><strong>Como usar:</strong></p>
+            <ol>
+                <li>Abra uma conversa</li>
+                <li>Toque no nome do contato</li>
+                <li>Role até "Etiquetas"</li>
+                <li>Escolha ou crie etiquetas como: "Novo cliente", "Pedido feito", "Aguardando pagamento"</li>
+            </ol>
+            
+            <h3>Respostas Rápidas</h3>
+            <p>Crie mensagens prontas para responder rapidamente!</p>
+            <p><strong>Como criar:</strong></p>
+            <ol>
+                <li>Vá em Configurações → Ferramentas Comerciais → Respostas Rápidas</li>
+                <li>Toque em "Adicionar"</li>
+                <li>Crie um atalho (ex: /oi)</li>
+                <li>Escreva a mensagem completa</li>
+            </ol>
+            <p><strong>Para usar:</strong> Na conversa, digite <code>/oi</code> e a mensagem completa aparece!</p>
+            
+            <h3>Estatísticas</h3>
+            <p>Veja quantas mensagens você enviou e recebeu!</p>
+            <p><strong>Como ver:</strong></p>
+            <ol>
+                <li>Configurações → Ferramentas Comerciais → Estatísticas</li>
+                <li>Você verá gráficos de mensagens enviadas, recebidas e lidas</li>
+            </ol>
+
+            <!-- Dicas Profissionais -->
+            <h2>Dicas Profissionais para Usar Melhor</h2>
+            
+            <div class="info-box">
+                <strong>1. Responda Rápido:</strong> Clientes gostam de respostas rápidas. Tente responder em até 1 hora durante o horário comercial.
+            </div>
+            
+            <div class="info-box">
+                <strong>2. Use o Status:</strong> Poste no status do WhatsApp Business novidades, promoções, produtos novos. Seus contatos veem!
+            </div>
+            
+            <div class="info-box">
+                <strong>3. Atualize o Catálogo:</strong> Sempre que tiver produto novo, adicione no catálogo. Sempre que algo esgotar, remova.
+            </div>
+            
+            <div class="info-box">
+                <strong>4. Seja Educado e Profissional:</strong> Use emojis com moderação, escreva corretamente, seja sempre gentil.
+            </div>
+            
+            <div class="info-box">
+                <strong>5. Confirme Pedidos:</strong> Sempre confirme o pedido do cliente por mensagem (produto, quantidade, valor, endereço).
+            </div>
+
+            <!-- Dúvidas Comuns -->
+            <h2>Dúvidas Comuns</h2>
+            
+            <h3>1. Posso ter WhatsApp normal E Business no mesmo celular?</h3>
+            <p><strong>Sim!</strong> Você pode ter os dois instalados, mas precisam ser números diferentes. Perfeito para separar vida pessoal do trabalho!</p>
+
+            <h3>2. O WhatsApp Business é pago?</h3>
+            <p><strong>Não!</strong> É 100% gratuito. Não tem mensalidade, não tem limite de mensagens, não tem propagandas.</p>
+
+            <h3>3. Meus clientes precisam ter WhatsApp Business também?</h3>
+            <p><strong>Não!</strong> Seus clientes podem usar WhatsApp normal. Eles vão te ver como uma empresa e conseguem acessar seu catálogo normalmente.</p>
+
+            <h3>4. Perco minhas conversas se migrar do WhatsApp normal?</h3>
+            <p><strong>Não!</strong> Se você usar o mesmo número, suas conversas são transferidas automaticamente para o Business.</p>
+
+            <h3>5. Posso usar no computador?</h3>
+            <p><strong>Sim!</strong> Funciona igual ao WhatsApp normal. Acesse <code>web.whatsapp.com</code> e escaneie o QR Code.</p>
+
+            <h3>6. Como sei se alguém viu minha mensagem?</h3>
+            <p>Os dois "✓✓" azuis indicam que a pessoa viu. Se está cinza, foi entregue mas não visualizado ainda.</p>
+
+            <!-- Problemas Comuns -->
+            <h2>Resolvendo Problemas Comuns</h2>
+            
+            <h3>Problema: "Número já registrado"</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Este número já está usando WhatsApp ou WhatsApp Business</li>
+                <li>Se for seu: desinstale o app antigo primeiro</li>
+                <li>Se não for seu: use outro número</li>
+            </ul>
+
+            <h3>Problema: "Não consigo adicionar produtos ao catálogo"</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Verifique se o perfil está completo</li>
+                <li>Verifique conexão com internet</li>
+                <li>Tente tirar foto nova (não use da galeria)</li>
+                <li>Feche e abra o app novamente</li>
+            </ul>
+
+            <h3>Problema: "Mensagem automática não está enviando"</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Verifique se está ativada nas configurações</li>
+                <li>Veja se configurou o horário certo</li>
+                <li>Teste enviando mensagem de outro número</li>
+            </ul>
+
+            <!-- Conclusão -->
+            <div class="success-box" style="margin-top: 50px;">
+                <h3 style="color: #065f46; margin-top: 0;">Parabéns! Você Concluiu Este Tutorial!</h3>
+                <p>Agora você sabe:</p>
+                <ul style="margin: 10px 0;">
+                    <li>Diferença entre WhatsApp normal e Business</li>
+                    <li>Instalar e configurar WhatsApp Business</li>
+                    <li>Criar perfil profissional completo</li>
+                    <li>Adicionar produtos no catálogo</li>
+                    <li>Configurar mensagens automáticas</li>
+                    <li>Criar link direto para seu WhatsApp</li>
+                    <li>Usar recursos avançados</li>
+                </ul>
+                <p style="margin-bottom: 0;"><strong>Próximo passo:</strong> Coloque em prática! Comece adicionando seus primeiros 5 produtos no catálogo e teste enviar uma mensagem para você mesmo.</p>
+            </div>
+
+            <!-- Navegação entre Tutoriais -->
+            <div class="tutorial-nav">
+                <a href="tutorial1.html" class="nav-tutorial-btn">
+                    Tutorial Anterior
+                </a>
+                <a href="tutorial3.html" class="nav-tutorial-btn">
+                    Próximo: Planilha Financeira
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Portal de Inclusão Digital - Riacho Fundo 2</p>
+            <p class="mb-0 mt-2">Desenvolvido por Vinícius de Oliveira Vieira - UNINTER</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

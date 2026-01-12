@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 6: Saúde Digital | Portal de Inclusão Digital</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Customizado -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: white;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .tutorial-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+        }
+        
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+        
+        .tutorial-content {
+            background: white;
+            padding: 60px 0;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .tutorial-content h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tutorial-content h3 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border: 2px solid #0284c7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box strong {
+            color: #0c4a6e;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box strong {
+            color: #92400e;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border: 2px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box strong {
+            color: #065f46;
+        }
+        
+        .danger-box {
+            background: #fee2e2;
+            border: 2px solid #ef4444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .danger-box strong {
+            color: #991b1b;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step h4 {
+            margin-top: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            background: #f1f5f9;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .tutorial-content li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .nav-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tutorial-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        table tr:hover {
+            background: var(--light-bg);
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #dc2626;
+            font-family: 'Courier New', monospace;
+        }
+        
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 20px;
+            }
+            
+            .tutorial-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            📚 Inclusão Digital
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#tutoriais">Tutoriais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Header do Tutorial -->
+    <div class="tutorial-header">
+        <div class="container">
+            <h1>Tutorial 6: Saúde Digital Básica</h1>
+            <p class="lead">Aprenda a acessar seus dados de saúde pelo celular: carteira de vacinação, exames, consultas e muito mais com o Meu SUS Digital!</p>
+            <div class="tutorial-meta">
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>20-30 minutos</span>
+                </div>
+                <div class="meta-item">
+                    <span>📱</span>
+                    <span>Celular ou Computador</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Tutorial -->
+    <div class="tutorial-content">
+        <div class="content-wrapper">
+            
+            <!-- Introdução -->
+            <h2>O Que Você Vai Aprender</h2>
+            <ul>
+                <li>Como baixar e instalar o aplicativo Meu SUS Digital no celular</li>
+                <li>Como fazer login usando sua conta Gov.br</li>
+                <li>Como acessar sua carteira de vacinação digital completa</li>
+                <li>Como ver resultados de exames laboratoriais online</li>
+                <li>Como consultar seu histórico de consultas e atendimentos no SUS</li>
+                <li>Como agendar consultas diretamente pelo aplicativo</li>
+                <li>Como localizar unidades de saúde próximas a você</li>
+                <li>Quando usar o app e quando ir pessoalmente à unidade de saúde</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Antes de Começar:</strong> Você vai precisar de um smartphone com Android 5.0 ou superior / iOS 12.0 ou superior, conta Gov.br já criada (veja Tutorial 1 se ainda não tem), conexão com internet, cerca de 80 MB de espaço livre no celular e seus documentos (CPF, Cartão SUS se tiver). Se você ainda não tem conta Gov.br, volte ao Tutorial 1 e crie primeiro - é obrigatório!
+            </div>
+
+            <div class="warning-box">
+                <strong>Mudança Importante:</strong> O antigo aplicativo Conecte SUS foi descontinuado e integrado ao Meu SUS Digital. Agora, TUDO está em um único aplicativo: carteira de vacinação, exames, consultas, agendamentos e muito mais! Se você tinha o Conecte SUS instalado, pode desinstalá-lo e usar apenas o Meu SUS Digital.
+            </div>
+
+            <!-- Por que usar -->
+            <h2>Por Que Usar a Saúde Digital?</h2>
+            <p>O Meu SUS Digital é o aplicativo oficial unificado do Ministério da Saúde que reúne todos os seus dados de saúde e serviços em um só lugar! Com ele você pode:</p>
+            <ul>
+                <li>Ter acesso à sua carteira de vacinação digital sempre no bolso</li>
+                <li>Ver resultados de exames sem precisar guardar papel</li>
+                <li>Consultar histórico de atendimentos no SUS</li>
+                <li>Agendar consultas, exames e procedimentos online</li>
+                <li>Compartilhar certificados de vacinas (como COVID-19) facilmente</li>
+                <li>Localizar unidades de saúde, farmácias populares e hemocentros próximos</li>
+                <li>Acompanhar medicamentos prescritos e retirados</li>
+                <li>Ter todas as informações organizadas para mostrar a qualquer médico</li>
+                <li>Economizar tempo e evitar perder documentos importantes</li>
+            </ul>
+
+            <!-- Passo 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Baixar e Instalar o Meu SUS Digital</h4>
+                <p><strong>O que é o Meu SUS Digital:</strong> É o aplicativo oficial e completo do Ministério da Saúde que reúne TODOS os serviços de saúde digital em um só lugar!</p>
+                
+                <p><strong>Como baixar no Android:</strong></p>
+                <ol>
+                    <li>Abra a <strong>Play Store</strong> no seu celular</li>
+                    <li>Toque na barra de pesquisa e digite: <strong>"Meu SUS Digital"</strong></li>
+                    <li>Encontre o app oficial (desenvolvedor: Ministério da Saúde)</li>
+                    <li>Toque em <strong>"Instalar"</strong></li>
+                    <li>Aguarde o download e instalação (cerca de 3-4 minutos)</li>
+                    <li>Toque em <strong>"Abrir"</strong> quando terminar</li>
+                </ol>
+
+                <p><strong>Como baixar no iPhone (iOS):</strong></p>
+                <ol>
+                    <li>Abra a <strong>App Store</strong> no seu iPhone</li>
+                    <li>Toque na lupa (buscar) e digite: <strong>"Meu SUS Digital"</strong></li>
+                    <li>Selecione o app oficial do Ministério da Saúde</li>
+                    <li>Toque em <strong>"Obter"</strong> e confirme com Face ID, Touch ID ou senha</li>
+                    <li>Aguarde a instalação</li>
+                    <li>Toque em <strong>"Abrir"</strong></li>
+                </ol>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial6-passo1.png" alt="Passo 1" width="250">
+                </div>
+                <p class="image-caption">App Meu SUS Digital disponível para download nas lojas oficiais</p>
+
+                <div class="success-box">
+                    <strong>App oficial:</strong> O ícone do Meu SUS Digital é azul com o símbolo do SUS. Certifique-se de baixar o app correto, desenvolvido pelo Ministério da Saúde!
+                </div>
+
+                <div class="warning-box">
+                    <strong>Dica de economia:</strong> Use WiFi para baixar o app e economizar seus dados móveis! O aplicativo tem cerca de 80 MB.
+                </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Fazer Login com Gov.br</h4>
+                <p><strong>Primeiro acesso:</strong> Na primeira vez que você abrir o app, vai precisar fazer login com sua conta Gov.br.</p>
+                
+                <p><strong>Passo a passo do login:</strong></p>
+                <ol>
+                    <li>Abra o app <strong>Meu SUS Digital</strong></li>
+                    <li>Na tela inicial, toque em <strong>"Entrar com gov.br"</strong></li>
+                    <li>Digite seu <strong>CPF</strong> (apenas números, sem pontos ou traços)</li>
+                    <li>Toque em <strong>"Continuar"</strong></li>
+                    <li>Digite sua <strong>senha do Gov.br</strong></li>
+                    <li>Se você tem autenticação em dois fatores, confirme no celular ou e-mail</li>
+                    <li>Aguarde alguns segundos enquanto o sistema carrega seus dados</li>
+                    <li>Pronto! Você está dentro do Meu SUS Digital</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>Primeira vez?</strong> Se você nunca criou conta Gov.br, volte ao <strong>Tutorial 1</strong> deste portal e siga o passo a passo completo para criar sua conta. É rápido e gratuito!
+                </div>
+
+                <div class="danger-box">
+                    <strong>Esqueceu a senha?</strong> Se não lembrar da senha do Gov.br, toque em <strong>"Esqueci minha senha"</strong> na tela de login. Você receberá um código por e-mail ou SMS para criar uma senha nova.
+                </div>
+
+                <div class="success-box">
+                    <strong>Biometria:</strong> Após o primeiro login, o app vai perguntar se você quer usar digital ou Face ID para entrar mais rápido nas próximas vezes. Recomendamos ativar para facilitar!
+                </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Navegando pela Tela Inicial</h4>
+                <p><strong>Conhecendo o menu principal:</strong> Depois de fazer login, você verá a tela inicial com várias opções organizadas em cards.</p>
+                
+                <p><strong>Principais funcionalidades disponíveis:</strong></p>
+                <ul>
+                    <li><strong>Vacinas:</strong> Acesse sua carteira de vacinação digital completa</li>
+                    <li><strong>Exames:</strong> Veja resultados de exames laboratoriais</li>
+                    <li><strong>Medicamentos:</strong> Consulte prescrições e medicamentos retirados</li>
+                    <li><strong>Atendimentos:</strong> Histórico de consultas e procedimentos no SUS</li>
+                    <li><strong>Agendar:</strong> Agende consultas, exames e outros serviços</li>
+                    <li><strong>Rede de Saúde:</strong> Encontre unidades de saúde próximas</li>
+                    <li><strong>Doação de Sangue:</strong> Localize hemocentros e veja seu histórico de doações</li>
+                    <li><strong>Carteira Nacional de Saúde:</strong> Acesse seu Cartão SUS digital</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Tudo em um só lugar:</strong> O Meu SUS Digital unificou o antigo Conecte SUS e outros serviços. Agora você não precisa mais de vários aplicativos diferentes!
+                </div>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Acessar Carteira de Vacinação Digital</h4>
+                <p><strong>Sua carteira sempre no bolso:</strong> Chega de papel! Veja todas as vacinas que você tomou desde criança, direto no celular.</p>
+                
+                <p><strong>Como acessar:</strong></p>
+                <ol>
+                    <li>Na tela inicial do Meu SUS Digital, toque em <strong>"Vacinas"</strong></li>
+                    <li>O app mostra automaticamente todas as suas vacinas registradas</li>
+                    <li>Você verá: nome da vacina, data em que tomou, dose (1ª, 2ª, reforço), lote e local</li>
+                    <li>Role a tela para ver todas as vacinas, incluindo as antigas</li>
+                    <li>Toque em uma vacina específica para ver mais detalhes</li>
+                    <li>Para ver o <strong>Certificado Nacional de Vacinação COVID-19</strong>, toque no card específico da COVID</li>
+                    <li>Você pode compartilhar o certificado tocando no ícone de <strong>"Compartilhar"</strong> ou <strong>"Baixar PDF"</strong></li>
+                    <li>O certificado vem com QR Code para verificação oficial</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>QR Code de Vacinação:</strong> O certificado tem QR Code que pode ser verificado em aeroportos, eventos e viagens internacionais. É como se fosse um "passaporte" de vacinas! Funciona até sem internet.
+                </div>
+
+                <div class="info-box">
+                    <strong>Quais vacinas aparecem:</strong> O sistema mostra todas as vacinas registradas no SUS desde que o sistema informatizado começou (geralmente a partir de 2010-2012, dependendo da região). Vacinas mais antigas podem não aparecer se foram registradas apenas em papel.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Vacina não aparece?</strong> Se você tomou uma vacina recentemente e ela não apareceu, aguarde 24 a 48 horas. As unidades de saúde precisam registrar no sistema. Se passar disso, vá à unidade onde tomou e peça para verificarem o registro.
+                </div>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Ver Resultados de Exames Laboratoriais</h4>
+                <p><strong>Seus exames na palma da mão:</strong> Acesse resultados de exames de sangue, urina e outros realizados pelo SUS sem precisar buscar papel!</p>
+                
+                <p><strong>Como consultar seus exames:</strong></p>
+                <ol>
+                    <li>Na tela inicial, toque em <strong>"Exames"</strong> ou <strong>"Resultados de Exames"</strong></li>
+                    <li>Você verá uma lista com todos os exames disponíveis</li>
+                    <li>Cada exame mostra: tipo (hemograma, glicose, etc), data de coleta e laboratório</li>
+                    <li>Toque no exame que deseja ver os detalhes</li>
+                    <li>Aparecerá o resultado completo com todos os valores</li>
+                    <li>Você pode comparar seus valores com os valores de referência (normal/alterado)</li>
+                    <li>Resultados alterados geralmente aparecem destacados em vermelho</li>
+                    <li>Para salvar, toque em <strong>"Baixar PDF"</strong> ou <strong>"Compartilhar"</strong></li>
+                    <li>O PDF pode ser impresso para levar ao médico</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>Quais exames aparecem:</strong> Aparecem exames feitos em laboratórios da rede SUS que já estão conectados ao sistema. Exames particulares ou de clínicas não conveniadas NÃO aparecem aqui. A disponibilidade varia por município.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Importante:</strong> O app mostra os resultados, mas NÃO substitui a consulta médica! Sempre leve seus exames para um profissional de saúde avaliar. Não tente se auto-diagnosticar! Valores alterados não significam necessariamente doença.
+                </div>
+
+                <div class="success-box">
+                    <strong>Salve seus exames:</strong> Baixe o PDF dos exames e guarde no Google Drive ou em uma pasta "Saúde" no celular. Assim você tem um histórico completo para mostrar a qualquer médico!
+                </div>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="step">
+                <div class="step-number">6</div>
+                <h4>Consultar Histórico de Atendimentos</h4>
+                <p><strong>Todo seu histórico médico:</strong> Veja quando e onde você foi atendido, quais medicamentos foram prescritos e muito mais!</p>
+                
+                <p><strong>Como ver seu histórico:</strong></p>
+                <ol>
+                    <li>No menu principal, toque em <strong>"Atendimentos"</strong> ou <strong>"Histórico"</strong></li>
+                    <li>Você verá uma linha do tempo com todos os atendimentos</li>
+                    <li>Cada atendimento mostra: data e hora, local (UBS, hospital, pronto-socorro), tipo de atendimento (consulta, emergência, internação), profissional que atendeu (quando disponível)</li>
+                    <li>Toque em um atendimento para ver detalhes completos</li>
+                    <li>Você pode ver procedimentos realizados (curativos, injeções, etc)</li>
+                    <li>Também aparecem diagnósticos registrados (códigos CID)</li>
+                    <li>Veja os medicamentos prescritos naquela data</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>Medicamentos prescritos:</strong> O app mostra quais remédios o médico receitou em cada consulta, incluindo dosagem e período de uso. Muito útil para lembrar nomes difíceis ou buscar o medicamento na farmácia popular!
+                </div>
+
+                <div class="success-box">
+                    <strong>Histórico completo:</strong> Ter esse histórico no celular é ótimo quando você vai em um médico novo ou no pronto-socorro. Você pode mostrar rapidamente o que já fez e quais remédios já usou!
+                </div>
+            </div>
+
+            <!-- Passo 7 -->
+            <div class="step">
+                <div class="step-number">7</div>
+                <h4>Agendar Consultas e Exames pelo App</h4>
+                <p><strong>Agendamento online:</strong> Uma das melhores funcionalidades! Agende consultas, exames e procedimentos sem sair de casa.</p>
+                
+                <p><strong>Como agendar uma consulta:</strong></p>
+                <ol>
+                    <li>Na tela inicial, toque em <strong>"Agendar"</strong> ou <strong>"Agendamentos"</strong></li>
+                    <li>Escolha o tipo de serviço: <strong>Consulta</strong>, <strong>Exame</strong> ou <strong>Procedimento</strong></li>
+                    <li>Selecione a especialidade (clínico geral, cardiologia, ginecologia, dentista, etc)</li>
+                    <li>O app mostra as unidades de saúde próximas que oferecem o serviço</li>
+                    <li>Escolha a unidade de saúde de sua preferência</li>
+                    <li>Veja os horários disponíveis (datas e horários aparecerão em um calendário)</li>
+                    <li>Selecione o melhor horário para você</li>
+                    <li>Confirme o agendamento</li>
+                    <li>Pronto! Você receberá uma confirmação com os dados da consulta</li>
+                    <li>O app enviará lembretes automáticos antes da consulta</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>Disponibilidade regional:</strong> O agendamento online ainda não está disponível em todas as cidades do Brasil. A disponibilidade depende da adesão da sua secretaria municipal ou estadual de saúde. Se não funcionar na sua região, você precisa agendar presencialmente na unidade de saúde ou pelo telefone da central de agendamento.
+                </div>
+
+                <div class="info-box">
+                    <strong>Notificações:</strong> O Meu SUS Digital envia lembretes da sua consulta! Ative as notificações do app para não esquecer. Você recebe avisos 1 dia antes e no dia da consulta. Isso evita faltas e ajuda o sistema de saúde!
+                </div>
+
+                <div class="success-box">
+                    <strong>Cancelar ou remarcar:</strong> Se não puder ir, você pode cancelar ou remarcar pelo próprio app! Assim libera a vaga para outra pessoa e pode escolher uma nova data que funcione melhor para você. Vá em "Meus Agendamentos" e selecione a opção desejada.
+                </div>
+
+                <p><strong>Como ver seus agendamentos:</strong></p>
+                <ul>
+                    <li>Toque em <strong>"Meus Agendamentos"</strong> ou <strong>"Consultas Marcadas"</strong></li>
+                    <li>Você verá todos os agendamentos futuros com data, hora e local</li>
+                    <li>Pode visualizar detalhes, cancelar ou remarcar</li>
+                    <li>Também aparece o histórico de consultas passadas</li>
+                </ul>
+            </div>
+
+            <!-- Passo 8 -->
+            <div class="step">
+                <div class="step-number">8</div>
+                <h4>Localizar Unidades de Saúde Próximas</h4>
+                <p><strong>Encontre serviços de saúde perto de você:</strong> O app mostra UBS, hospitais, farmácias populares, hemocentros e muito mais!</p>
+                
+                <p><strong>Como usar o localizador:</strong></p>
+                <ol>
+                    <li>Na tela inicial, toque em <strong>"Rede de Saúde"</strong> ou <strong>"Encontrar Unidade"</strong></li>
+                    <li>Permita que o app acesse sua localização (GPS)</li>
+                    <li>Escolha o tipo de estabelecimento: UBS (Unidade Básica de Saúde), Hospital, Pronto-Socorro, UPA (Unidade de Pronto Atendimento), Farmácia Popular, Hemocentro (doação de sangue), CAPS (Centro de Atenção Psicossocial)</li>
+                    <li>O app mostra um mapa com as unidades mais próximas</li>
+                    <li>Você pode ver a distância em quilômetros</li>
+                    <li>Toque em uma unidade para ver: endereço completo, telefone de contato, horário de funcionamento, serviços disponíveis</li>
+                    <li>Você pode traçar rota usando o Google Maps</li>
+                    <li>Também pode ligar diretamente pelo app</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Muito útil em viagens:</strong> Se você está em outra cidade e precisa de atendimento, o app mostra as unidades de saúde mais próximas onde você estiver! Funciona em todo o Brasil.
+                </div>
+
+                <div class="info-box">
+                    <strong>Informações atualizadas:</strong> As informações de horário e serviços são atualizadas pelas secretarias de saúde. Se tiver dúvidas, confirme por telefone antes de ir, especialmente em feriados.
+                </div>
+            </div>
+
+            <!-- Passo 9 -->
+            <div class="step">
+                <div class="step-number">9</div>
+                <h4>Consultar Medicamentos e Receitas</h4>
+                <p><strong>Acompanhe seus remédios:</strong> Veja medicamentos prescritos, retirados e disponíveis na farmácia popular.</p>
+                
+                <p><strong>Como acessar:</strong></p>
+                <ol>
+                    <li>Na tela inicial, toque em <strong>"Medicamentos"</strong></li>
+                    <li>Você verá: medicamentos prescritos recentemente, medicamentos já retirados na farmácia popular, histórico de prescrições</li>
+                    <li>Toque em um medicamento para ver detalhes: nome, dosagem, quantidade, médico que prescreveu, data da prescrição</li>
+                    <li>Você pode verificar se o remédio está disponível na farmácia popular</li>
+                    <li>Algumas receitas digitais podem ser apresentadas diretamente na farmácia pelo app</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>Farmácia Popular:</strong> Nem todos os medicamentos do SUS estão no app ainda. A integração está em expansão. Para retirar remédios gratuitos, leve sempre sua receita em papel e documento com foto.
+                </div>
+            </div>
+
+            <!-- Quando usar -->
+            <h2>Quando Usar o App vs Ir Pessoalmente</h2>
+            <p>Nem tudo pode ser resolvido pelo celular. Veja quando usar o app e quando ir à unidade de saúde:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>USE O APP PARA:</th>
+                        <th>VÁ PESSOALMENTE PARA:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ver sua carteira de vacinação</td>
+                        <td>Tomar vacinas (não agende pelo app)</td>
+                    </tr>
+                    <tr>
+                        <td>Consultar resultados de exames já prontos</td>
+                        <td>Fazer coleta de exames</td>
+                    </tr>
+                    <tr>
+                        <td>Ver histórico de consultas anteriores</td>
+                        <td>Primeira consulta ou consulta de urgência</td>
+                    </tr>
+                    <tr>
+                        <td>Agendar consulta de rotina (quando disponível)</td>
+                        <td>Pegar receitas e medicamentos na farmácia</td>
+                    </tr>
+                    <tr>
+                        <td>Compartilhar certificado de vacinas</td>
+                        <td>Atualizar cartão SUS ou cadastro</td>
+                    </tr>
+                    <tr>
+                        <td>Baixar comprovantes em PDF</td>
+                        <td>Emergências médicas (vá ao pronto-socorro!)</td>
+                    </tr>
+                    <tr>
+                        <td>Consultar medicamentos prescritos</td>
+                        <td>Passar por avaliação médica presencial</td>
+                    </tr>
+                    <tr>
+                        <td>Localizar unidades de saúde próximas</td>
+                        <td>Realizar procedimentos e cirurgias</td>
+                    </tr>
+                    <tr>
+                        <td>Ver informações sobre doação de sangue</td>
+                        <td>Doar sangue presencialmente no hemocentro</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="danger-box">
+                <strong>🆘 EMERGÊNCIAS:</strong> Se você está com sintomas graves (dor no peito, falta de ar intensa, sangramento intenso, dor forte insuportável, desmaio, convulsões), NÃO use o app! Vá imediatamente ao pronto-socorro ou ligue 192 (SAMU). O app não substitui atendimento médico de urgência! Em emergências, cada minuto conta!
+            </div>
+
+            <div class="info-box">
+                <strong>📞 Telefones úteis:</strong><br>
+                • <strong>SAMU (emergência):</strong> 192<br>
+                • <strong>Alô Saúde (informações):</strong> 136<br>
+                • <strong>Central de Agendamento:</strong> consulte o número da sua cidade/estado<br>
+                • <strong>Centro de Saúde:</strong> consulte o número da sua UBS de referência no app
+            </div>
+
+            <!-- Recursos Adicionais -->
+            <h2>Recursos Adicionais do Meu SUS Digital</h2>
+            
+            <h3>Cartão Nacional de Saúde Digital</h3>
+            <p>O app também funciona como seu <strong>Cartão SUS digital</strong>! Você pode:</p>
+            <ul>
+                <li>Visualizar seu número do Cartão SUS</li>
+                <li>Mostrar o QR Code em atendimentos (quando solicitado)</li>
+                <li>Ter o cartão sempre no celular, sem precisar levar o cartão físico</li>
+                <li>Atualizar dados cadastrais se necessário</li>
+            </ul>
+
+            <h3>Doação de Sangue</h3>
+            <p>O app tem uma seção dedicada à doação de sangue:</p>
+            <ul>
+                <li>Localize hemocentros próximos a você</li>
+                <li>Veja horários de funcionamento e requisitos para doar</li>
+                <li>Consulte seu histórico de doações</li>
+                <li>Receba notificações quando seu tipo sanguíneo estiver em falta</li>
+                <li>Saiba quando você pode doar novamente</li>
+            </ul>
+
+            <h3>Contatos de Saúde Mental</h3>
+            <p>Em situações de crise emocional ou pensamentos suicidas:</p>
+            <ul>
+                <li><strong>CVV (Centro de Valorização da Vida):</strong> Ligue 188 (gratuito, 24h)</li>
+                <li><strong>CAPS (Centro de Atenção Psicossocial):</strong> Localize o mais próximo no app</li>
+                <li><strong>Atendimento psicológico SUS:</strong> Agende pelo app ou procure sua UBS</li>
+            </ul>
+
+            <!-- Dúvidas Comuns -->
+            <h2>Dúvidas Comuns</h2>
+            
+            <h3>1. Preciso pagar para usar o Meu SUS Digital?</h3>
+            <p><strong>Resposta:</strong> NÃO! O Meu SUS Digital é 100% gratuito e sempre será. É um serviço público do Ministério da Saúde para todos os brasileiros. Se alguém tentar te cobrar por isso, é golpe!</p>
+
+            <h3>2. Meus dados de saúde particulares aparecem no app?</h3>
+            <p><strong>Resposta:</strong> Não. O Meu SUS Digital mostra apenas atendimentos, exames e vacinas feitos na rede SUS (pública). Consultas, exames e procedimentos em clínicas e hospitais particulares NÃO aparecem, a menos que a instituição esteja integrada ao sistema nacional de saúde.</p>
+
+            <h3>3. O que aconteceu com o Conecte SUS? Preciso ter os dois apps?</h3>
+            <p><strong>Resposta:</strong> O Conecte SUS foi descontinuado e todas as suas funcionalidades foram integradas ao Meu SUS Digital. Você NÃO precisa mais do Conecte SUS! Pode desinstalá-lo. O Meu SUS Digital agora faz tudo: vacinas, exames, consultas, agendamentos e muito mais em um único app!</p>
+
+            <h3>4. Minha vacina não apareceu. O que fazer?</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Aguarde 24 a 48 horas após tomar a vacina</li>
+                <li>Se não aparecer depois desse prazo, volte à unidade de saúde onde tomou</li>
+                <li>Peça para verificarem se foi registrada corretamente no sistema</li>
+                <li>Leve sua carteirinha de vacinação em papel se tiver</li>
+                <li>Às vezes o registro demora mais em períodos de campanhas de vacinação em massa</li>
+            </ul>
+
+            <h3>5. Posso usar o Meu SUS Digital para meu filho menor de idade?</h3>
+            <p><strong>Resposta:</strong> Sim! Para crianças e adolescentes menores de 18 anos, o responsável legal pode acessar os dados deles. No app, você pode adicionar dependentes usando o CPF da criança. Vá em "Configurações" ou "Perfil" e procure por "Adicionar Dependente". Os dados de saúde do menor aparecerão vinculados à sua conta.</p>
+
+            <h3>6. O que fazer se não consigo agendar consulta pelo app?</h3>
+            <p><strong>Alternativas:</strong></p>
+            <ul>
+                <li>O agendamento online ainda não está disponível em todas as cidades do Brasil</li>
+                <li>Verifique se sua cidade já aderiu ao sistema digital (veja no site da secretaria de saúde)</li>
+                <li>Vá pessoalmente à UBS mais próxima</li>
+                <li>Ligue para a central de agendamento da sua cidade/estado</li>
+                <li>Use o site da secretaria de saúde do seu município ou estado</li>
+                <li>Algumas cidades têm aplicativos próprios além do Meu SUS Digital</li>
+            </ul>
+
+            <h3>7. É seguro ter meus dados de saúde no celular?</h3>
+            <p><strong>Resposta:</strong> Sim! O Meu SUS Digital segue rigorosamente a Lei Geral de Proteção de Dados (LGPD). Todos os dados são criptografados e protegidos por sigilo médico. Apenas você e profissionais autorizados podem acessar. Para aumentar a segurança:</p>
+            <ul>
+                <li>Use senha forte no celular</li>
+                <li>Ative biometria (digital ou Face ID) no app</li>
+                <li>Não compartilhe sua senha do Gov.br com ninguém</li>
+                <li>Faça logout se outras pessoas usarem seu celular</li>
+                <li>Mantenha o app sempre atualizado</li>
+            </ul>
+
+            <h3>8. Posso usar o app em viagens para outros estados ou países?</h3>
+            <p><strong>Resposta:</strong> Sim! O Meu SUS Digital funciona em todo o Brasil. Seus dados vão com você para qualquer lugar. O certificado de vacinação com QR Code é aceito internacionalmente e pode ser verificado em outros países. Muitos países exigem comprovação de vacinas (febre amarela, COVID-19) - tenha o app instalado antes de viajar!</p>
+
+            <!-- Dicas Extras -->
+            <h2>Dicas Extras para Aproveitar Melhor</h2>
+
+            <div class="info-box">
+                <strong>Dica 1: Mantenha seu cadastro atualizado</strong><br>
+                Seus dados (endereço, telefone, e-mail) estão desatualizados? Vá até a UBS mais próxima e peça para atualizarem seu cadastro. Também é possível atualizar alguns dados direto no app, na seção "Perfil" ou "Meus Dados". Isso garante que você receba notificações importantes e facilita agendamentos!
+            </div>
+
+            <div class="info-box">
+                <strong>Dica 2: Baixe seus documentos regularmente</strong><br>
+                Faça download dos PDFs (vacinas, exames, receitas) e guarde em uma pasta "Saúde" no Google Drive ou no iCloud. Se precisar mostrar para um médico particular, em viagens ou em situações sem internet, você tem tudo salvo! Organize por ano para facilitar.
+            </div>
+
+            <div class="info-box">
+                <strong>Dica 3: Use o app para viagens</strong><br>
+                Vai viajar para outro estado ou país? Baixe os certificados de vacinas antes de sair de casa! Muitos lugares exigem comprovação de vacinas, especialmente vacina de febre amarela (para regiões endêmicas) e COVID-19 (viagens internacionais). O certificado funciona offline!
+            </div>
+
+            <div class="info-box">
+                <strong>Dica 4: Compartilhe com familiares idosos</strong><br>
+                Ensine seus pais ou avós a usarem o app! Se eles tiverem dificuldade, você pode ajudar instalando no celular deles e mostrando como funciona. Idosos adoram ver o histórico de saúde organizado! Você também pode adicionar idosos como dependentes na sua conta para ajudar a gerenciar.
+            </div>
+
+            <div class="info-box">
+                <strong>Dica 5: Ative as notificações</strong><br>
+                Permita que o app envie notificações. Você receberá avisos de campanhas de vacinação, resultados de exames disponíveis, lembretes de consultas agendadas e até alertas quando seu tipo sanguíneo estiver em falta nos hemocentros. Muito útil para não esquecer nada importante!
+            </div>
+
+            <div class="info-box">
+                <strong>Dica 6: Tenha sempre um plano B</strong><br>
+                Embora o app seja muito útil, sempre leve documentos físicos importantes (RG, CPF, Cartão SUS) quando for a consultas ou procedimentos. Às vezes a internet pode estar fora do ar na unidade de saúde ou seu celular pode ficar sem bateria. Prevenir é melhor!
+            </div>
+
+            <!-- Resolvendo Problemas -->
+            <h2>Resolvendo Problemas Comuns</h2>
+
+            <h3>Problema: "CPF não cadastrado" ou "Usuário não encontrado"</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Certifique-se de que seu CPF está cadastrado no sistema do SUS (Cadastro Nacional de Usuários do SUS)</li>
+                <li>Vá até uma UBS (Unidade Básica de Saúde) com RG, CPF e comprovante de residência</li>
+                <li>Peça para fazerem ou atualizarem seu cadastro no sistema</li>
+                <li>O cadastro é feito na hora e é gratuito</li>
+                <li>Após o cadastro, aguarde 24 horas e tente fazer login novamente</li>
+                <li>Se você tem Cartão SUS físico, leve também (mas não é obrigatório para se cadastrar)</li>
+                <li>Certifique-se de que seu CPF está regular na Receita Federal</li>
+            </ul>
+
+            <h3>Problema: App trava, congela ou não abre</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Verifique se seu celular tem espaço de armazenamento disponível (mínimo 500 MB livres)</li>
+                <li>Feche o app completamente e abra novamente (não apenas minimizar)</li>
+                <li>Limpe o cache: vá em Configurações → Apps → Meu SUS Digital → Armazenamento → Limpar cache</li>
+                <li>Verifique se há atualização disponível na Play Store ou App Store</li>
+                <li>Certifique-se de que seu sistema operacional está atualizado (Android 5.0+ ou iOS 12.0+)</li>
+                <li>Se nada funcionar, desinstale e reinstale o app (seus dados continuam salvos online na nuvem)</li>
+                <li>Certifique-se de ter conexão estável com a internet (WiFi ou dados móveis)</li>
+                <li>Reinicie o celular e tente novamente</li>
+            </ul>
+
+            <h3>Problema: Não consigo ver resultados de exames recentes</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Exames podem levar de 24 a 72 horas (às vezes até 7 dias) para aparecer no app após a coleta</li>
+                <li>O tempo varia conforme o tipo de exame e o laboratório</li>
+                <li>Alguns laboratórios ainda não estão integrados ao sistema (principalmente os menores ou de cidades pequenas)</li>
+                <li>Se passou mais de 1 semana, volte ao laboratório e pergunte se o resultado foi liberado</li>
+                <li>Você também pode pedir o resultado em papel diretamente no laboratório</li>
+                <li>Para exames urgentes, não espere o app - busque o resultado presencialmente ou por telefone</li>
+                <li>Verifique se o laboratório realmente faz parte da rede SUS integrada</li>
+            </ul>
+
+            <h3>Problema: Erro ao fazer login ou "Sessão expirada"</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Verifique se você está usando o CPF correto (apenas números)</li>
+                <li>Confirme se a senha do Gov.br está correta</li>
+                <li>Se esqueceu a senha, use "Esqueci minha senha" na tela de login</li>
+                <li>Limpe os dados do app: Configurações → Apps → Meu SUS Digital → Armazenamento → Limpar dados</li>
+                <li>Verifique sua conexão com internet</li>
+                <li>Tente fazer login pelo navegador no site do Gov.br para verificar se a conta está ativa</li>
+                <li>Se a conta Gov.br estiver bloqueada, siga as instruções no site para desbloquear</li>
+            </ul>
+
+            <h3>Problema: Não aparece opção de agendamento na minha cidade</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>A funcionalidade de agendamento depende da adesão da sua secretaria municipal de saúde</li>
+                <li>Entre em contato com a secretaria de saúde do seu município para saber se e quando o agendamento online estará disponível</li>
+                <li>Use os canais tradicionais: presencial, telefone ou site da secretaria</li>
+                <li>Algumas cidades têm aplicativos próprios de agendamento além do Meu SUS Digital</li>
+            </ul>
+
+            <!-- Conclusão -->
+            <div class="success-box" style="margin-top: 50px;">
+                <h3 style="color: #065f46; margin-top: 0;">Parabéns! Você Dominou a Saúde Digital!</h3>
+                <p>Agora você sabe:</p>
+                <ul style="margin: 10px 0;">
+                    <li>Baixar e usar o Meu SUS Digital (único app necessário)</li>
+                    <li>Acessar sua carteira de vacinação digital completa</li>
+                    <li>Ver resultados de exames online</li>
+                    <li>Consultar seu histórico de atendimentos e medicamentos</li>
+                    <li>Agendar consultas e exames pelo celular</li>
+                    <li>Localizar unidades de saúde próximas</li>
+                    <li>Proteger seus dados de saúde com segurança</li>
+                    <li>Usar o Cartão SUS digital</li>
+                </ul>
+                <p style="margin-bottom: 0;"><strong>Lembre-se:</strong> O app é uma ferramenta incrível e muito completa, mas nunca substitui o médico. Use-o para se organizar, ter informações sempre à mão e facilitar o acesso aos serviços de saúde, mas continue consultando profissionais de saúde quando necessário. Sua saúde é prioridade!</p>
+            </div>
+
+            <div class="info-box" style="margin-top: 30px;">
+                <strong>Próximos passos:</strong><br>
+                1. Instale o Meu SUS Digital agora mesmo<br>
+                2. Faça login e explore todas as funcionalidades<br>
+                3. Baixe seus documentos importantes (vacinas, exames)<br>
+                4. Salve tudo no Google Drive ou iCloud<br>
+                5. Ative as notificações para não perder nada<br>
+                6. Ensine seus familiares a usar também!
+            </div>
+
+            <!-- Navegação entre Tutoriais -->
+            <div class="tutorial-nav">
+                <a href="tutorial5.html" class="nav-tutorial-btn">
+                    Tutorial Anterior
+                </a>
+                <a href="tutorial7.html" class="nav-tutorial-btn">
+                    Próximo: Busca de Emprego
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Portal de Inclusão Digital - Riacho Fundo 2</p>
+            <p class="mb-0 mt-2">Desenvolvido por Vinícius de Oliveira Vieira - UNINTER</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

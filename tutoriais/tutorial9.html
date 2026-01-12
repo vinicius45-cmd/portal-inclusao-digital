@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 9 - Backup de Documentos Digitais | Portal de Inclusão Digital</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Customizado -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: white;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .tutorial-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+        }
+        
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+        
+        .tutorial-content {
+            background: white;
+            padding: 60px 0;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .tutorial-content h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tutorial-content h3 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border: 3px solid #0284c7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box strong {
+            color: #0c4a6e;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box strong {
+            color: #92400e;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border: 3px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box strong {
+            color: #065f46;
+        }
+        
+        .danger-box {
+            background: #fee2e2;
+            border: 3px solid #ef4444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .danger-box strong {
+            color: #991b1b;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step h4 {
+            margin-top: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            background: #f1f5f9;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .tutorial-content li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .nav-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tutorial-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        table tr:hover {
+            background: var(--light-bg);
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #dc2626;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .folder-structure {
+            background: #f9fafb;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .folder-item {
+            padding: 8px;
+            margin: 5px 0;
+            background: white;
+            border-left: 3px solid #10b981;
+            border-radius: 4px;
+        }
+        
+        .rule-321 {
+            background: #fee2e2;
+            border: 3px solid #ef4444;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .rule-321 h4 {
+            color: #991b1b;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 20px;
+            }
+            
+            .tutorial-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .folder-structure {
+                font-size: 0.85rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            📚 Inclusão Digital
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#tutoriais">Tutoriais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Header do Tutorial -->
+    <div class="tutorial-header">
+        <div class="container">
+            <h1>Tutorial 9: Backup de Documentos Digitais</h1>
+            <p class="lead">Aprenda a organizar e proteger seus documentos importantes no Google Drive - nunca mais perca arquivos essenciais!</p>
+            <div class="tutorial-meta">
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>30-40 minutos</span>
+                </div>
+                <div class="meta-item">
+                    <span>📱</span>
+                    <span>Celular ou Computador</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Tutorial -->
+    <div class="tutorial-content">
+        <div class="content-wrapper">
+            
+            <!-- Introdução -->
+            <h2>O Que Você Vai Aprender</h2>
+            <ul>
+                <li>Por que fazer backup digital dos seus documentos importantes</li>
+                <li>Como acessar e usar o Google Drive (15 GB gratuitos)</li>
+                <li>Como criar estrutura de 5 pastas essenciais para organizar tudo</li>
+                <li>Como escanear documentos usando apenas o celular (app Google Drive)</li>
+                <li>Como ativar backup automático de fotos do celular</li>
+                <li>Como compartilhar arquivos com segurança (link com proteção)</li>
+                <li>A regra 3-2-1 de backup: 3 cópias, 2 lugares, 1 na nuvem</li>
+                <li>Como recuperar arquivos excluídos acidentalmente</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Antes de Começar:</strong> Você vai precisar de conta Google (Gmail), celular com câmera OU scanner, computador ou celular com internet, seus documentos físicos em mãos (RG, CPF, contas, etc) e cerca de 1 hora livre. Investir tempo organizando agora vai te poupar MUITO tempo e estresse no futuro!
+            </div>
+
+            <!-- Passo 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Por Que Fazer Backup Digital</h4>
+                <p><strong>Entenda a importância:</strong> Documentos físicos podem ser perdidos, roubados, queimados ou se deteriorar com o tempo. Backup digital é seguro!</p>
+                
+                <p><strong>Situações que você evita com backup:</strong></p>
+                <ul>
+                    <li><strong>Perdeu documentos:</strong> Carteira roubada, papéis extraviados em mudança</li>
+                    <li><strong>Acidentes:</strong> Incêndio, inundação, mofo destruindo papéis</li>
+                    <li><strong>Emergências:</strong> Precisa de exame médico urgente e está em outra cidade</li>
+                    <li><strong>Oportunidades:</strong> Vaga de emprego pede documentos e você não tem em mãos</li>
+                    <li><strong>Processos:</strong> Precisa comprovar algo e não acha a nota fiscal ou recibo</li>
+                    <li><strong>Memórias:</strong> Fotos antigas de família que não podem ser substituídas</li>
+                </ul>
+
+                <div class="danger-box">
+                    <strong>História real:</strong> Em 2023, milhares de famílias perderam TUDO em enchentes no RS. Quem tinha backup digital conseguiu recuperar documentos essenciais. Quem não tinha, ficou meses tentando segunda via de tudo. Não espere acontecer com você!
+                </div>
+
+                <div class="success-box">
+                    <strong>Vantagens do backup digital:</strong> Acesso de qualquer lugar, busca rápida, não ocupa espaço físico, pode compartilhar facilmente, múltiplas cópias automáticas, e é GRÁTIS (até 15 GB no Google Drive)!
+                </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Acessar Google Drive (15 GB Grátis)</h4>
+                <p><strong>Seu cofre digital gratuito:</strong> O Google oferece 15 GB de espaço grátis - suficiente para guardar milhares de documentos!</p>
+                
+                <p><strong>Como acessar pelo computador:</strong></p>
+                <ol>
+                    <li>Abra seu navegador (Chrome, Firefox, Edge)</li>
+                    <li>Acesse: <code>drive.google.com</code></li>
+                    <li>Faça login com sua conta Google (Gmail)</li>
+                    <li>Pronto! Você está no seu Drive</li>
+                </ol>
+
+                <p><strong>Como usar pelo celular:</strong></p>
+                <ol>
+                    <li>Abra a <strong>Play Store</strong> (Android) ou <strong>App Store</strong> (iPhone)</li>
+                    <li>Procure por: <strong>"Google Drive"</strong></li>
+                    <li>Baixe e instale o aplicativo (é gratuito)</li>
+                    <li>Abra o app e faça login com sua conta Google</li>
+                    <li>Permita o acesso à câmera e arquivos quando solicitado</li>
+                </ol>
+
+                <div class="tutorial-image">
+                    <img src="../img/tutorial9-passo1.png" alt="Passo 1" width="1000">
+                </div>
+                <p class="image-caption">Interface inicial do Google Drive no navegador</p>
+
+                <div class="info-box">
+                    <strong>Espaço gratuito:</strong> Você tem 15 GB compartilhados entre Google Drive, Gmail e Fotos Google. É muito espaço! Para ter ideia: 1 foto ocupa cerca de 3 MB, 1 documento escaneado uns 500 KB. Você consegue guardar milhares de arquivos!
+                </div>
+
+                <div class="warning-box">
+                    <strong>Segurança:</strong> Use uma senha FORTE na sua conta Google! Se alguém acessar sua conta, terá acesso aos seus documentos. Ative também a verificação em duas etapas (Tutorial 4 ensina isso).
+                </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Criar Estrutura de 5 Pastas Essenciais</h4>
+                <p><strong>Organização é tudo:</strong> Crie uma estrutura de pastas clara para encontrar qualquer documento em segundos!</p>
+                
+                <p><strong>Como criar pastas:</strong></p>
+                <ol>
+                    <li>No Google Drive, clique em <strong>"Novo"</strong> (botão com sinal de +)</li>
+                    <li>Selecione <strong>"Nova pasta"</strong></li>
+                    <li>Digite o nome da pasta</li>
+                    <li>Clique em <strong>"Criar"</strong></li>
+                    <li>Repita para criar todas as 5 pastas principais</li>
+                </ol>
+
+                <h3>Estrutura Recomendada</h3>
+                
+                <div class="folder-structure">
+                    <div class="folder-item">
+                        <strong>1. Documentos Pessoais</strong><br>
+                        → RG, CPF, Certidões (nascimento, casamento)<br>
+                        → CNH (Carteira de motorista)<br>
+                        → Título de eleitor, Reservista<br>
+                        → Passaporte (se tiver)<br>
+                        → Carteira de trabalho digital
+                    </div>
+                    
+                    <div class="folder-item">
+                        <strong>2. Financeiro</strong><br>
+                        → Declaração de Imposto de Renda (últimos 5 anos)<br>
+                        → Contratos (financiamento, empréstimo)<br>
+                        → Comprovantes de pagamento importantes<br>
+                        → Extratos bancários relevantes<br>
+                        → Notas fiscais de compras grandes
+                    </div>
+                    
+                    <div class="folder-item">
+                        <strong>3. Saúde</strong><br>
+                        → Exames laboratoriais<br>
+                        → Receitas médicas<br>
+                        → Atestados<br>
+                        → Carteirinhas (plano de saúde, SUS)<br>
+                        → Carteira de vacinação
+                    </div>
+                    
+                    <div class="folder-item">
+                        <strong>4. Casa</strong><br>
+                        → Contrato de aluguel ou escritura<br>
+                        → Contas (luz, água, internet) - últimas 3<br>
+                        → IPTU<br>
+                        → Documentos do imóvel<br>
+                        → Garantias de eletrodomésticos
+                    </div>
+                    
+                    <div class="folder-item">
+                        <strong>5. Fotos Importantes</strong><br>
+                        → Fotos de família<br>
+                        → Documentos antigos digitalizados<br>
+                        → Diplomas e certificados<br>
+                        → Fotos de bens (casa, carro, móveis) para seguro<br>
+                        → Momentos especiais
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <strong>Dica de organização:</strong> Dentro de cada pasta principal, você pode criar subpastas por ano ou por tipo. Exemplo: dentro de "Saúde" → crie "Exames 2024", "Receitas", "Carteirinhas". Mantenha simples!
+                </div>
+
+                <div class="info-box">
+                    <strong>Nomeie bem os arquivos:</strong> Use nomes claros: "RG_Frente_JoaoSilva.pdf", "ContaLuz_Dez2024.pdf", "Exame_Sangue_15Dez2024.pdf". Assim você encontra rapidinho!
+                </div>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Escanear Documentos Pelo Celular</h4>
+                <p><strong>Transforme seu celular em scanner:</strong> O app Google Drive tem função de scanner embutida - grátis e funciona muito bem!</p>
+                
+                <p><strong>Como escanear documentos:</strong></p>
+                <ol>
+                    <li>Abra o aplicativo <strong>Google Drive</strong> no celular</li>
+                    <li>Toque no botão <strong>"+"</strong> (geralmente no canto inferior direito)</li>
+                    <li>Selecione <strong>"Digitalizar"</strong> ou <strong>"Scan"</strong></li>
+                    <li>Posicione o documento em uma superfície plana com boa iluminação</li>
+                    <li>Aponte a câmera para o documento</li>
+                    <li>O app detecta automaticamente as bordas - toque no botão de captura</li>
+                    <li>Ajuste os cantos se necessário (arraste os pontinhos)</li>
+                    <li>Toque em <strong>"OK"</strong> ou <strong>"✓"</strong></li>
+                    <li>Se o documento tem frente e verso, toque em <strong>"+"</strong> para adicionar mais páginas</li>
+                    <li>Quando terminar, toque em <strong>"Salvar"</strong></li>
+                    <li>Escolha a pasta de destino e dê um nome claro</li>
+                    <li>Toque em <strong>"Salvar"</strong> novamente</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Dicas para scan perfeito:</strong> Use luz natural ou ambiente bem iluminado, deixe o documento reto e totalmente visível, evite sombras da sua mão ou do celular, para documentos com fundo colorido ajuste o contraste nas opções, e sempre escaneie frente E verso de documentos.
+                </div>
+
+                <div class="info-box">
+                    <strong>Qualidade automática:</strong> O Google Drive converte automaticamente para PDF e melhora a qualidade (retira sombras, corrige perspectiva). Fica tão bom quanto scanner profissional!
+                </div>
+
+                <div class="warning-box">
+                    <strong>Documentos sensíveis:</strong> Ao escanear documentos com dados pessoais (RG, CPF), certifique-se de estar em local privado e não compartilhe acidentalmente. Sempre confira a pasta de destino!
+                </div>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Ativar Backup Automático de Fotos</h4>
+                <p><strong>Nunca mais perca fotos:</strong> Configure o Google Fotos para fazer backup automático de todas as suas fotos e vídeos!</p>
+                
+                <p><strong>Como ativar (Android):</strong></p>
+                <ol>
+                    <li>Baixe o app <strong>"Google Fotos"</strong> na Play Store (se não tiver)</li>
+                    <li>Abra o Google Fotos</li>
+                    <li>Faça login com sua conta Google</li>
+                    <li>Toque no seu ícone de perfil no canto superior direito</li>
+                    <li>Selecione <strong>"Configurações do Google Fotos"</strong></li>
+                    <li>Toque em <strong>"Backup e sincronização"</strong></li>
+                    <li>Ative o botão <strong>"Backup e sincronização"</strong></li>
+                    <li>Escolha a qualidade: <strong>"Alta qualidade"</strong> (gratuito e ilimitado!)</li>
+                    <li>Ative <strong>"Usar dados móveis"</strong> apenas se tiver plano generoso</li>
+                    <li>Pronto! Suas fotos serão salvas automaticamente</li>
+                </ol>
+
+                <p><strong>Como ativar (iPhone):</strong></p>
+                <ol>
+                    <li>Baixe <strong>"Google Fotos"</strong> na App Store</li>
+                    <li>Abra e faça login</li>
+                    <li>Toque no seu perfil (canto superior direito)</li>
+                    <li>Vá em <strong>"Configurações do Google Fotos"</strong></li>
+                    <li>Toque em <strong>"Fazer backup"</strong></li>
+                    <li>Ative <strong>"Backup"</strong></li>
+                    <li>Escolha <strong>"Qualidade de economia de armazenamento"</strong> (grátis e ilimitado)</li>
+                    <li>Configure para fazer backup apenas em WiFi (economiza dados)</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Backup ilimitado:</strong> Se você escolher "Alta qualidade" ou "Qualidade de economia", o backup de fotos é ILIMITADO e NÃO conta nos 15 GB! Escolha essa opção para guardar milhares de fotos sem ocupar espaço.
+                </div>
+
+                <div class="info-box">
+                    <strong>Backup automático:</strong> Uma vez ativado, toda foto ou vídeo que você tirar será automaticamente enviado para o Google Fotos. Se perder o celular, suas fotos estão seguras! Você pode acessar de qualquer dispositivo.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Cuidado com dados móveis:</strong> Se você não tem plano ilimitado, configure para fazer backup APENAS em WiFi. Um único vídeo pode gastar muito da sua internet móvel!
+                </div>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="step">
+                <div class="step-number">6</div>
+                <h4>Compartilhar Arquivos com Segurança</h4>
+                <p><strong>Compartilhe sem riscos:</strong> Aprenda a compartilhar documentos de forma segura e controlada!</p>
+                
+                <p><strong>Como compartilhar um arquivo:</strong></p>
+                <ol>
+                    <li>No Google Drive, localize o arquivo que quer compartilhar</li>
+                    <li>Clique com botão direito no arquivo (ou toque nos 3 pontinhos no celular)</li>
+                    <li>Selecione <strong>"Compartilhar"</strong></li>
+                    <li>Na janela que abre, você tem 2 opções</li>
+                </ol>
+
+                <h3>Opção 1: Compartilhar com pessoas específicas</h3>
+                <ul>
+                    <li>Digite o e-mail da pessoa</li>
+                    <li>Escolha a permissão: "Visualizador" (só pode ver - recomendado), "Comentarista" (pode ver e comentar) ou "Editor" (pode modificar - cuidado!)</li>
+                    <li>Clique em <strong>"Enviar"</strong></li>
+                    <li>A pessoa receberá e-mail com acesso ao arquivo</li>
+                </ul>
+
+                <h3>Opção 2: Criar link de compartilhamento</h3>
+                <ul>
+                    <li>Clique em <strong>"Copiar link"</strong> ou <strong>"Obter link"</strong></li>
+                    <li>Escolha quem pode acessar: "Restrito" (só você - padrão) ou "Qualquer pessoa com o link" (qualquer um que tiver o link)</li>
+                    <li>Escolha o tipo de acesso (visualizador, comentarista ou editor)</li>
+                    <li>Clique em <strong>"Copiar link"</strong></li>
+                    <li>Cole o link no WhatsApp, e-mail, etc para compartilhar</li>
+                </ul>
+
+                <div class="danger-box">
+                    <strong>ATENÇÃO:</strong> Quando você escolhe "Qualquer pessoa com o link", QUALQUER pessoa que tiver o link pode acessar! Não compartilhe links de documentos sensíveis (RG, CPF) publicamente. Use sempre "Restrito" ou compartilhe só com e-mails específicos.
+                </div>
+
+                <div class="success-box">
+                    <strong>Boa prática:</strong> Para documentos pessoais importantes, SEMPRE use compartilhamento com e-mail específico e permissão apenas de "Visualizador". Assim você controla exatamente quem vê e evita alterações indevidas.
+                </div>
+
+                <div class="info-box">
+                    <strong>Revogar acesso:</strong> Você pode remover o acesso de alguém a qualquer momento! Basta abrir as configurações de compartilhamento e clicar no "X" ao lado do e-mail da pessoa.
+                </div>
+            </div>
+
+            <!-- Passo 7 -->
+            <div class="step">
+                <div class="step-number">7</div>
+                <h4>A Regra de Ouro: 3-2-1</h4>
+                <p><strong>Backup profissional:</strong> Especialistas em segurança recomendam a regra 3-2-1 para proteger arquivos importantes!</p>
+                
+                <div class="rule-321">
+                    <h4>REGRA 3-2-1 DE BACKUP</h4>
+                    <p style="font-size: 1.2rem; margin: 20px 0;">
+                        <strong style="font-size: 2rem;">3</strong> cópias dos seus arquivos<br>
+                        <strong style="font-size: 2rem;">2</strong> tipos diferentes de armazenamento<br>
+                        <strong style="font-size: 2rem;">1</strong> cópia em local externo (nuvem)
+                    </p>
+                </div>
+
+                <h3>Como aplicar a regra 3-2-1</h3>
+                
+                <p><strong>Cópia 1 - Original (no seu celular ou computador):</strong></p>
+                <ul>
+                    <li>Seus arquivos que você usa no dia a dia</li>
+                    <li>Fotos no celular, documentos no computador</li>
+                </ul>
+
+                <p><strong>Cópia 2 - Backup local (em dispositivo físico):</strong></p>
+                <ul>
+                    <li>Pen drive ou HD externo</li>
+                    <li>Copie seus documentos importantes mensalmente</li>
+                    <li>Guarde em local seguro (gaveta, cofre)</li>
+                    <li>Custo: Pen drive 32 GB = R$ 20 a R$ 40</li>
+                </ul>
+
+                <p><strong>Cópia 3 - Backup na nuvem (Google Drive):</strong></p>
+                <ul>
+                    <li>Tudo que você já organizou no Google Drive</li>
+                    <li>Está em servidores do Google em vários lugares do mundo</li>
+                    <li>Mesmo se sua casa pegar fogo, seus arquivos estão seguros</li>
+                    <li>Grátis até 15 GB!</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>Por que 3 cópias?</strong> Se o celular quebra, você tem no pen drive e na nuvem. Se o pen drive queima, você tem no celular e na nuvem. Se esquecer a senha do Google, você tem no pen drive. É MUITO difícil perder tudo!
+                </div>
+
+                <div class="info-box">
+                    <strong>Por que 2 tipos diferentes?</strong> Porque alguns problemas afetam um tipo só. Vírus pode atacar seu computador mas não afeta o que está na nuvem. Fogo destrói pen drive mas não afeta a nuvem. Hack pode comprometer nuvem mas não o pen drive trancado na gaveta.
+                </div>
+            </div>
+
+            <!-- Passo 8 -->
+            <div class="step">
+                <div class="step-number">8</div>
+                <h4>Recuperar Arquivos Excluídos</h4>
+                <p><strong>Ops, apaguei sem querer:</strong> Calma! O Google Drive tem uma lixeira que guarda arquivos excluídos por 30 dias!</p>
+                
+                <p><strong>Como recuperar arquivo apagado:</strong></p>
+                <ol>
+                    <li>No Google Drive (computador ou celular), procure pela opção <strong>"Lixeira"</strong> no menu lateral</li>
+                    <li>Você verá todos os arquivos excluídos nos últimos 30 dias</li>
+                    <li>Localize o arquivo que quer recuperar</li>
+                    <li>Clique com botão direito (ou toque nos 3 pontinhos)</li>
+                    <li>Selecione <strong>"Restaurar"</strong></li>
+                    <li>O arquivo volta para o local original</li>
+                </ol>
+
+                <p><strong>Esvaziar a lixeira (liberar espaço):</strong></p>
+                <ol>
+                    <li>Entre na <strong>"Lixeira"</strong></li>
+                    <li>Clique em <strong>"Esvaziar lixeira"</strong> (no topo)</li>
+                    <li>Confirme - ATENÇÃO: isso é irreversível!</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>Prazo importante:</strong> Arquivos na lixeira são excluídos PERMANENTEMENTE após 30 dias. Se você apagou algo há mais de 30 dias, não tem como recuperar! Por isso é importante ter o backup do pen drive também.
+                </div>
+
+                <div class="info-box">
+                    <strong>Versões anteriores:</strong> O Google Drive também guarda versões antigas de arquivos que você editou! Se você modificou um documento e quer voltar para versão anterior, clique com botão direito > "Gerenciar versões" > escolha a versão.
+                </div>
+            </div>
+
+            <!-- Checklist de Implementação -->
+            <h2>Checklist: Seu Sistema de Backup Completo</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 70%;">Tarefa</th>
+                        <th style="width: 30%;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Acessar Google Drive e entender como funciona</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Criar as 5 pastas principais no Drive</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Instalar app Google Drive no celular</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Escanear documentos pessoais (RG, CPF, CNH)</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Escanear documentos financeiros importantes</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Fazer upload de exames e documentos de saúde</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Salvar contas e documentos da casa</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Ativar backup automático de fotos (Google Fotos)</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Comprar pen drive e fazer backup local</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>Criar rotina mensal de atualização do backup</td>
+                        <td>☐</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Comparação de Serviços -->
+            <h2>Comparação: Google Drive vs Outras Nuvens</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serviço</th>
+                        <th>Espaço Grátis</th>
+                        <th>Vantagens</th>
+                        <th>Desvantagens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Google Drive</strong></td>
+                        <td>15 GB</td>
+                        <td>Mais usado, integra com Gmail, scanner embutido, fotos ilimitadas</td>
+                        <td>Divide espaço com Gmail</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dropbox</strong></td>
+                        <td>2 GB</td>
+                        <td>Muito confiável, sincronização rápida</td>
+                        <td>Pouco espaço grátis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OneDrive</strong></td>
+                        <td>5 GB</td>
+                        <td>Integra com Windows, Office online grátis</td>
+                        <td>Menos espaço que Google</td>
+                    </tr>
+                    <tr>
+                        <td><strong>iCloud</strong></td>
+                        <td>5 GB</td>
+                        <td>Integrado com iPhone/Mac</td>
+                        <td>Só funciona bem com Apple</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <strong>Recomendação:</strong> Para a maioria das pessoas, o <strong>Google Drive</strong> é a melhor opção: tem mais espaço grátis, funciona em qualquer sistema (Android, iPhone, Windows, Mac), e tem ferramentas extras como scanner e backup ilimitado de fotos!
+            </div>
+
+            <!-- Dúvidas Comuns -->
+            <h2>Dúvidas Comuns</h2>
+            
+            <h3>1. Meus documentos estão realmente seguros no Google Drive?</h3>
+            <p><strong>Resposta:</strong> SIM! O Google usa criptografia de nível militar para proteger seus dados. Os servidores ficam em locais seguros em vários países. É mais seguro que guardar só em papel em casa (pode queimar, molhar, ser roubado). Mas use senha forte e ative verificação em duas etapas para máxima segurança!</p>
+
+            <h3>2. O que acontece se eu esquecer a senha do Google?</h3>
+            <p><strong>Resposta:</strong> Você pode recuperar pelo telefone ou e-mail alternativo cadastrado. Por isso é importante manter esses dados atualizados! E é por isso que a regra 3-2-1 recomenda ter backup também em pen drive - se esquecer a senha, ainda tem outra cópia.</p>
+
+            <h3>3. Posso confiar em escanear documentos pelo celular? Fica com qualidade boa?</h3>
+            <p><strong>Resposta:</strong> SIM! A tecnologia de scanner do Google Drive é muito boa. Ela detecta bordas automaticamente, corrige perspectiva, melhora contraste e remove sombras. O resultado fica tão bom quanto scanner profissional. Basta ter boa iluminação!</p>
+
+            <h3>4. 15 GB é suficiente ou vou precisar pagar depois?</h3>
+            <p><strong>Resposta:</strong> Para documentos, 15 GB é MUITO! Um documento escaneado tem cerca de 500 KB. Isso significa que você pode guardar cerca de 30.000 documentos! E fotos em "alta qualidade" são ilimitadas. A maioria das pessoas NUNCA precisa pagar. Só quem guarda muitos vídeos em qualidade original.</p>
+
+            <h3>5. Se o Google fechar ou tirar do ar, perco tudo?</h3>
+            <p><strong>Resposta:</strong> Altamente improvável o Google fechar. Mas mesmo se acontecer algo assim, você teria tempo para baixar tudo (avisos com meses de antecedência). E é por isso da regra 3-2-1: você SEMPRE tem cópia em pen drive também! Nunca dependa de uma única fonte.</p>
+
+            <!-- Dicas Extras -->
+            <h2>Dicas Extras de Ouro</h2>
+            
+            <div class="info-box">
+                <strong>1. Crie rotina mensal de backup:</strong> Todo dia 1º do mês, reserve 15 minutos para: escanear documentos novos (contas, recibos), fazer backup no pen drive, revisar se está tudo organizado. Vire um hábito!
+            </div>
+            
+            <div class="info-box">
+                <strong>2. Use códigos de cores nas pastas:</strong> No Google Drive, você pode mudar a cor das pastas! Clique com botão direito > "Mudar cor". Use vermelho para documentos urgentes, verde para saúde, azul para financeiro. Fica mais visual!
+            </div>
+            
+            <div class="info-box">
+                <strong>3. Adicione estrela nos mais importantes:</strong> Clique com botão direito em arquivos muito importantes e selecione "Adicionar estrela". Depois você acessa rapidamente pela seção "Com estrela" no menu lateral.
+            </div>
+            
+            <div class="info-box">
+                <strong>4. Ensine sua família:</strong> Mostre para familiares onde estão os documentos importantes no Drive. Se acontecer algo com você, eles saberão onde encontrar tudo. Compartilhe a pasta com uma pessoa de confiança (só visualização).
+            </div>
+            
+            <div class="info-box">
+                <strong>5. Use busca inteligente:</strong> O Google Drive tem busca MUITO boa! Digite na barra de busca: tipo de arquivo ("type:pdf"), dono ("owner:eu"), data ("after:2024-01-01"). Encontra qualquer coisa em segundos!
+            </div>
+
+            <!-- Resolvendo Problemas -->
+            <h2>Resolvendo Problemas Comuns</h2>
+            
+            <h3>Problema: "Armazenamento cheio" mesmo com poucos arquivos</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Os 15 GB são compartilhados entre Drive, Gmail e Google Fotos (qualidade original)</li>
+                <li>Entre em <code>drive.google.com/settings/storage</code> para ver o que está ocupando espaço</li>
+                <li>Apague e-mails com anexos grandes no Gmail</li>
+                <li>Esvazie a lixeira do Drive e do Gmail</li>
+                <li>Configure fotos para "Alta qualidade" (não conta no espaço) em vez de "Original"</li>
+                <li>Apague vídeos antigos que você não precisa mais</li>
+            </ul>
+
+            <h3>Problema: Documento escaneado ficou com qualidade ruim</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Certifique-se de ter BOA iluminação - luz natural é melhor</li>
+                <li>Coloque o documento em superfície plana (mesa, não na mão)</li>
+                <li>Limpe a câmera do celular</li>
+                <li>Aproxime mais o celular para capturar mais detalhes</li>
+                <li>Nas configurações do scanner, escolha "Documento" (não "Foto")</li>
+                <li>Ajuste manualmente o contraste se o documento tiver fundo colorido</li>
+                <li>Se ficou borrado, apague e escaneie novamente</li>
+            </ul>
+
+            <h3>Problema: Não consigo fazer upload de arquivos</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Verifique sua conexão com internet</li>
+                <li>Tente conectar em WiFi em vez de dados móveis</li>
+                <li>Verifique se não está sem espaço no Drive</li>
+                <li>Feche e abra o app ou navegador novamente</li>
+                <li>Limpe o cache do aplicativo (Configurações > Apps > Google Drive > Limpar cache)</li>
+                <li>Atualize o app na Play Store/App Store</li>
+                <li>Tente fazer upload de um arquivo menor primeiro para testar</li>
+            </ul>
+
+            <!-- Conclusão -->
+            <div class="success-box" style="margin-top: 50px;">
+                <h3 style="color: #065f46; margin-top: 0;">Parabéns! Você Concluiu Este Tutorial!</h3>
+                <p>Agora você sabe:</p>
+                <ul style="margin: 10px 0;">
+                    <li>A importância do backup digital</li>
+                    <li>Como usar o Google Drive (15 GB grátis)</li>
+                    <li>Criar estrutura organizada de pastas</li>
+                    <li>Escanear documentos pelo celular</li>
+                    <li>Ativar backup automático de fotos</li>
+                    <li>Compartilhar arquivos com segurança</li>
+                    <li>Aplicar a regra 3-2-1 de backup</li>
+                    <li>Recuperar arquivos excluídos</li>
+                </ul>
+                <p style="margin-bottom: 0;"><strong>Lembre-se:</strong> A organização que você fez hoje vai te poupar MUITO tempo e estresse no futuro. Mantenha o sistema atualizado mensalmente e nunca mais se preocupe em perder documentos importantes!</p>
+            </div>
+
+            <!-- Navegação entre Tutoriais -->
+            <div class="tutorial-nav">
+                <a href="tutorial8.html" class="nav-tutorial-btn">
+                    Tutorial Anterior
+                </a>
+                <a href="tutorial10.html" class="nav-tutorial-btn">
+                    Próximo: Programas Sociais
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Portal de Inclusão Digital - Riacho Fundo 2</p>
+            <p class="mb-0 mt-2">Desenvolvido por Vinícius de Oliveira Vieira - UNINTER</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

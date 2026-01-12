@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 5: Consultas Públicas Online | Portal de Inclusão Digital</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Customizado -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: white;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .tutorial-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+        }
+        
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+        
+        .tutorial-content {
+            background: white;
+            padding: 60px 0;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .tutorial-content h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tutorial-content h3 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border: 3px solid #0284c7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box strong {
+            color: #0c4a6e;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box strong {
+            color: #92400e;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border: 3px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box strong {
+            color: #065f46;
+        }
+        
+        .danger-box {
+            background: #fee2e2;
+            border: 3px solid #ef4444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .danger-box strong {
+            color: #991b1b;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step h4 {
+            margin-top: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            background: #f1f5f9;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .tutorial-content li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .nav-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tutorial-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        table tr:hover {
+            background: var(--light-bg);
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #dc2626;
+            font-family: 'Courier New', monospace;
+        }
+        
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 20px;
+            }
+            
+            .tutorial-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            📚 Inclusão Digital
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#tutoriais">Tutoriais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Header do Tutorial -->
+    <div class="tutorial-header">
+        <div class="container">
+            <h1>Tutorial 5: Consultas Públicas Online</h1>
+            <p class="lead">Aprenda a acessar documentos e certidões importantes sem sair de casa, economizando tempo e dinheiro com 5 serviços essenciais!</p>
+            <div class="tutorial-meta">
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>25-35 minutos</span>
+                </div>
+                <div class="meta-item">
+                    <span>📱</span>
+                    <span>Celular ou Computador</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Tutorial -->
+    <div class="tutorial-content">
+        <div class="content-wrapper">
+            
+            <!-- Introdução -->
+            <h2>O Que Você Vai Aprender</h2>
+            <ul>
+                <li>Como consultar a situação do seu CPF online na Receita Federal</li>
+                <li>Como emitir Certidão Negativa de Débitos Federal sem custo</li>
+                <li>Como consultar multas de trânsito no Detran DF pelo celular</li>
+                <li>Como verificar se seu nome está sujo no Serasa gratuitamente</li>
+                <li>Como emitir 2ª via de conta de luz (Neoenergia/CEB) pela internet</li>
+                <li>Como salvar e imprimir seus documentos em PDF</li>
+                <li>Qual a validade de cada certidão e quando autenticar</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Antes de Começar:</strong> Tenha em mãos seus documentos básicos: CPF, RG, data de nascimento. Para algumas consultas você precisará de conta Gov.br (veja Tutorial 1). Para consultas de veículos, tenha a placa e Renavam. Para conta de luz, tenha o número da instalação ou CPF. Prepare-se para economizar muito tempo e dinheiro!
+            </div>
+
+            <!-- Por que fazer essas consultas -->
+            <h2>Por Que Fazer Consultas Públicas Online?</h2>
+            <p>Hoje em dia, você não precisa mais perder horas em filas ou pagar despachantes para ter acesso a documentos importantes. Com a internet, você pode:</p>
+            <ul>
+                <li>Consultar e emitir documentos 24 horas por dia, 7 dias por semana</li>
+                <li>Economizar dinheiro (sem taxas de despachante)</li>
+                <li>Evitar filas e deslocamentos desnecessários</li>
+                <li>Ter acesso imediato às informações</li>
+                <li>Organizar melhor sua vida financeira e documental</li>
+                <li>Resolver pendências antes que virem problemas maiores</li>
+            </ul>
+
+            <!-- Passo 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Consulta da Situação do CPF na Receita Federal</h4>
+                <p><strong>Por que é importante:</strong> Verificar se seu CPF está regular é essencial para abrir contas, fazer financiamentos e até conseguir emprego!</p>
+                
+                <p><strong>Como fazer:</strong></p>
+                <ol>
+                    <li>Acesse o site: <code>www.gov.br/receitafederal</code></li>
+                    <li>No menu superior, clique em <strong>"Serviços"</strong></li>
+                    <li>Procure por <strong>"Consultar CPF"</strong> ou use a busca</li>
+                    <li>Clique em <strong>"Consultar sua situação cadastral"</strong></li>
+                    <li>Digite seu CPF (apenas números, sem pontos ou traços)</li>
+                    <li>Digite sua data de nascimento no formato DD/MM/AAAA</li>
+                    <li>Resolva o captcha (digite as letras/números da imagem)</li>
+                    <li>Clique em <strong>"Consultar"</strong></li>
+                    <li>Veja o resultado: <strong>"Regular"</strong> ou <strong>"Pendente de Regularização"</strong></li>
+                </ol>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial5-passo1.png" alt="Passo 1" width="1000">
+                </div>
+                <p class="image-caption">Tela de consulta da situação do CPF na Receita Federal</p>
+
+                <div class="success-box">
+                    <strong>CPF Regular:</strong> Significa que está tudo certo! Você pode usar normalmente para trabalho, abrir contas, fazer compras parceladas, participar de concursos públicos e todas as outras atividades que exigem CPF regular.
+                </div>
+
+                <div class="danger-box">
+                    <strong>CPF Pendente ou Irregular:</strong> Você precisa regularizar urgente! CPF irregular impede você de trabalhar com carteira assinada, abrir contas bancárias e fazer financiamentos. Vá até uma unidade da Receita Federal ou regularize online pelo Portal e-CAC usando sua conta Gov.br.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Motivos comuns para CPF irregular:</strong> Não entrega da declaração de Imposto de Renda (se você é obrigado a declarar), divergência de dados cadastrais, ou indícios de fraude. A consulta online mostra qual é o problema específico.
+                </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Certidão Negativa de Débitos Federal</h4>
+                <p><strong>Para que serve:</strong> Documento que comprova que você não tem dívidas com o governo federal (Receita Federal, INSS, PGFN). É pedido em processos seletivos, licitações, financiamentos e diversos outros procedimentos.</p>
+                
+                <p><strong>Como emitir:</strong></p>
+                <ol>
+                    <li>Acesse o site: <code>solucoes.receita.fazenda.gov.br</code></li>
+                    <li>Procure por <strong>"Certidão de Regularidade Fiscal"</strong> ou <strong>"Certidões"</strong></li>
+                    <li>Clique em <strong>"Emitir Certidão"</strong></li>
+                    <li>Escolha o tipo: <strong>CPF (Pessoa Física)</strong></li>
+                    <li>Digite seu CPF (apenas números)</li>
+                    <li>Resolva o captcha</li>
+                    <li>Clique em <strong>"Emitir Certidão"</strong></li>
+                    <li>A certidão será gerada instantaneamente em PDF</li>
+                    <li>Clique em <strong>"Imprimir"</strong> ou <strong>"Salvar PDF"</strong></li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Certidão Negativa:</strong> Você não tem nenhum débito com a Receita Federal, INSS ou Procuradoria da Fazenda Nacional. Esse é o melhor resultado!
+                </div>
+
+                <div class="info-box">
+                    <strong>Certidão Positiva com Efeitos de Negativa:</strong> Você tem débitos, mas eles estão parcelados, suspensos por liminar judicial ou com garantia. Na maioria dos casos, essa certidão é aceita como se fosse negativa.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Validade:</strong> A certidão tem validade de <strong>180 dias (6 meses)</strong>. Sempre verifique a data de emissão antes de usar. Depois desse período, você precisa emitir uma nova. É de graça e leva menos de 1 minuto!
+                </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Consulta de Multas de Trânsito no Detran DF</h4>
+                <p><strong>Por que consultar:</strong> Evite surpresas na renovação da CNH! Consulte suas multas regularmente, veja fotos das infrações e pague com desconto se for rápido.</p>
+                
+                <p><strong>Passo a passo:</strong></p>
+                <ol>
+                    <li>Acesse: <code>www.detran.df.gov.br</code></li>
+                    <li>No menu principal, clique em <strong>"Veículos"</strong></li>
+                    <li>Escolha <strong>"Consultar Multas"</strong> ou <strong>"Infrações"</strong></li>
+                    <li>Digite a <strong>placa do veículo</strong> (sem traços, exemplo: ABC1D23)</li>
+                    <li>Digite o <strong>Renavam</strong> (número de 11 dígitos que está no documento do carro)</li>
+                    <li>Resolva o captcha</li>
+                    <li>Clique em <strong>"Consultar"</strong></li>
+                    <li>Você verá uma lista com todas as multas: pendentes, pagas, em recurso</li>
+                    <li>Clique em cada multa para ver: data, hora, local, valor, pontos e foto da infração</li>
+                    <li>Se quiser pagar, clique em <strong>"Gerar GRU"</strong> (guia de pagamento)</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Desconto de 40%:</strong> Se você pagar a multa em até <strong>30 dias</strong> após receber a notificação (pelo correio ou por aplicativo), tem <strong>40% de desconto</strong>! Esse desconto cai para 20% se pagar até 60 dias. Depois disso, paga o valor integral. Vale muito a pena consultar regularmente!
+                </div>
+
+                <div class="info-box">
+                    <strong>Aplicativo Detran Digital DF:</strong> Baixe o app <strong>"Detran Digital DF"</strong> na Play Store (Android) ou App Store (iPhone). Com ele você pode: consultar multas e pontos na CNH, receber notificações de novas multas, pagar multas direto pelo app, consultar débitos de IPVA e licenciamento.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Pontos na CNH:</strong> Lembre-se que além do valor da multa, você pode acumular pontos na Carteira de Motorista. Se chegar a 20 pontos em 12 meses, sua CNH é suspensa. Fique atento e dirija com responsabilidade!
+                </div>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Consulta de Nome Sujo no Serasa (Gratuito)</h4>
+                <p><strong>Atenção:</strong> Muita gente paga caro para consultar o Serasa, mas você pode fazer de GRAÇA pelo site oficial! Nunca pague por essa consulta.</p>
+                
+                <p><strong>Como consultar grátis:</strong></p>
+                <ol>
+                    <li>Entre no site oficial: <code>www.serasa.com.br</code></li>
+                    <li>Clique em <strong>"Consulte Grátis"</strong> ou <strong>"Serasa Gratuito"</strong></li>
+                    <li>Se é sua primeira vez, clique em <strong>"Cadastre-se"</strong></li>
+                    <li>Preencha seus dados: CPF, nome completo, data de nascimento</li>
+                    <li>Cadastre um e-mail e número de celular válidos</li>
+                    <li>Crie uma senha forte (mínimo 8 caracteres, com letras e números)</li>
+                    <li>Confirme o cadastro através do código enviado por SMS ou e-mail</li>
+                    <li>Faça login com seu CPF e senha</li>
+                    <li>Na tela inicial você verá: seu <strong>Score Serasa</strong> (pontuação de 0 a 1000)</li>
+                    <li>Role a página e veja se tem dívidas registradas (pendências financeiras)</li>
+                    <li>Clique em <strong>"Ver detalhes"</strong> para saber: quem incluiu seu nome, valor da dívida, data de inclusão</li>
+                </ol>
+
+                <div class="danger-box">
+                    <strong>Cuidado com golpes!</strong> O site verdadeiro é <strong>www.serasa.com.br</strong> (com apenas um "s"). Desconfie de links recebidos por WhatsApp, SMS ou e-mail. Sempre digite o endereço direto no navegador! Nunca forneça sua senha a terceiros.
+                </div>
+
+                <div class="info-box">
+                    <strong>Score Serasa:</strong> É uma pontuação de 0 a 1000 que indica suas chances de conseguir crédito aprovado. Quanto maior, melhor! 0-300 (baixo), 301-700 (regular), 701-1000 (bom a excelente). O score sobe quando você paga contas em dia, tem renda estável e mantém baixo endividamento.
+                </div>
+
+                <div class="success-box">
+                    <strong>Negociar dívidas:</strong> Pelo próprio site do Serasa você pode negociar suas dívidas diretamente com as empresas credoras. Muitas vezes há descontos de até 90% para pagamento à vista! Acesse <strong>"Limpa Nome"</strong> para ver as ofertas disponíveis.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Contestação de dívidas:</strong> Se você vir uma dívida que já foi paga ou que você não reconhece, pode contestar direto pelo site. Clique em <strong>"Contestar"</strong> ao lado da dívida e siga as instruções. A empresa tem até 7 dias para responder.
+                </div>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Emissão de 2ª Via de Conta de Luz (Neoenergia/CEB)</h4>
+                <p><strong>Situação comum:</strong> Perdeu a conta de luz? Venceu e você não guardou? Precisa da conta para comprovante de residência? Emita online em segundos!</p>
+                
+                <p><strong>Para Neoenergia Brasília (antiga CEB):</strong></p>
+                <ol>
+                    <li>Acesse: <code>www.neoenergiabrasilia.com.br</code></li>
+                    <li>Clique em <strong>"Agência Virtual"</strong> ou procure <strong>"2ª Via de Conta"</strong></li>
+                    <li>Digite o <strong>número da instalação</strong> (tem 9 ou 10 dígitos, está na conta antiga)</li>
+                    <li>Se não tiver o número da instalação, você pode usar seu <strong>CPF/CNPJ</strong></li>
+                    <li>Clique em <strong>"Consultar"</strong> ou <strong>"Buscar"</strong></li>
+                    <li>O sistema mostrará as contas disponíveis (atual e meses anteriores)</li>
+                    <li>Escolha qual mês você precisa</li>
+                    <li>Clique em <strong>"Gerar PDF"</strong>, <strong>"Baixar Conta"</strong> ou <strong>"Imprimir"</strong></li>
+                    <li>A conta com código de barras será baixada no seu celular ou computador</li>
+                    <li>Salve o arquivo com um nome fácil de encontrar, exemplo: "Conta_Luz_Dezembro_2024.pdf"</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>Aplicativo:</strong> Baixe o app <strong>"Neoenergia Brasília"</strong> na Play Store (Android) ou App Store (iPhone). Com o app você pode: consultar consumo em tempo real, receber avisos de vencimento, pagar contas sem sair de casa, solicitar serviços (troca de titularidade, revisão de leitura, etc).
+                </div>
+
+                <div class="warning-box">
+                    <strong>Código de barras:</strong> A 2ª via emitida online tem o mesmo código de barras da conta original. Você pode pagar normalmente em qualquer banco, lotérica, aplicativo de banco ou com PIX. Nunca pague duas vezes a mesma conta!
+                </div>
+
+                <div class="success-box">
+                    <strong>Débito automático:</strong> Para nunca mais esquecer de pagar e evitar multas por atraso, cadastre débito automático. Acesse o site ou app da Neoenergia, vá em <strong>"Débito Automático"</strong>, informe seus dados bancários e pronto! A conta será debitada automaticamente todo mês na data de vencimento.
+                </div>
+
+                <div class="info-box">
+                    <strong>Comprovante de residência:</strong> A conta de luz é um dos documentos mais aceitos como comprovante de residência. Geralmente é aceita com até 90 dias de emissão. Verifique se o endereço e seu nome estão corretos antes de usar como comprovante.
+                </div>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="step">
+                <div class="step-number">6</div>
+                <h4>Como Salvar e Imprimir Documentos em PDF</h4>
+                <p><strong>Essencial saber:</strong> Não adianta consultar se você não souber guardar os documentos! Veja como salvar corretamente em diferentes dispositivos.</p>
+                
+                <p><strong>No celular Android:</strong></p>
+                <ol>
+                    <li>Quando o documento (certidão, conta, etc) aparecer na tela, procure o ícone de <strong>"Compartilhar"</strong> ou <strong>"Três pontinhos"</strong> (⋮)</li>
+                    <li>Toque nesse ícone</li>
+                    <li>Escolha <strong>"Baixar"</strong>, <strong>"Salvar"</strong> ou <strong>"Imprimir"</strong></li>
+                    <li>Se escolher "Imprimir", selecione como impressora <strong>"Salvar em PDF"</strong> em vez de uma impressora física</li>
+                    <li>Escolha onde salvar: <strong>Download</strong>, <strong>Google Drive</strong>, <strong>Meus Arquivos</strong> ou outra pasta</li>
+                    <li>Renomeie o arquivo com um nome claro, exemplo: "Certidao_CPF_Jan2024" ou "Conta_Luz_Dez2024"</li>
+                    <li>Toque em <strong>"Salvar"</strong></li>
+                </ol>
+
+                <p><strong>No iPhone (iOS):</strong></p>
+                <ol>
+                    <li>Quando o documento aparecer, toque no ícone de <strong>"Compartilhar"</strong> (quadrado com seta para cima)</li>
+                    <li>Role as opções e escolha <strong>"Salvar em Arquivos"</strong></li>
+                    <li>Selecione a pasta onde quer salvar (pode criar uma pasta nova chamada "Documentos Importantes")</li>
+                    <li>Toque em <strong>"Salvar"</strong></li>
+                    <li>Para acessar depois, abra o app <strong>"Arquivos"</strong> no iPhone</li>
+                </ol>
+
+                <p><strong>No computador:</strong></p>
+                <ol>
+                    <li>Quando o documento aparecer no navegador, clique com o botão direito do mouse sobre ele</li>
+                    <li>Escolha <strong>"Salvar como"</strong> ou <strong>"Salvar página como"</strong></li>
+                    <li>Ou use o atalho do teclado: <strong>Ctrl + S</strong> (Windows/Linux) ou <strong>Command + S</strong> (Mac)</li>
+                    <li>Escolha a pasta onde quer salvar (recomendo criar uma pasta "Documentos" ou "Certidões")</li>
+                    <li>Dê um nome claro ao arquivo</li>
+                    <li>Certifique-se de que o formato está como <strong>"PDF"</strong></li>
+                    <li>Clique em <strong>"Salvar"</strong></li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Backup na nuvem:</strong> Depois de salvar no celular ou computador, faça backup dos documentos importantes! Envie para: <strong>Google Drive</strong> (gratuito, 15GB), <strong>Dropbox</strong>, <strong>OneDrive</strong> ou <strong>iCloud</strong>. Assim, se você perder o celular ou o computador der problema, seus documentos estão seguros e acessíveis de qualquer lugar!
+                </div>
+
+                <div class="info-box">
+                    <strong>Para imprimir:</strong> Se precisar do documento físico em papel, você tem várias opções: imprimir em casa (se tiver impressora), ir até uma papelaria ou lan house com o arquivo no celular (via Bluetooth ou cabo USB), enviar por e-mail e imprimir na papelaria, salvar em pen drive e levar até a papelaria. O custo geralmente é de R$ 0,10 a R$ 0,50 por página preta e branca.
+                </div>
+            </div>
+
+            <!-- Tabela de Validade -->
+            <h2>Validade das Certidões e Documentos</h2>
+            <p>Cada documento tem uma validade diferente. É importante conhecer para não perder tempo emitindo documentos vencidos!</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Validade</th>
+                        <th>Precisa Autenticar?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Consulta de CPF</strong></td>
+                        <td>Consulta instantânea, sem validade formal</td>
+                        <td>Não (apenas para conferência pessoal)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Certidão Negativa Federal</strong></td>
+                        <td>180 dias (6 meses)</td>
+                        <td>Depende - alguns processos exigem autenticação</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Consulta de Multas</strong></td>
+                        <td>Instantânea, sem validade</td>
+                        <td>Não</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Consulta Serasa</strong></td>
+                        <td>Instantânea (atualiza diariamente)</td>
+                        <td>Não (apenas para conferência)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2ª Via Conta de Luz</strong></td>
+                        <td>Vale até o vencimento para pagamento; 90 dias para comprovante</td>
+                        <td>Geralmente não (aceita sem autenticação)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-box">
+                <strong>Quando autenticar:</strong> Você só precisa autenticar documentos quando a empresa, banco, órgão público ou instituição exigir expressamente na lista de documentos. A autenticação deve ser feita em cartórios e custa cerca de R$ 8 a R$ 15 por documento. Muitos lugares já aceitam cópias simples ou versões digitais!
+            </div>
+
+            <div class="info-box">
+                <strong>Assinatura eletrônica:</strong> Documentos emitidos através do Gov.br com assinatura eletrônica têm validade jurídica e geralmente não precisam de autenticação física. A certidão negativa federal, por exemplo, já vem com QR Code que permite verificar sua autenticidade online!
+            </div>
+
+            <!-- Tabela de Sites Oficiais -->
+            <h2>Sites Oficiais - Guarde Esta Lista!</h2>
+            <p>Salve estes endereços nos seus favoritos para consultar sempre que precisar:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serviço</th>
+                        <th>Site Oficial</th>
+                        <th>Precisa Cadastro?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Consulta CPF</strong></td>
+                        <td><code>www.gov.br/receitafederal</code></td>
+                        <td>Não</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Certidão Federal</strong></td>
+                        <td><code>solucoes.receita.fazenda.gov.br</code></td>
+                        <td>Não</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multas Detran DF</strong></td>
+                        <td><code>www.detran.df.gov.br</code></td>
+                        <td>Não para consulta web<br>Sim para app</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Serasa</strong></td>
+                        <td><code>www.serasa.com.br</code></td>
+                        <td>Sim (gratuito)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Neoenergia (antiga CEB)</strong></td>
+                        <td><code>www.neoenergiabrasilia.com.br</code></td>
+                        <td>Não para 2ª via<br>Sim para serviços completos</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Organizando Documentos -->
+            <h2>Organizando Seus Documentos Digitais</h2>
+            <p>Agora que você sabe consultar tudo online, aprenda a se organizar para nunca mais perder nada!</p>
+
+            <h3>Crie uma estrutura de pastas organizada:</h3>
+            <ol>
+                <li>No seu celular ou computador, crie uma pasta principal: <strong>"Documentos Importantes"</strong></li>
+                <li>Dentro dela, crie subpastas temáticas:
+                    <ul>
+                        <li><strong>Certidões</strong> - Para certidões de CPF, débitos, antecedentes, etc</li>
+                        <li><strong>Comprovantes</strong> - Comprovantes de residência, renda, pagamentos</li>
+                        <li><strong>Veículo</strong> - CNH, documentos do carro, IPVA, multas, licenciamento</li>
+                        <li><strong>Contas</strong> - Contas de luz, água, internet, telefone</li>
+                        <li><strong>Saúde</strong> - Exames, receitas médicas, atestados, cartão de vacina</li>
+                        <li><strong>Trabalho</strong> - Contracheques, contratos, declarações</li>
+                    </ul>
+                </li>
+                <li>Nomeie os arquivos de forma padronizada: <strong>TipoDocumento_Mês_Ano</strong></li>
+                <li>Exemplos de nomes: "Certidao_Federal_Jan2024.pdf", "Conta_Luz_Dez2024.pdf", "Multa_Detran_Nov2024.pdf"</li>
+                <li>Faça backup mensal: todo início de mês, envie os documentos novos para a nuvem</li>
+            </ol>
+
+            <div class="success-box">
+                <strong>Crie lembretes automáticos:</strong> Use o Google Calendar, calendário do celular ou app de lembretes para programar avisos periódicos. Exemplos: "Consultar multas - todo dia 1", "Renovar certidão federal - 15 de junho", "Verificar Serasa - toda segunda-feira". Isso ajuda você a se manter organizado e resolver problemas antes que fiquem grandes!
+            </div>
+
+            <div class="info-box">
+                <strong>Segurança dos documentos:</strong> Seus documentos contêm dados pessoais sensíveis! Proteja-os seguindo estas dicas: use senha forte no celular/computador, não compartilhe PDFs por WhatsApp (prefira e-mail ou compartilhamento seguro no Drive), nunca salve documentos em computadores públicos ou de terceiros, use apps de nuvem com autenticação em duas etapas, faça backup regular mas mantenha tudo privado.
+            </div>
+
+            <!-- Dúvidas Comuns -->
+            <h2>Dúvidas Comuns</h2>
+            
+            <h3>1. Posso emitir certidão para outra pessoa?</h3>
+            <p><strong>Resposta:</strong> Não diretamente pela internet, pois os sistemas pedem dados pessoais que só a própria pessoa deve ter acesso. Você pode <strong>ajudar</strong> alguém a emitir (um idoso, por exemplo), mas usando os dados dela e com autorização. Para procedimentos oficiais com procuração, é necessário ir pessoalmente ou usar assinatura eletrônica via Gov.br nível ouro.</p>
+
+            <h3>2. Meu CPF está irregular. O que faço?</h3>
+            <p><strong>Possíveis soluções:</strong></p>
+            <ul>
+                <li>Se a situação é <strong>"Pendente de Regularização"</strong>, veja o motivo na consulta</li>
+                <li>Motivos comuns: falta de declaração de IR, divergência cadastral, indícios de fraude</li>
+                <li>Para declaração de IR em atraso: acesse o Portal e-CAC (precisa de conta Gov.br nível prata ou ouro) e entregue a declaração</li>
+                <li>Para atualização cadastral: vá até uma agência da Receita Federal com RG, título de eleitor e comprovante de residência</li>
+                <li>Agende pelo site: <code>www.gov.br/receitafederal</code> → Atendimento → Agendamento</li>
+                <li>É muito importante resolver logo! CPF irregular impede emprego formal, abertura de contas, financiamentos</li>
+            </ul>
+
+            <h3>3. A certidão negativa sai na hora mesmo?</h3>
+            <p><strong>Sim!</strong> O sistema é automático. Se você não tiver débitos federais pendentes, a certidão negativa é gerada instantaneamente em PDF. Se você tiver débitos mas eles estiverem parcelados ou suspensos por decisão judicial, pode sair uma <strong>"Certidão Positiva com Efeitos de Negativa"</strong>, que serve para a maioria das finalidades. Só não sai certidão negativa se você tiver débitos não pagos e não parcelados.</p>
+
+            <h3>4. Como saber se um site é verdadeiro ou golpe?</h3>
+            <p><strong>Dicas de segurança:</strong></p>
+            <ul>
+                <li>Sites oficiais do governo SEMPRE terminam em <strong>.gov.br</strong> (exemplos: detran.df.gov.br, receita.fazenda.gov.br)</li>
+                <li>Verifique se há um <strong>cadeado fechado</strong> 🔒 na barra de endereço (significa conexão segura HTTPS)</li>
+                <li>NUNCA clique em links enviados por WhatsApp, SMS, e-mail ou redes sociais</li>
+                <li>SEMPRE digite o endereço do site direto no navegador</li>
+                <li>Desconfie de sites que pedem pagamento para serviços gratuitos</li>
+                <li>Sites verdadeiros não pedem senha por telefone, e-mail ou WhatsApp</li>
+                <li>Se tiver dúvida, procure o nome do órgão no Google e entre pelo resultado oficial</li>
+            </ul>
+
+            <h3>5. Posso usar essas consultas como documentos oficiais?</h3>
+            <p><strong>Depende do documento:</strong></p>
+            <ul>
+                <li><strong>Certidão Negativa Federal:</strong> Sim! Tem pleno valor legal e é aceita em processos, licitações, concursos públicos, financiamentos</li>
+                <li><strong>Conta de luz (2ª via):</strong> Sim! É aceita como comprovante de residência na maioria dos lugares (bancos, matrículas escolares, etc)</li>
+                <li><strong>Consulta de CPF:</strong> Não. Serve apenas para você conferir sua situação. Para apresentar oficialmente, você precisa da Certidão de Situação Cadastral (que é diferente da consulta)</li>
+                <li><strong>Consulta de multas:</strong> Não. É apenas informativa. Para recursos ou processos, você precisa pedir certidões oficiais ao Detran</li>
+                <li><strong>Consulta Serasa:</strong> Não oficialmente. Serve para você acompanhar sua situação financeira</li>
+            </ul>
+
+            <h3>6. E se eu não conseguir acessar ou tiver problemas técnicos?</h3>
+            <p><strong>Soluções alternativas:</strong></p>
+            <ul>
+                <li>Tente em outro navegador (Chrome, Firefox, Edge, Safari)</li>
+                <li>Limpe o cache e cookies do navegador</li>
+                <li>Tente no computador se estava no celular, ou vice-versa</li>
+                <li>Use uma aba anônima/privativa do navegador</li>
+                <li>Verifique sua conexão com a internet</li>
+                <li>Tente em outro horário (sites podem estar em manutenção)</li>
+                <li>Para problemas persistentes, procure um telecentro, biblioteca pública ou ponto de atendimento presencial</li>
+                <li>Ligue para os canais de atendimento: Receita Federal 146, Detran 154, Serasa 0800-021-3637</li>
+            </ul>
+
+            <!-- Dicas Extras -->
+            <h2>Dicas Extras para Aproveitar Melhor</h2>
+
+            <div class="info-box">
+                <strong>Dica 1: Consulte regularmente</strong><br>
+                Faça uma rotina de consultas a cada 2-3 meses. Coloque um lembrete no celular para: consultar situação do CPF, verificar se tem dívidas no Serasa, checar multas de trânsito, conferir se há débitos federais. Identificar problemas cedo evita dores de cabeça futuras!
+            </div>
+
+            <div class="info-box">
+                <strong>Dica 2: Baixe os aplicativos oficiais</strong><br>
+                Apps facilitam muito sua vida! Baixe na loja do seu celular: <strong>Gov.br</strong> (acesso a todos os serviços federais), <strong>Detran Digital DF</strong> (multas e CNH digital), <strong>Serasa</strong> (score e negociação de dívidas), <strong>Neoenergia Brasília</strong> (contas de luz). Com apps você recebe notificações e consulta em segundos!
+            </div>
+
+            <div class="info-box">
+                <strong>Dica 3: Aproveite os descontos</strong><br>
+                Fique atento às oportunidades de economia: multas de trânsito têm <strong>40% de desconto</strong> se pagas em 30 dias, contas de luz podem ter desconto no débito automático, dívidas antigas no Serasa podem ser negociadas com até <strong>90% de desconto</strong>. Consulte regularmente e aproveite!
+            </div>
+
+            <div class="info-box">
+                <strong>Dica 4: Compartilhe conhecimento</strong><br>
+                Ensine seus familiares e amigos a fazer essas consultas! Muita gente paga caro em despachantes para serviços que são 100% gratuitos online. Mostre para seus pais, avós, vizinhos. Você fazendo sozinho economiza dinheiro e tempo. Inclusão digital é para todos!
+            </div>
+
+            <div class="info-box">
+                <strong>Dica 5: Mantenha tudo organizado na nuvem</strong><br>
+                Use Google Drive, Dropbox ou OneDrive para manter backups. Crie uma pasta compartilhada com um familiar de confiança (caso você precise de ajuda ou aconteça alguma emergência). Organize por ano e tipo de documento. Um dia você vai agradecer por ter tudo guardado!
+            </div>
+
+            <!-- Resolvendo Problemas -->
+            <h2>Resolvendo Problemas Comuns</h2>
+
+            <h3>Problema: "Erro ao consultar" ou "CPF inválido"</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Verifique se digitou o CPF corretamente - apenas números, sem pontos, traços ou espaços</li>
+                <li>Confira se a data de nascimento está no formato correto (DD/MM/AAAA)</li>
+                <li>Certifique-se de ter preenchido o captcha corretamente</li>
+                <li>Tente em outro navegador (Chrome, Firefox, Edge)</li>
+                <li>Limpe o cache do navegador ou use uma aba anônima (Ctrl+Shift+N no Chrome)</li>
+                <li>Se o problema persistir, o site pode estar em manutenção - aguarde algumas horas e tente novamente</li>
+            </ul>
+
+            <h3>Problema: Não consigo fazer download do PDF</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Verifique se seu celular/computador tem espaço de armazenamento disponível</li>
+                <li>Autorize o navegador a fazer downloads (pode aparecer um aviso pedindo permissão)</li>
+                <li>Tente usar o botão "Imprimir" e escolha "Salvar como PDF" como destino</li>
+                <li>Use outro navegador para testar</li>
+                <li>No celular: vá em Configurações → Apps → Navegador → Permissões → Ative "Armazenamento"</li>
+                <li>No computador: clique com botão direito no PDF e escolha "Salvar link como"</li>
+            </ul>
+
+            <h3>Problema: Site diz que tenho dívida, mas eu já paguei</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Sistemas levam de 5 a 15 dias úteis para atualizar após o pagamento</li>
+                <li>SEMPRE guarde o comprovante de pagamento (você vai precisar para contestar)</li>
+                <li>No Serasa: você pode contestar dívidas pagas diretamente pelo site/app</li>
+                <li>Se passou mais de 30 dias e ainda não atualizou: entre em contato com o credor (empresa que você devia)</li>
+                <li>Procure o Procon se não resolverem (telefone: 151 ou www.procon.df.gov.br)</li>
+                <li>Para certidões: anexe o comprovante de pagamento junto ao documento quando apresentar</li>
+            </ul>
+
+            <h3>Problema: Não recebo o código de validação por SMS</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Aguarde até 5 minutos - às vezes o SMS demora</li>
+                <li>Verifique se seu celular tem sinal de operadora</li>
+                <li>Confira se o número está correto (com DDD)</li>
+                <li>Veja se a caixa de mensagens não está cheia</li>
+                <li>Tente clicar em "Reenviar código"</li>
+                <li>Se seu chip for muito antigo, pode estar com problema - troque na operadora</li>
+                <li>Use outro número de celular temporariamente</li>
+            </ul>
+
+            <!-- Conclusão -->
+            <div class="success-box" style="margin-top: 50px;">
+                <h3 style="color: #065f46; margin-top: 0;">Parabéns! Você Concluiu Este Tutorial!</h3>
+                <p>Agora você domina as 5 consultas públicas mais importantes e sabe:</p>
+                <ul style="margin: 10px 0;">
+                    <li>Consultar a situação do seu CPF</li>
+                    <li>Emitir Certidão Negativa de Débitos Federal</li>
+                    <li>Consultar multas de trânsito no Detran DF</li>
+                    <li>Verificar seu nome e score no Serasa gratuitamente</li>
+                    <li>Emitir 2ª via de conta de luz</li>
+                    <li>Salvar, organizar e proteger documentos digitais</li>
+                </ul>
+                <p style="margin-bottom: 0;"><strong>Você está economizando tempo e dinheiro!</strong> Não precisa mais pagar despachantes nem perder horas em filas. Continue praticando e explorando os outros tutoriais!</p>
+            </div>
+
+            <!-- Navegação entre Tutoriais -->
+            <div class="tutorial-nav">
+                <a href="tutorial4.html" class="nav-tutorial-btn">
+                    Tutorial Anterior
+                </a>
+                <a href="tutorial6.html" class="nav-tutorial-btn">
+                    Próximo: Saúde Digital - SUS
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Portal de Inclusão Digital - Riacho Fundo 2</p>
+            <p class="mb-0 mt-2">Desenvolvido por Vinícius de Oliveira Vieira - UNINTER</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

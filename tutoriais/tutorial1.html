@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 1 - Gov.br | Portal de Inclusão Digital</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Customizado -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: white;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .tutorial-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+        }
+        
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+        
+        .tutorial-content {
+            background: white;
+            padding: 60px 0;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .tutorial-content h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tutorial-content h3 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border: 3px solid #0284c7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box strong {
+            color: #0c4a6e;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box strong {
+            color: #92400e;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border: 3px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box strong {
+            color: #065f46;
+        }
+        
+        .danger-box {
+            background: #fee2e2;
+            border: 3px solid #ef4444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .danger-box strong {
+            color: #991b1b;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step h4 {
+            margin-top: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            background: #f1f5f9;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .tutorial-content li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .nav-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tutorial-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        table tr:hover {
+            background: var(--light-bg);
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #dc2626;
+            font-family: 'Courier New', monospace;
+        }
+        
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 20px;
+            }
+            
+            .tutorial-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            📚 Inclusão Digital
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#tutoriais">Tutoriais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Header do Tutorial -->
+    <div class="tutorial-header">
+        <div class="container">
+            <h1>Tutorial 1: Gov.br - Primeiros Passos nos Serviços Públicos Digitais</h1>
+            <p class="lead">Aprenda a criar sua conta Gov.br e acessar os serviços mais importantes</p>
+            <div class="tutorial-meta">
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>20 minutos</span>
+                </div>
+                <div class="meta-item">
+                    <span>📱</span>
+                    <span>Celular ou Computador</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Tutorial -->
+    <div class="tutorial-content">
+        <div class="content-wrapper">
+            
+            <!-- Introdução -->
+            <h2>O Que Você Vai Aprender</h2>
+            <ul>
+                <li>Criar sua conta Gov.br (começando no nível Bronze)</li>
+                <li>Entender como aumentar para nível Prata</li>
+                <li>Acessar e baixar seu CPF Digital</li>
+                <li>Ver sua Carteira de Trabalho Digital</li>
+                <li>Consultar informações do INSS</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Antes de Começar:</strong> Tenha em mãos seu CPF, dados pessoais básicos (data de nascimento, nome da mãe, cidade natal) e um celular ou email funcionando. O processo leva cerca de 15-20 minutos e é totalmente gratuito e seguro!
+            </div>
+
+            <!-- Por que criar conta -->
+            <h2>Por Que Criar uma Conta Gov.br?</h2>
+            <p>A conta Gov.br é sua identidade digital para acessar mais de 3.000 serviços públicos federais. Com ela você pode:</p>
+            <ul>
+                <li>Evitar filas em bancos e órgãos públicos</li>
+                <li>Acessar documentos a qualquer hora, de qualquer lugar</li>
+                <li>Economizar tempo e dinheiro (sem precisar pagar despachantes)</li>
+                <li>Ter mais autonomia e independência</li>
+                <li>Consultar informações importantes sobre sua vida profissional</li>
+            </ul>
+
+            <!-- Passo 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Acesse o Site Oficial Gov.br</h4>
+                <p>Abra o navegador do seu celular ou computador (pode ser Chrome, Firefox, Safari, Edge ou qualquer outro).</p>
+                <p>Na barra de endereços (onde você digita o site), digite:</p>
+                
+                <div class="success-box">
+                    <strong>Site oficial:</strong> <code>www.gov.br</code>
+                </div>
+                
+                <p>Pressione ENTER. A página inicial do Gov.br vai abrir.</p>
+                <p>No canto superior direito da página, você verá um botão azul escrito <strong>"Entrar com Gov.br"</strong>. Clique nele.</p>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial1-passo1.png" alt="Passo 1" width="1000">
+                </div>
+                <p class="image-caption">Página inicial do Gov.br - clique no botão azul "Entrar"</p>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Digite Seu CPF</h4>
+                <p>Você será levado para a página de login em <code>https://acesso.gov.br</code></p>
+                <p>Você verá um campo grande pedindo seu CPF e logo abaixo um link <strong>"Criar sua conta Gov.br"</strong>. Clique nesse link.</p>
+                
+                <div class="warning-box">
+                    <strong>Dica de Segurança:</strong> Sempre verifique se o endereço do site começa com <code>https://acesso.gov.br</code> e tem um <strong>cadeado fechado</strong> 🔒 ao lado. Isso significa que o site é seguro e seus dados estão protegidos.
+                </div>
+
+                <p>Agora você verá uma nova tela pedindo para você digitar seu CPF.</p>
+                <p>Digite apenas os <strong>11 números do seu CPF</strong>, sem pontos ou traços.</p>
+                <p><strong>Exemplo:</strong> Se seu CPF é 123.456.789-00, digite <code>12345678900</code></p>
+                <p>Clique no botão <strong>"Continuar"</strong>.</p>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial1-passo2.png" alt="Passo 2" width="1000">
+                </div>
+                <p class="image-caption">Digite seu CPF (apenas números, sem pontos ou traços)</p>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Aceite os Termos de Uso</h4>
+                <p>Na próxima tela, você precisará concordar com os termos antes de continuar.</p>
+                <p>Você verá duas caixinhas (checkboxes) que precisa marcar:</p>
+                
+                <ol>
+                    <li>☑️ <strong>"Li e estou de acordo com o Termo de Uso e Aviso de Privacidade"</strong> - Clique na caixinha para marcar</li>
+                    <li>☑️ <strong>"Sou humano"</strong> ou <strong>"Não sou um robô"</strong> (captcha) - Clique para confirmar</li>
+                </ol>
+
+                <p>Depois de marcar as duas opções, o botão <strong>"Continuar"</strong> ficará disponível. Clique nele.</p>
+                
+                <div class="info-box">
+                    <strong>O que são esses termos?</strong> São as regras de uso e como seus dados serão protegidos. O governo garante a segurança das suas informações pessoais.
+                </div>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial1-passo3.png" alt="Passo 3" width="1000">
+                </div>
+                <p class="image-caption">Marque as duas caixinhas e clique em Continuar</p>
+            </div>
+
+            <!-- Passo 4 - NOVO E CRUCIAL -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Escolha o Método de Cadastro</h4>
+                <p>Esta é uma tela muito importante! O sistema Gov.br oferece diferentes formas de validar sua conta. Você pode escolher a que for mais fácil para você.</p>
+                
+                <div class="success-box">
+                    <strong>As opções disponíveis são:</strong>
+                    <ol style="margin: 10px 0 0 0;">
+                        <li><strong>Bancos Credenciados</strong> - Usar sua conta de banco pela internet (Banco do Brasil, Caixa, Bradesco, Santander, Banrisul, Sicoob, etc.)</li>
+                        <li><strong>Tentar de outra forma</strong> - Ver outras alternativas de validação oferecidas pelo sistema</li>
+                    </ol>
+                </div>
+
+                <div class="warning-box">
+                    <strong>RECOMENDAÇÃO:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                    <li><strong>você tem conta em um dos bancos listados</strong> e acessa internet banking, escolha "Bancos Credenciados" - é rápido e prático!</li>
+                    <li><strong>Se não usa nenhum desses bancos</strong>, clique em "Tentar de outra forma" para ver as outras alternativas disponíveis.</li>
+                    </ul>    
+                </div>
+                
+                <div class="tutorial-image">
+                    <img src="../img/tutorial1-passo4.png" alt="Passo 3" width="1000">
+                </div>
+                <p class="image-caption">Escolha o método de validação que for mais conveniente para você</p>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Responda as Perguntas de Validação</h4>
+                <p>Agora o sistema vai fazer algumas perguntas sobre você para confirmar sua identidade. Estas perguntas são baseadas em informações que o governo já tem em registros públicos (como Receita Federal, cartório, etc.).</p>
+                
+                <div class="info-box">
+                    <strong>Exemplos de perguntas que podem aparecer:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>"Qual é a sua data de nascimento?"</li>
+                        <li>"Qual é o nome completo da sua mãe?"</li>
+                        <li>"Em qual cidade você nasceu?"</li>
+                        <li>"Qual é o seu estado civil?"</li>
+                        <li>"Qual é o número do seu título de eleitor?"</li>
+                    </ul>
+                </div>
+
+                <p>Responda cada pergunta com cuidado. As respostas precisam estar <strong>exatamente iguais</strong> aos seus documentos oficiais.</p>
+
+                <div class="danger-box">
+                    <strong>MUITO IMPORTANTE:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>Se você errar as respostas, pode precisar tentar outro método de cadastro</li>
+                        <li>Confira cada resposta antes de clicar em "Continuar"</li>
+                        <li>Use os dados EXATAMENTE como estão nos documentos (RG, CPF, Certidão)</li>
+                    </ul>
+                </div>
+
+                <p>Depois de responder todas as perguntas, clique em <strong>"Continuar"</strong>.</p>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="step">
+                <div class="step-number">6</div>
+                <h4>Escolha Como Receber o Código de Validação</h4>
+                <p>Se você respondeu as perguntas corretamente, o sistema vai confirmar seus dados (CPF e nome completo) e pedir para você escolher como quer receber um código de segurança.</p>
+                
+                <p>Você terá duas opções:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Opção</th>
+                            <th>Como Funciona</th>
+                            <th>O Que Você Precisa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Por E-mail</strong></td>
+                            <td>Código enviado para seu email</td>
+                            <td>Ter acesso ao seu email agora</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Por SMS</strong></td>
+                            <td>Código enviado por mensagem de texto</td>
+                            <td>Celular com você e com sinal</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>Escolha a opção que for melhor para você:</p>
+                <ul>
+                    <li>Se escolher <strong>email</strong>: Digite seu endereço de email completo (exemplo: seunome@gmail.com)</li>
+                    <li>Se escolher <strong>SMS</strong>: Digite seu número de celular com DDD (exemplo: 61912345678)</li>
+                </ul>
+
+                <p>Depois de digitar, clique no botão <strong>"Enviar código"</strong> ou <strong>"Continuar"</strong>.</p>
+
+                <div class="info-box">
+                    <strong>Recomendação:</strong> O SMS costuma ser mais rápido (chega em segundos). Mas se seu celular estiver sem sinal, use o email!
+                </div>
+            </div>
+
+            <!-- Passo 7 -->
+            <div class="step">
+                <div class="step-number">7</div>
+                <h4>Digite o Código de Validação</h4>
+                <p>Em alguns segundos (ou minutos), você receberá um código de <strong>6 dígitos</strong> no email ou SMS que você escolheu.</p>
+                
+                <p><strong>Exemplo de código:</strong> <code>123456</code></p>
+
+                <p>Na tela do computador/celular, você verá um campo pedindo este código. Digite os 6 números que você recebeu.</p>
+
+                <div class="warning-box">
+                    <strong>Dicas Importantes:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>O código <strong>expira em 10 minutos</strong> - use logo que receber!</li>
+                        <li>Se não receber em 2-3 minutos, clique em <strong>"Reenviar código"</strong></li>
+                        <li>Verifique a caixa de SPAM do email se escolheu email</li>
+                        <li>Verifique se o celular tem sinal se escolheu SMS</li>
+                        <li><strong>NUNCA</strong> compartilhe este código com ninguém!</li>
+                    </ul>
+                </div>
+
+                <p>Depois de digitar o código, clique em <strong>"Validar"</strong> ou <strong>"Continuar"</strong>.</p>
+            </div>
+
+            <!-- Passo 8 -->
+            <div class="step">
+                <div class="step-number">8</div>
+                <h4>Crie uma Senha Forte e Segura</h4>
+                <p>Agora você precisa criar uma senha para proteger sua conta. Esta senha será usada toda vez que você quiser acessar os serviços do Gov.br.</p>
+                
+                <div class="success-box">
+                    <strong>Regras obrigatórias para a senha Gov.br:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li>Mínimo de <strong>8 caracteres</strong> (recomendamos 12 ou mais!)</li>
+                        <li>Pelo menos <strong>1 letra MAIÚSCULA</strong> (A, B, C...)</li>
+                        <li>Pelo menos <strong>1 letra minúscula</strong> (a, b, c...)</li>
+                        <li>Pelo menos <strong>1 número</strong> (0, 1, 2, 3...)</li>
+                        <li>Pelo menos <strong>1 caractere especial</strong> (@ # ! $ % & * + =)</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 25px;"><strong>Exemplos de senhas fortes:</strong></p>
+                <ul>
+                    <li><code>Brasil2026@Seguro</code></li>
+                    <li><code>MinhaConta#2026!</code></li>
+                    <li><code>Gov@Forte2026</code></li>
+                </ul>
+                
+                <p><strong>Evite senhas fracas como:</strong></p>
+                <ul>
+                    <li>123456, senha123, 12345678</li>
+                    <li>Seu nome + ano de nascimento (João1985)</li>
+                    <li>Datas óbvias (aniversário)</li>
+                    <li>Sequências (abcdef, qwerty)</li>
+                </ul>
+                
+                <div class="danger-box">
+                    <strong>REGRAS DE OURO DE SEGURANÇA:</strong>
+                    <ul style="margin: 10px 0 0 0;">
+                        <li><strong>NUNCA</strong> compartilhe sua senha com ninguém (nem família!)</li>
+                        <li><strong>NUNCA</strong> use a mesma senha de outros sites (email, redes sociais, banco)</li>
+                        <li><strong>NUNCA</strong> envie sua senha por WhatsApp, email ou telefone</li>
+                        <li>O governo <strong>NUNCA</strong> pede sua senha por telefone ou email</li>
+                        <li><strong>Anote</strong> sua senha em um lugar seguro (caderno guardado em casa)</li>
+                    </ul>
+                </div>
+
+                <p>Digite a senha no primeiro campo e depois digite a <strong>mesma senha</strong> no segundo campo para confirmar.</p>
+                <p>Clique em <strong>"Concluir"</strong> ou <strong>"Criar conta"</strong>.</p>
+            </div>
+
+            <!-- Passo 9 -->
+            <div class="step">
+                <div class="step-number">9</div>
+                <h4>Parabéns! Sua Conta Foi Criada!</h4>
+                <p>Se tudo deu certo, você verá uma mensagem de sucesso dizendo que sua conta Gov.br foi criada!</p>
+                
+                <div class="warning-box">
+                    <strong>ATENÇÃO - Informação Importante:</strong><br>
+                    Sua conta foi criada no nível <strong>BRONZE</strong> (não Prata). Este é o nível inicial que todos recebem ao criar a conta pela primeira vez.
+                </div>
+
+                <div class="info-box">
+                    <strong>Entendendo os Níveis da Conta Gov.br:</strong><br><br>
+                    <strong>🥉 Bronze (você está aqui!):</strong><br>
+                    • Acesso básico a poucos serviços<br>
+                    • Consegue usar: consultas públicas simples e informações básicas<br>
+                    • Não permite acesso a documentos pessoais ou serviços sensíveis<br><br>
+                    
+                    <strong>🥈 Prata (recomendado!):</strong><br>
+                    • Acesso à MAIORIA dos serviços (CPF Digital, Carteira de Trabalho Digital, CNH Digital, etc.)<br>
+                    • Para conseguir: use reconhecimento facial pelo app Gov.br OU validação bancária<br>
+                    • É o nível que a maioria das pessoas usa<br><br>
+                    
+                    <strong>🥇 Ouro (para serviços completos):</strong><br>
+                    • Acesso a TODOS os serviços sem restrição<br>
+                    • Necessário para serviços importantes como FGTS, INSS, Receita Federal e assinatura de documentos<br>
+                    • Para conseguir: validação presencial em bancos credenciados, Correios, certificado digital ou internet banking de bancos específicos
+                </div>
+
+                <div class="success-box">
+                    <strong>Como Aumentar Sua Conta para PRATA:</strong><br>
+                    Você pode fazer isso agora ou depois. Existem duas formas:<br><br>
+                    <strong>1. Reconhecimento Facial (Mais Fácil!):</strong><br>
+                    • Baixe o aplicativo "Gov.br" no seu celular<br>
+                    • Faça login com seu CPF e senha<br>
+                    • Escolha "Aumentar nível da conta"<br>
+                    • Siga as instruções para fazer reconhecimento facial<br>
+                    • Pronto! Sua conta vira Prata em minutos<br><br>
+                    
+                    <strong>2. Validação Bancária:</strong><br>
+                    • Se você tem conta em banco credenciado (BB, Caixa, Bradesco, Santander, etc.)<br>
+                    • Acesse o internet banking do seu banco<br>
+                    • Procure por "Conta Gov.br" ou "Validação Gov.br"<br>
+                    • Siga as instruções do banco
+                </div>
+
+                <p>Por enquanto, sua conta Bronze já permite que você explore o sistema e veja os serviços disponíveis!</p>
+            </div>
+
+            <!-- Como usar os serviços -->
+            <h2>Como Usar os Serviços Principais</h2>
+            
+            <div class="info-box">
+                <strong>Importante:</strong> Para usar os serviços abaixo (CPF Digital, Carteira de Trabalho Digital, INSS), você precisará aumentar sua conta para nível <strong>Prata</strong>. Consulte o passo 9 acima para saber como fazer isso!
+            </div>
+
+            <h3>1. CPF Digital</h3>
+            <p>Seu CPF sempre à mão, no celular, sem precisar do documento físico!</p>
+            <p><strong>Como acessar (precisa de nível Prata):</strong></p>
+            <ol>
+                <li>Entre no site www.gov.br</li>
+                <li>Clique em "Entrar com Gov.br"</li>
+                <li>Digite seu CPF e senha</li>
+                <li>No menu principal, procure por "Meu CPF" ou use a busca</li>
+                <li>Pronto! Seu CPF digital aparecerá na tela</li>
+                <li>Você pode tirar print ou salvar como imagem</li>
+            </ol>
+            
+            <div class="info-box">
+                <strong>Dica:</strong> O CPF Digital tem a mesma validade que o documento físico! Você pode usá-lo em lojas, bancos, repartições públicas e qualquer lugar que peça seu CPF.
+            </div>
+
+            <h3>2. Carteira de Trabalho Digital</h3>
+            <p>Veja todos os seus vínculos de emprego, salários e tempo de trabalho!</p>
+            <p><strong>Como acessar (precisa de nível Prata):</strong></p>
+            <ol>
+                <li>Acesse www.gov.br e faça login</li>
+                <li>Procure por "Carteira de Trabalho Digital" no menu ou busca</li>
+                <li>Você verá uma lista com todos os seus empregos registrados</li>
+                <li>Clique em cada um para ver detalhes: data de admissão, demissão, salário, função</li>
+            </ol>
+            
+            <div class="success-box">
+                <strong>O que você pode fazer:</strong> Verificar se algum empregador não registrou sua carteira corretamente, consultar quanto tempo trabalhou em cada lugar, ver seu histórico de salários.
+            </div>
+
+            <h3>3. Consulta INSS (Meu INSS)</h3>
+            <p>Veja quanto tempo você já contribuiu e se tem direito a benefícios!</p>
+            <p><strong>Como acessar (precisa de nível Prata):</strong></p>
+            <ol>
+                <li>No Gov.br, procure por "Meu INSS"</li>
+                <li>Você pode ver:
+                    <ul>
+                        <li>Tempo total de contribuição</li>
+                        <li>Extrato de vínculos e contribuições</li>
+                        <li>Se tem direito a aposentadoria</li>
+                        <li>Simular aposentadoria</li>
+                        <li>Consultar benefícios (se tiver)</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <!-- Dúvidas Comuns -->
+            <h2>Dúvidas Comuns</h2>
+            
+            <h3>1. Por que não consigo criar minha conta?</h3>
+            <p><strong>Possíveis motivos:</strong></p>
+            <ul>
+                <li><strong>CPF irregular:</strong> Consulte a situação do seu CPF no site da Receita Federal (www.gov.br/receitafederal)</li>
+                <li><strong>Dados incorretos nas perguntas:</strong> As respostas precisam estar EXATAMENTE como nos documentos oficiais</li>
+                <li><strong>Problemas com celular/email:</strong> Use um número ou email que você tem acesso agora</li>
+                <li><strong>Já tem conta:</strong> Você pode já ter criado e esquecido - tente recuperar a senha</li>
+            </ul>
+
+            <h3>2. Esqueci minha senha, e agora?</h3>
+            <p><strong>Solução:</strong></p>
+            <ol>
+                <li>Na tela de login, clique em "Esqueci minha senha"</li>
+                <li>Digite seu CPF</li>
+                <li>Você receberá um código por SMS ou email (o que estiver cadastrado)</li>
+                <li>Digite o código</li>
+                <li>Crie uma nova senha seguindo as regras</li>
+            </ol>
+
+            <h3>3. Preciso pagar alguma coisa?</h3>
+            <p><strong>NÃO!</strong> A conta Gov.br é 100% gratuita. Você nunca precisará pagar nada para:</p>
+            <ul>
+                <li>Criar a conta</li>
+                <li>Acessar os serviços</li>
+                <li>Consultar documentos</li>
+                <li>Aumentar o nível da conta (Bronze → Prata → Ouro)</li>
+            </ul>
+            <div class="warning-box">
+                <strong>Cuidado com golpes:</strong> Se alguém pedir dinheiro para "ajudar" você a criar conta Gov.br, é GOLPE! Denuncie!
+            </div>
+
+            <h3>4. Posso usar no celular?</h3>
+            <p><strong>Sim!</strong> Você pode:</p>
+            <ul>
+                <li>Acessar pelo navegador do celular (www.gov.br)</li>
+                <li>Baixar o app oficial "Gov.br" na Google Play Store ou App Store</li>
+                <li>O app tem as mesmas funções do site, além do reconhecimento facial</li>
+            </ul>
+
+            <h3>5. Minha conta Gov.br expira?</h3>
+            <p><strong>Não!</strong> Sua conta não expira. Mas é recomendado:</p>
+            <ul>
+                <li>Acessar pelo menos uma vez por ano</li>
+                <li>Manter seus dados atualizados (celular, email)</li>
+                <li>Trocar a senha a cada 6-12 meses por segurança</li>
+            </ul>
+
+            <h3>6. Qual a diferença entre os métodos de cadastro?</h3>
+            <p>No Passo 4, você viu 4 opções. Aqui está a diferença:</p>
+            <ul>
+                <li><strong>QR Code + App:</strong> Precisa baixar o app Gov.br primeiro, mas é rápido e já cria conta Prata</li>
+                <li><strong>Bancos Credenciados:</strong> Se você tem conta em banco, pode validar por lá (já cria Prata)</li>
+                <li><strong>Tentar de outra forma:</strong> Só precisa responder perguntas (mais simples, mas cria Bronze)</li>
+                <li><strong>Internet Banking:</strong> Gera senha temporária pelo site do banco (técnico)</li>
+            </ul>
+
+            <h3>7. Não consegui responder as perguntas corretamente</h3>
+            <p><strong>Solução:</strong></p>
+            <ul>
+                <li>Tente novamente conferindo bem seus documentos</li>
+                <li>Se continuar com erro, escolha outro método (QR Code ou Banco)</li>
+                <li>Ou vá a um posto de atendimento presencial do gov.br</li>
+            </ul>
+
+            <!-- Dicas Extras -->
+            <h2>Dicas Extras para Usar Melhor o Gov.br</h2>
+            
+            <div class="info-box">
+                <strong>1. Anote sua senha:</strong> Escreva em um caderno que você guarda em casa. Não anote no celular ou computador.
+            </div>
+            
+            <div class="info-box">
+                <strong>2. Baixe o app Gov.br:</strong> Procure "Gov.br" na loja de aplicativos do seu celular. É oficial, gratuito e facilita muito o uso!
+            </div>
+            
+            <div class="info-box">
+                <strong>3. Aumente para Prata logo:</strong> Com conta Bronze você tem acesso limitado. Faça o reconhecimento facial no app para liberar todos os serviços importantes.
+            </div>
+            
+            <div class="info-box">
+                <strong>4. Explore os serviços:</strong> Depois de criar a conta e aumentar para Prata, navegue pelo site e veja tudo que você pode fazer. Você vai se surpreender!
+            </div>
+            
+            <div class="info-box">
+                <strong>5. Ajude outras pessoas:</strong> Agora que você sabe, ensine um amigo ou familiar a criar a conta deles também!
+            </div>
+
+            <!-- Outros Serviços Úteis -->
+            <h2>Outros Serviços Úteis no Gov.br</h2>
+            <p>Com sua conta Prata, veja outros serviços que pode acessar:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Serviço</th>
+                        <th>Para Que Serve</th>
+                        <th>Nível Necessário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>CNH Digital</strong></td>
+                        <td>Sua carteira de motorista no celular</td>
+                        <td>Prata</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Título de Eleitor</strong></td>
+                        <td>Consultar situação eleitoral, local de votação</td>
+                        <td>Bronze</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Conecte SUS</strong></td>
+                        <td>Ver vacinas, exames, histórico de saúde</td>
+                        <td>Prata</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Restituição IR</strong></td>
+                        <td>Ver se tem restituição de Imposto de Renda</td>
+                        <td>Bronze</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Certidões</strong></td>
+                        <td>Emitir certidões negativas federais</td>
+                        <td>Prata</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Seguro Desemprego</strong></td>
+                        <td>Solicitar e consultar seguro desemprego</td>
+                        <td>Prata</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FGTS</strong></td>
+                        <td>Consultar saldo e extrato do FGTS</td>
+                        <td>Prata</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Conclusão -->
+            <div class="success-box" style="margin-top: 50px;">
+                <h3 style="color: #065f46; margin-top: 0;">Parabéns! Você Concluiu Este Tutorial!</h3>
+                <p>Agora você sabe:</p>
+                <ul style="margin: 10px 0;">
+                    <li>Criar sua conta Gov.br (nível Bronze)</li>
+                    <li>Entender a diferença entre os níveis (Bronze, Prata, Ouro)</li>
+                    <li>Como aumentar para Prata (reconhecimento facial ou banco)</li>
+                    <li>Como acessar CPF Digital, Carteira de Trabalho e INSS</li>
+                    <li>Resolver problemas comuns</li>
+                </ul>
+                <p><strong>Próximo passo:</strong> Aumente sua conta para Prata usando o app Gov.br e explore todos os serviços disponíveis. Você descobrirá muita coisa útil!</p>
+            </div>
+
+            <!-- Navegação entre Tutoriais -->
+            <div class="tutorial-nav">
+                <a href="index.html" class="nav-tutorial-btn">
+                    Voltar para Início
+                </a>
+                <a href="tutorial2.html" class="nav-tutorial-btn">
+                    Próximo: WhatsApp Business
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Portal de Inclusão Digital - Riacho Fundo 2</p>
+            <p class="mb-0 mt-2">Desenvolvido por Vinícius de Oliveira Vieira - UNINTER</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

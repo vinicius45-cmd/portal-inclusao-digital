@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 10 - Programas Sociais | Portal de Inclusão Digital</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+<!-- CSS Customizado -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: white;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .tutorial-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+        }
+        
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+        
+        .tutorial-content {
+            background: white;
+            padding: 60px 0;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .tutorial-content h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tutorial-content h3 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border: 3px solid #0284c7;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .info-box strong {
+            color: #0c4a6e;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box strong {
+            color: #92400e;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border: 3px solid #10b981;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .success-box strong {
+            color: #065f46;
+        }
+        
+        .danger-box {
+            background: #fee2e2;
+            border: 3px solid #ef4444;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .danger-box strong {
+            color: #991b1b;
+        }
+        
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step h4 {
+            margin-top: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            background: #f1f5f9;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .tutorial-content li {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .nav-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tutorial-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        table tr:hover {
+            background: var(--light-bg);
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #dc2626;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .benefit-card {
+            background: #e0f2fe;
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .benefit-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-wrapper {
+                padding: 0 20px;
+            }
+            
+            .tutorial-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            📚 Inclusão Digital
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#tutoriais">Tutoriais</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Header do Tutorial -->
+    <div class="tutorial-header">
+        <div class="container">
+            <h1>Tutorial 10: Programas Sociais</h1>
+            <p class="lead">Descubra se você tem direito a benefícios sociais! Aprenda sobre CadÚnico, Bolsa Família, Tarifa Social e Auxílio Gás.</p>
+            <div class="tutorial-meta">
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>25-35 minutos</span>
+                </div>
+                <div class="meta-item">
+                    <span>📱</span>
+                    <span>Celular ou Computador</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Tutorial -->
+    <div class="tutorial-content">
+        <div class="content-wrapper">
+            
+            <!-- Introdução -->
+            <h2>O Que Você Vai Aprender</h2>
+            <ul>
+                <li>O que é o Cadastro Único (CadÚnico) e para que serve</li>
+                <li>Quem pode fazer o CadÚnico (critérios de renda familiar)</li>
+                <li>Onde e como fazer seu cadastro no CRAS mais próximo</li>
+                <li>Como consultar se você já está cadastrado no sistema</li>
+                <li>Benefício 1: Bolsa Família - requisitos, valores e como se inscrever</li>
+                <li>Benefício 2: Tarifa Social de Energia - até 65% de desconto na conta de luz</li>
+                <li>Benefício 3: Auxílio Gás - pagamento a cada 2 meses</li>
+                <li>Como usar o app Caixa Tem para consultar pagamentos</li>
+                <li>Como e quando atualizar seu cadastro (obrigatório a cada 2 anos)</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Antes de Começar:</strong> Você vai precisar de documentos de TODOS que moram na casa (RG, CPF ou Certidão), comprovante de residência atualizado, comprovante de renda de quem trabalha, tempo para ir ao CRAS (1-2 horas) e celular para o app Caixa Tem. Mesmo sem todos os documentos, vá ao CRAS - eles orientam!
+            </div>
+
+            <!-- Passo 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>O Que É o Cadastro Único (CadÚnico)</h4>
+                <p><strong>Entenda o sistema:</strong> O CadÚnico é a porta de entrada para TODOS os programas sociais do governo federal!</p>
+                
+                <p><strong>O que é:</strong></p>
+                <ul>
+                    <li>É um cadastro do governo federal que reúne informações de famílias de baixa renda</li>
+                    <li>Serve para identificar quem realmente precisa de ajuda do governo</li>
+                    <li>É GRATUITO e não garante automaticamente benefícios (mas é obrigatório para receber)</li>
+                    <li>Cada família tem um Número de Identificação Social (NIS) único</li>
+                </ul>
+
+                <p><strong>Para que serve:</strong></p>
+                <ul>
+                    <li>Bolsa Família</li>
+                    <li>Auxílio Gás</li>
+                    <li>Tarifa Social de Energia Elétrica</li>
+                    <li>Programa Cisternas</li>
+                    <li>Carteira do Idoso (desconto em transporte)</li>
+                    <li>Isenção de taxa de concursos públicos</li>
+                    <li>Telefone Popular (desconto em linha fixa)</li>
+                    <li>ID Jovem (meia-entrada em eventos)</li>
+                    <li>Programa Minha Casa Minha Vida</li>
+                    <li>E muitos outros programas estaduais e municipais</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>CadÚnico é a chave:</strong> Pense no CadÚnico como a chave que abre várias portas de benefícios. SEM ele, você não consegue acessar nenhum programa social federal. Por isso é tão importante se cadastrar!
+                </div>
+
+                <div class="info-box">
+                    <strong>Dados atualizados:</strong> O CadÚnico ajuda o governo a entender a realidade das famílias brasileiras e planejar políticas públicas. Por isso os dados precisam ser verdadeiros e atualizados!
+                </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Quem Pode Fazer o CadÚnico</h4>
+                <p><strong>Critérios de renda:</strong> Veja se sua família se enquadra nos requisitos para fazer o cadastro.</p>
+                
+                <p><strong>Pode se cadastrar:</strong></p>
+                
+                <div class="benefit-card">
+                    <h4>Critério Principal: Renda por Pessoa</h4>
+                    <p>Famílias com <strong>renda mensal de até meio salário mínimo (R$ 706,00) por pessoa</strong>.</p>
+                    <p><strong>Como calcular:</strong></p>
+                    <ol>
+                        <li>Some a renda de TODOS que moram na casa</li>
+                        <li>Divida pelo número de pessoas (incluindo crianças e idosos)</li>
+                        <li>Se der até R$ 706,00 por pessoa, você pode se cadastrar!</li>
+                    </ol>
+                    <p><strong>Exemplo:</strong> Família de 4 pessoas com renda total de R$ 2.500,00<br>
+                    R$ 2.500 ÷ 4 = R$ 625,00 por pessoa → <strong>PODE se cadastrar!</strong></p>
+                </div>
+
+                <p><strong>Também pode se cadastrar (independente da renda):</strong></p>
+                <ul>
+                    <li>Famílias em situação de rua</li>
+                    <li>Famílias indígenas e quilombolas</li>
+                    <li>Famílias com pessoas em situação de trabalho infantil</li>
+                    <li>Quem quer participar de programas específicos que exigem CadÚnico</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>Atenção ao calcular:</strong> Conta TODA a renda: salário formal, bicos, pensão alimentícia, aposentadoria, aluguel que recebe, etc. Seja honesto! Omitir informações pode te fazer perder benefícios depois e até responder criminalmente.
+                </div>
+
+                <div class="info-box">
+                    <strong>Quem conta como família:</strong> Todas as pessoas que moram na mesma casa e compartilham despesas: pais, filhos, avós, tios, primos que moram junto. NÃO conta quem só visita ou não mora de fato.
+                </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Onde e Como Fazer o Cadastro</h4>
+                <p><strong>Passo a passo para se cadastrar:</strong> O cadastro é presencial e gratuito no CRAS mais próximo da sua casa.</p>
+                
+                <p><strong>1. Encontre o CRAS mais próximo:</strong></p>
+                <ul>
+                    <li>No Riacho Fundo 2: <strong>CRAS QN 5B</strong></li>
+                    <li>Outras regiões: ligue 156 ou busque no Google "CRAS + nome do seu bairro"</li>
+                    <li>Site: <code>mds.gov.br/cras</code> (lista completa)</li>
+                </ul>
+
+                <p><strong>2. Separe os documentos:</strong></p>
+                <ul>
+                    <li><strong>De TODOS da casa:</strong> CPF ou Título de Eleitor (adultos), Certidão de Nascimento ou RG (crianças)</li>
+                    <li><strong>Comprovante de residência:</strong> conta de luz, água, telefone, contrato de aluguel</li>
+                    <li><strong>Comprovante de renda:</strong> contracheque, declaração do patrão, carteira de trabalho</li>
+                    <li><strong>Outros:</strong> se tiver, leve carteira de trabalho, comprovante de matrícula escolar das crianças</li>
+                </ul>
+
+                <p><strong>3. Vá até o CRAS:</strong></p>
+                <ol>
+                    <li>Chegue cedo (de preferência pela manhã) para evitar fila</li>
+                    <li>Leve TODOS os documentos (mesmo sem alguns, eles orientam)</li>
+                    <li>O atendimento é por ordem de chegada</li>
+                    <li>Preferencialmente, vá o <strong>Responsável Familiar</strong> (maior de 16 anos que more na casa)</li>
+                    <li>O cadastramento demora cerca de 30-60 minutos</li>
+                </ol>
+
+                <p><strong>4. No atendimento:</strong></p>
+                <ul>
+                    <li>O entrevistador vai fazer perguntas sobre sua família, renda, condições da casa</li>
+                    <li>Seja sincero e detalhado nas respostas</li>
+                    <li>Informe TODOS que moram com você (mesmo sem documentos naquele dia)</li>
+                    <li>Tire suas dúvidas sobre benefícios</li>
+                    <li>Você recebe um <strong>comprovante de cadastro com o NIS</strong> - GUARDE!</li>
+                </ul>
+
+                <div class="tutorial-image">
+                    <img src="../img/tutorial10-passo1.png" alt="Passo 1" width="500">
+                </div>
+                <p class="image-caption">CRAS - Centro de Referência de Assistência Social</p>
+
+                <div class="success-box">
+                    <strong>NIS é seu número:</strong> Após o cadastro, cada pessoa da família recebe um NIS (Número de Identificação Social). Esse número é MUITO importante - anote e guarde! É com ele que você consulta benefícios.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Cuidado com intermediários:</strong> NUNCA pague alguém para fazer seu cadastro! O serviço do CRAS é GRATUITO. Desconfie de quem cobra ou promete garantir benefícios mediante pagamento - isso é GOLPE!
+                </div>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Como Consultar Seu Cadastro</h4>
+                <p><strong>Verifique se está cadastrado:</strong> Existem 3 formas de consultar seu CadÚnico online.</p>
+                
+                <h3>Opção 1: Site Meu CadÚnico</h3>
+                <ol>
+                    <li>Acesse: <code>meucadunico.cidadania.gov.br</code></li>
+                    <li>Clique em <strong>"Entrar com gov.br"</strong></li>
+                    <li>Faça login com sua conta Gov.br</li>
+                    <li>Você verá todas as informações do seu cadastro</li>
+                    <li>Pode consultar: data de cadastro, última atualização, dados da família, benefícios</li>
+                </ol>
+
+                <h3>Opção 2: App Caixa Tem</h3>
+                <ol>
+                    <li>Baixe o app <strong>"Caixa Tem"</strong> (Play Store ou App Store)</li>
+                    <li>Faça cadastro com seu CPF</li>
+                    <li>Na tela inicial, vá em <strong>"Cadastro Único"</strong></li>
+                    <li>Veja seu NIS e informações básicas</li>
+                </ol>
+
+                <h3>Opção 3: Telefone 121</h3>
+                <ul>
+                    <li>Ligue para <strong>121</strong> (Ministério do Desenvolvimento Social)</li>
+                    <li>Atendimento de segunda a sexta, das 7h às 19h</li>
+                    <li>Tenha em mãos seu CPF ou NIS</li>
+                    <li>Consulta é gratuita</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Dados podem demorar:</strong> Após fazer o cadastro no CRAS, pode levar até 48 horas para aparecer no sistema online. Se não aparecer depois disso, volte ao CRAS com seu comprovante.
+                </div>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <h4>Benefício 1: Bolsa Família</h4>
+                <p><strong>O maior programa de transferência de renda do Brasil!</strong> Veja se você tem direito e quanto pode receber.</p>
+                
+                <p><strong>Requisitos para receber:</strong></p>
+                <ul>
+                    <li>Estar cadastrado no CadÚnico</li>
+                    <li>Renda familiar de até R$ 218,00 por pessoa</li>
+                    <li>Ter crianças, adolescentes, gestantes ou nutrizes na família</li>
+                    <li>Manter crianças na escola (75% frequência 4-5 anos, 85% para 6-17 anos)</li>
+                    <li>Manter vacinação em dia</li>
+                    <li>Fazer pré-natal (se tiver gestante)</li>
+                </ul>
+
+                <h3>Valores do Bolsa Família (2024)</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Benefício</th>
+                            <th>Valor</th>
+                            <th>Quem recebe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Renda de Cidadania</strong></td>
+                            <td>R$ 142,00 por pessoa</td>
+                            <td>Todas as famílias elegíveis</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Primeira Infância</strong></td>
+                            <td>R$ 150,00 por criança</td>
+                            <td>Crianças de 0 a 6 anos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Variável Familiar</strong></td>
+                            <td>R$ 50,00 por pessoa</td>
+                            <td>Gestantes, nutrizes, 7-17 anos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adicional Complementar</strong></td>
+                            <td>Variável</td>
+                            <td>Garante mínimo R$ 600/família</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Como se inscrever:</strong></p>
+                <ol>
+                    <li>Faça seu CadÚnico no CRAS (Passo 3)</li>
+                    <li>NÃO precisa pedir o Bolsa Família separadamente!</li>
+                    <li>O governo analisa automaticamente quem tem direito</li>
+                    <li>Se aprovado, você recebe aviso pelo app Caixa Tem ou carta</li>
+                    <li>Pagamento é feito mensalmente via Caixa Econômica</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>É automático:</strong> Você NÃO precisa pedir o Bolsa Família! Basta estar cadastrado no CadÚnico com dados corretos. O governo seleciona automaticamente quem tem direito segundo os critérios da lei.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Cumpra as condicionalidades:</strong> Para continuar recebendo, você PRECISA manter as crianças na escola com frequência mínima, vacinação em dia e fazer pré-natal. O governo fiscaliza isso!
+                </div>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="step">
+                <div class="step-number">6</div>
+                <h4>Benefício 2: Tarifa Social de Energia</h4>
+                <p><strong>Desconto de até 65% na conta de luz!</strong> Benefício pouco conhecido mas muito importante para economizar.</p>
+                
+                <p><strong>O que é:</strong></p>
+                <ul>
+                    <li>Desconto na conta de energia elétrica para famílias de baixa renda</li>
+                    <li>Desconto varia de 10% a 65% dependendo do consumo</li>
+                    <li>É aplicado automaticamente na conta todo mês</li>
+                    <li>Válido em todo Brasil</li>
+                </ul>
+
+                <p><strong>Quem tem direito:</strong></p>
+                <ul>
+                    <li>Família inscrita no CadÚnico com renda de até meio salário mínimo por pessoa</li>
+                    <li>OU família que recebe Benefício de Prestação Continuada (BPC)</li>
+                    <li>OU pessoa com doença que precisa de equipamento elétrico para tratamento</li>
+                </ul>
+
+                <h3>Descontos por faixa de consumo</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Consumo mensal (kWh)</th>
+                            <th>Desconto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Até 30 kWh</td>
+                            <td>65%</td>
+                        </tr>
+                        <tr>
+                            <td>31 a 100 kWh</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td>101 a 220 kWh</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td>Acima de 220 kWh</td>
+                            <td>Sem desconto</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Como solicitar:</strong></p>
+                <ol>
+                    <li><strong>Para famílias do CadÚnico:</strong> O benefício é AUTOMÁTICO!</li>
+                    <li><strong>Se não aplicou:</strong> Ligue para a distribuidora (Neoenergia: 116) com NIS em mãos</li>
+                    <li><strong>Para doença:</strong> Leve laudo médico na agência da distribuidora</li>
+                    <li>Prazo para ativar: até 30 dias</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Economia real:</strong> Família que consome 100 kWh/mês (conta de ~R$ 90) economiza R$ 36/mês com 40% de desconto. Isso dá R$ 432 por ano! Vale muito a pena verificar!
+                </div>
+            </div>
+
+            <!-- Passo 7 -->
+            <div class="step">
+                <div class="step-number">7</div>
+                <h4>Benefício 3: Auxílio Gás</h4>
+                <p><strong>Ajuda para comprar gás de cozinha:</strong> Benefício pago a cada 2 meses para famílias do Bolsa Família.</p>
+                
+                <p><strong>O que é:</strong></p>
+                <ul>
+                    <li>Pagamento em dinheiro para ajudar na compra do botijão de gás</li>
+                    <li>Valor: 100% do preço médio nacional do botijão 13kg (R$ 100-120)</li>
+                    <li>Pago a cada 2 meses (bimestral)</li>
+                    <li>Não precisa devolver comprovante</li>
+                </ul>
+
+                <p><strong>Quem tem direito:</strong></p>
+                <ul>
+                    <li>Famílias que recebem Bolsa Família</li>
+                    <li>Com renda per capita de até meio salário mínimo</li>
+                    <li>Prioridade: mulheres vítimas de violência doméstica</li>
+                </ul>
+
+                <p><strong>Como funciona:</strong></p>
+                <ol>
+                    <li>NÃO precisa se inscrever separadamente!</li>
+                    <li>Se recebe Bolsa Família, é incluído automaticamente</li>
+                    <li>Pagamento junto com Bolsa Família em meses pares</li>
+                    <li>Recebe via Caixa Tem ou saca no mesmo lugar</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>Calendário fixo:</strong> Auxílio Gás é pago bimestralmente junto com Bolsa Família. Consulte o calendário no app Caixa Tem!
+                </div>
+            </div>
+
+            <!-- Passo 8 -->
+            <div class="step">
+                <div class="step-number">8</div>
+                <h4>App Caixa Tem - Consultar Pagamentos</h4>
+                <p><strong>Acompanhe tudo pelo celular:</strong> O app Caixa Tem é essencial para consultar e receber seus benefícios.</p>
+                
+                <p><strong>Como baixar e usar:</strong></p>
+                <ol>
+                    <li>Baixe <strong>"Caixa Tem"</strong> na Play Store ou App Store</li>
+                    <li>Abra e toque em <strong>"Cadastre-se"</strong></li>
+                    <li>Digite seu CPF e crie senha de 6 dígitos</li>
+                    <li>Confirme seus dados pessoais</li>
+                    <li>Tire uma selfie para validação</li>
+                    <li>Pronto! Você está cadastrado</li>
+                </ol>
+
+                <p><strong>O que fazer no app:</strong></p>
+                <ul>
+                    <li>Ver calendário de pagamentos</li>
+                    <li>Consultar saldo disponível</li>
+                    <li>Ver extrato de pagamentos</li>
+                    <li>Pagar contas e boletos</li>
+                    <li>Fazer compras online</li>
+                    <li>Transferir dinheiro (Pix, TED)</li>
+                    <li>Sacar sem cartão (gerar código)</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>Segurança:</strong> NUNCA compartilhe sua senha! A Caixa NUNCA pede senha por telefone, WhatsApp ou e-mail. Desconfie - pode ser golpe!
+                </div>
+            </div>
+
+            <!-- Passo 9 -->
+            <div class="step">
+                <div class="step-number">9</div>
+                <h4>Atualizar Cadastro (Obrigatório a Cada 2 Anos)</h4>
+                <p><strong>Mantenha seus dados atualizados:</strong> A atualização é OBRIGATÓRIA a cada 2 anos ou quando houver mudanças.</p>
+                
+                <p><strong>Quando DEVE atualizar:</strong></p>
+                <ul>
+                    <li>A cada 2 anos (prazo máximo por lei)</li>
+                    <li>Mudança de endereço</li>
+                    <li>Mudança na família (nascimento, morte, casamento, separação)</li>
+                    <li>Mudança de renda</li>
+                    <li>Crianças entraram ou mudaram de escola</li>
+                    <li>Qualquer mudança significativa</li>
+                </ul>
+
+                <p><strong>Como atualizar:</strong></p>
+                <ol>
+                    <li>Vá ao CRAS onde fez cadastro (ou o mais próximo)</li>
+                    <li>Leve: comprovante com NIS, documentos atualizados, comprovante de residência</li>
+                    <li>Informe as mudanças ocorridas</li>
+                    <li>Atendimento demora 20-30 minutos</li>
+                    <li>Recebe novo comprovante atualizado</li>
+                </ol>
+
+                <div class="danger-box">
+                    <strong>MUITO IMPORTANTE:</strong> Se não atualizar no prazo, seus benefícios podem ser BLOQUEADOS! Coloque lembrete no celular para atualizar a cada 2 anos.
+                </div>
+
+                <div class="warning-box">
+                    <strong>Informações falsas:</strong> Dar informações falsas ou omitir mudanças é CRIME! Pode perder benefícios, devolver valores e responder judicialmente. Seja honesto!
+                </div>
+            </div>
+
+            <!-- Resumo dos Benefícios -->
+            <h2>Resumo: Todos os Benefícios</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Benefício</th>
+                        <th>Valor</th>
+                        <th>Frequência</th>
+                        <th>Como receber</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Bolsa Família</strong></td>
+                        <td>Mínimo R$ 600/família</td>
+                        <td>Mensal</td>
+                        <td>Automático após CadÚnico</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Auxílio Gás</strong></td>
+                        <td>~R$ 110</td>
+                        <td>Bimestral</td>
+                        <td>Junto com Bolsa Família</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tarifa Social</strong></td>
+                        <td>10% a 65% desconto</td>
+                        <td>Mensal (na conta)</td>
+                        <td>Automático após CadÚnico</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Telefone Popular</strong></td>
+                        <td>Desconto assinatura</td>
+                        <td>Mensal</td>
+                        <td>Solicitar à operadora</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Isenção Taxas</strong></td>
+                        <td>Variável</td>
+                        <td>Quando aplicar</td>
+                        <td>Informar NIS</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Dúvidas Comuns -->
+            <h2>Dúvidas Comuns</h2>
+            
+            <h3>1. Posso fazer CadÚnico trabalhando de carteira assinada?</h3>
+            <p><strong>Resposta:</strong> SIM, desde que a renda por pessoa seja até meio salário mínimo (R$ 706). O que conta é a renda TOTAL dividida pelo número de pessoas. Se ganha R$ 1.500 mas tem 4 em casa, renda per capita é R$ 375 - pode cadastrar!</p>
+
+            <h3>2. Fiz CadÚnico mas não recebi Bolsa Família. Por quê?</h3>
+            <p><strong>Resposta:</strong> Estar no CadÚnico NÃO garante benefícios automaticamente. Precisa se enquadrar nos critérios (renda até R$ 218 per capita, ter crianças/gestantes). Além disso, pode haver fila de espera. Continue atualizando cadastro. Consulte pelo 121 ou no CRAS.</p>
+
+            <h3>3. Minha situação melhorou. Devo avisar mesmo perdendo o benefício?</h3>
+            <p><strong>Resposta:</strong> SIM! É OBRIGATÓRIO atualizar quando há mudanças. Omitir melhorias é CRIME (fraude). Pode devolver tudo e responder criminalmente. Seja honesto!</p>
+
+            <h3>4. Posso usar CadÚnico de outra cidade se mudar?</h3>
+            <p><strong>Resposta:</strong> Sim, é nacional. Mas DEVE atualizar endereço no CRAS da nova cidade rapidamente. Leve comprovante antigo e novo de residência.</p>
+
+            <h3>5. Perdi meu NIS. Como recupero?</h3>
+            <p><strong>Resposta:</strong> Consulte em: 1) meucadunico.cidadania.gov.br, 2) App Caixa Tem, 3) Ligando 121, ou 4) No CRAS com RG e CPF. Anote e guarde!</p>
+
+            <!-- Dicas Extras -->
+            <h2>Dicas Extras Importantes</h2>
+            
+            <div class="info-box">
+                <strong>1. Não espere para fazer cadastro:</strong> Mesmo se acha que não tem direito agora, faça! A situação pode mudar e você já estará cadastrado. Há benefícios estaduais/municipais que pode não conhecer.
+            </div>
+            
+            <div class="info-box">
+                <strong>2. Organize documentos antes:</strong> Faça pasta com cópias de TODOS os documentos da família. Leve tudo junto no CRAS. Economiza tempo e evita voltar.
+            </div>
+            
+            <div class="info-box">
+                <strong>3. Calendário de atualizações:</strong> Crie lembrete no celular para daqui 2 anos. Coloque também lembretes de conferir frequência escolar (bimestral) e vacinação. Evita bloqueio.
+            </div>
+            
+            <div class="info-box">
+                <strong>4. Ensine outras pessoas:</strong> Muita gente tem direito mas não sabe! Compartilhe conhecimento com vizinhos, familiares e amigos. Ajude-os a se cadastrar. Juntos somos mais fortes!
+            </div>
+            
+            <div class="info-box">
+                <strong>5. Não caia em golpes:</strong> NUNCA pague para fazer cadastro ou "garantir" benefícios. Serviços do CRAS são GRATUITOS. Desconfie de promessas milagrosas e nunca dê senha do Caixa Tem!
+            </div>
+
+            <!-- Resolvendo Problemas -->
+            <h2>Resolvendo Problemas Comuns</h2>
+            
+            <h3>Problema: Benefício foi bloqueado</h3>
+            <p><strong>Solução:</strong> Principais motivos: falta de atualização, baixa frequência escolar, vacinação atrasada. Vá URGENTE ao CRAS com comprovante. Leve documentos de regularização (atestado escolar, carteira vacinação). Peça desbloqueio. Pagamento normaliza no mês seguinte. Não perde valores atrasados se regularizar rápido.</p>
+
+            <h3>Problema: Não consigo acessar Caixa Tem (erro selfie)</h3>
+            <p><strong>Solução:</strong> Local bem iluminado, retire óculos/boné, olhe direto para câmera. Se continuar falhando, vá à agência Caixa com RG e CPF. Lá desbloqueiam e cadastram presencialmente. Leve comprovante de residência.</p>
+
+            <h3>Problema: Há meses no CadÚnico mas sem benefício</h3>
+            <p><strong>Solução:</strong> Verifique dados corretos (site Meu CadÚnico). Confirme renda dentro dos limites (até R$ 218 per capita). Verifique se há crianças/gestantes (requisito). Há fila de espera. Ligue 121 para verificar pendências. Volte ao CRAS.</p>
+
+            <!-- Conclusão -->
+            <div class="success-box" style="margin-top: 50px;">
+                <h3 style="color: #065f46; margin-top: 0;">Parabéns! Você Concluiu Este Tutorial!</h3>
+                <p>Agora você sabe:</p>
+                <ul style="margin: 10px 0;">
+                    <li>O que é CadÚnico e sua importância</li>
+                    <li>Quem pode fazer e como calcular renda</li>
+                    <li>Onde e como fazer cadastro no CRAS</li>
+                    <li>Como consultar seu cadastro online</li>
+                    <li>Bolsa Família: requisitos e valores</li>
+                    <li>Tarifa Social: descontos na luz</li>
+                    <li>Auxílio Gás: pagamento bimestral</li>
+                    <li>Usar app Caixa Tem</li>
+                    <li>Quando atualizar cadastro</li>
+                </ul>
+                <p style="margin-bottom: 0;"><strong>Lembre-se:</strong> Esses são DIREITOS garantidos por lei. Não tenha vergonha de buscar ajuda quando precisar. Os programas existem para apoiar famílias em momentos de necessidade.</p>
+            </div>
+
+            <!-- Navegação entre Tutoriais -->
+            <div class="tutorial-nav">
+                <a href="tutorial9.html" class="nav-tutorial-btn">
+                    Tutorial Anterior
+                </a>
+                <a href="index.html" class="nav-tutorial-btn">
+                    Voltar para Início
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Portal de Inclusão Digital - Riacho Fundo 2</p>
+            <p class="mb-0 mt-2">Desenvolvido por Vinícius de Oliveira Vieira - UNINTER</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
